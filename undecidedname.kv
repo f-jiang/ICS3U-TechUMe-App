@@ -1,0 +1,127 @@
+#1.8.0
+
+
+<SplashScreen>:
+    FloatLayout:
+        Label:
+            text: "background image here"
+
+        # TODO: make this load
+        ProgressBar:
+            id: bar
+            size_hint: (0.7, None)
+            pos_hint: {"top":0.2, "center_x":0.5}
+            max: 100
+            value: 30
+
+
+# TODO: decide whether to keep the theme selection screen
+# <ThemeSelectionScreen>:
+#    BoxLayout:
+#        orientation: "horizontal"
+#
+#        BoxLayout:
+#            padding: 40
+#            spacing: 20
+#            orientation: "vertical"
+#            Button:
+#                text: "theme 1"
+#            Button:
+#                text: "theme 2"
+#
+#        Label:
+#            text: "mascot graphic here"
+#
+#        BoxLayout:
+#            padding: 40
+#            spacing: 20
+#            orientation: "vertical"
+#            Button:
+#                text: "theme 3"
+#            Button:
+#                text: "theme 4"
+
+
+<MainMenuScreen>:
+    BoxLayout:
+        orientation: "horizontal"
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: 75
+            spacing: 50
+
+            Button:
+                text: "Play"
+
+            Button:
+                text: "Settings"
+                on_press:
+                    root.manager.transition.direction = "left"
+                    root.manager.current = "settings"
+
+            Button:
+                text: "Credits"
+
+        BoxLayout:
+            orientation: "vertical"
+
+            Label:
+                text: "chosen theme name here"
+
+            Carousel:
+                size_hint: (1.0, 0.1)
+                pos_hint: {'center_x':0.5}
+                loop: True
+
+                Button:
+                    size_hint: (1.0, 1.0)
+                    text: "Theme 1"
+
+                Button:
+                    size_hint: (1.0, 1.0)
+                    text: "Theme 2"
+
+                Button:
+                    size_hint: (1.0, 1.0)
+                    text: "Theme 3"
+
+                Button:
+                    size_hint: (1.0, 1.0)
+                    text: "Theme 4"
+
+
+<SettingsScreen>:
+    BoxLayout:
+        orientation: "vertical"
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: (1.0, 0.2)
+
+            Button:
+                size_hint: (0.25, None)
+                text: "Back"
+                on_press:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "main"
+
+            Label:
+                text: "Settings"
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: 50
+            spacing: 25
+
+            ToggleButton:
+                text: "Music"
+
+            ToggleButton:
+                text: "Sound Effects"
+
+            Button:
+                text: "Reset Progress"
+
+            Button:
+                text: "Stats"

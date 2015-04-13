@@ -1,0 +1,54 @@
+from kivy.app import App
+from kivy.properties import ObjectProperty
+from kivy.uix.screenmanager import ScreenManager, Screen, SwapTransition, WipeTransition, FadeTransition, \
+    FallOutTransition
+from kivy.uix.carousel import Carousel
+from kivy.uix.button import Button
+
+'''
+how ScreenManagers work:
+-each screen gets its own class
+-you add screens to the screen manager using the add_widget function
+-you set the screen being displayed by setting the "current" property to the name of the desired screen
+-you can set the direction of the transition animation by setting the "transition.direction" property to either "up",
+"down", "left", or "right"
+'''
+
+
+class SplashScreen(Screen):
+
+    pass
+
+
+'''class ThemeSelectionScreen(Screen):
+
+    pass
+'''
+
+
+class MainMenuScreen(Screen):
+
+    pass
+
+
+class SettingsScreen(Screen):
+
+    pass
+
+
+class UndecidedName(App):
+
+    def build(self):
+        screen_manager = ScreenManager()
+        screen_manager.add_widget(SplashScreen(name="splash"))
+        # screen_manager.add_widget(ThemeSelectionScreen(name="theme"))
+        screen_manager.add_widget(MainMenuScreen(name="main"))
+        screen_manager.add_widget(SettingsScreen(name="settings"))
+
+        screen_manager.current = "main"
+
+        return screen_manager
+
+
+if __name__ == "__main__":
+    UndecidedName().run()
