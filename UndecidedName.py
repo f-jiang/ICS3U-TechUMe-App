@@ -17,7 +17,8 @@ how ScreenManagers work:
 
 class SplashScreen(Screen):
 
-    pass
+    def load(dt):
+        pass
 
 
 '''class ThemeSelectionScreen(Screen):
