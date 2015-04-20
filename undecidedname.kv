@@ -40,8 +40,37 @@
 #                text: "theme 3"
 #            Button:
 #                text: "theme 4"
+<CreditsScreen>:
+    BoxLayout:
+        orientation: "vertical"
 
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: (1.0, 0.2)
 
+            Button:
+                size_hint: (0.25, None)
+                text: "Back"
+                on_press:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "main"
+			    
+            Label:
+                text: "Credits"
+			
+        BoxLayout:
+            orientation: "vertical"
+            padding: 50
+            spacing: 25
+			
+			Label:
+                text: "Programmers:\nEric Canam & Feilan Jiang"
+			
+            Label:
+                text: "Media and Customer Relations:\nWasiquious Gilani"
+			Label:
+                text: "Media and Operations Supervisor:\nShivansh Lufthansa"
+			
 <MainMenuScreen>:
     BoxLayout:
         orientation: "horizontal"
@@ -53,6 +82,9 @@
 
             Button:
                 text: "Play"
+				on_press:
+					root.manager.transition.direction = "left"
+                    root.manager.current = "conf"
 
             Button:
                 text: "Settings"
@@ -62,6 +94,9 @@
 
             Button:
                 text: "Credits"
+				on_press:
+                    root.manager.transition.direction = "left"
+                    root.manager.current = "credits"
 
         BoxLayout:
             orientation: "vertical"
@@ -89,6 +124,52 @@
                 Button:
                     size_hint: (1.0, 1.0)
                     text: "Theme 4"
+
+<GameConfigScreen>:
+    BoxLayout:
+        orientation: "vertical"
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: (1.0, 0.2)
+			
+            Label:
+                text: "Settings"
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: 50
+            spacing: 25
+
+            ToggleButton:
+                text: "Some Toggle"
+
+            ToggleButton:
+                text: "T.B.D. when specifics determined"
+
+            ToggleButton:
+                text: "Another Toggle"
+
+            ToggleButton:
+                text: "This Screen Can Scroll Later"
+			
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint: (1.0, None)
+			padding: 50
+            spacing: 25
+			Button:
+                size_hint: (0.25, None)
+                text: "Play"
+                #on_press:
+                #    root.manager.transition.direction = "left"
+                #    root.manager.current = ""
+			Button:
+                size_hint: (0.25, None)
+                text: "Back"
+                on_press:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "main"
 
 
 <SettingsScreen>:
