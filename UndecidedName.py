@@ -22,7 +22,6 @@ class SplashScreen(Screen):
 
 
 '''class ThemeSelectionScreen(Screen):
-
     pass
 '''
 
@@ -37,6 +36,14 @@ class SettingsScreen(Screen):
     pass
 
 
+class CreditsScreen(Screen):
+
+    pass
+
+class GameConfigScreen(Screen):
+
+    pass
+
 class UndecidedName(App):
 
     def build(self):
@@ -45,9 +52,10 @@ class UndecidedName(App):
         # screen_manager.add_widget(ThemeSelectionScreen(name="theme"))
         screen_manager.add_widget(MainMenuScreen(name="main"))
         screen_manager.add_widget(SettingsScreen(name="settings"))
-
+        screen_manager.add_widget(CreditsScreen(name="credits"))
+        screen_manager.add_widget(GameConfigScreen(name="conf")) # more specific settings
         screen_manager.current = "main"
-
+        
         return screen_manager
 
 
