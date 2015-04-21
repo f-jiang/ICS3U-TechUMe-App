@@ -20,12 +20,6 @@ class SplashScreen(Screen):
     def load(dt):
         pass
 
-
-'''class ThemeSelectionScreen(Screen):
-    pass
-'''
-
-
 class MainMenuScreen(Screen):
 
     pass
@@ -59,7 +53,6 @@ class UndecidedName(App):
     def build(self):
         screen_manager = ScreenManager()
         screen_manager.add_widget(SplashScreen(name="splash"))
-        # screen_manager.add_widget(ThemeSelectionScreen(name="theme"))
         screen_manager.add_widget(MainMenuScreen(name="main"))
         screen_manager.add_widget(SettingsScreen(name="settings"))
         screen_manager.add_widget(CreditsScreen(name="credits"))
