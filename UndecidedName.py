@@ -44,6 +44,16 @@ class GameConfigScreen(Screen):
 
     pass
 
+
+class PlayScreen(Screen):
+
+    pass
+
+
+class EndScreen(Screen):
+
+    pass
+
 class UndecidedName(App):
 
     def build(self):
@@ -54,6 +64,8 @@ class UndecidedName(App):
         screen_manager.add_widget(SettingsScreen(name="settings"))
         screen_manager.add_widget(CreditsScreen(name="credits"))
         screen_manager.add_widget(GameConfigScreen(name="conf")) # more specific settings
+        screen_manager.add_widget(PlayScreen(name="play")) # gameplay
+        screen_manager.add_widget(EndScreen(name="end")) # end screen, with score breakdown
         screen_manager.current = "main"
         
         return screen_manager
