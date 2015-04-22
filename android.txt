@@ -1,0 +1,3 @@
+title=Undecided
+author=Flaming Toast
+orientation=portrait
