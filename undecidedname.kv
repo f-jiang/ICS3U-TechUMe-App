@@ -8,7 +8,8 @@
         #TODO: implement real loading later on
         ProgressBar:
             id: loading_bar
-            size_hint: (0.7, None)
+            size_hint_x: 0.7
+            size_hint_y: None
             pos_hint: {"top":0.2, "center_x":0.5}
             max: 100
             load: root.play_load_animation()
@@ -19,130 +20,120 @@
 <CreditsScreen>:
     BoxLayout:
         orientation: "vertical"
-
         BoxLayout:
             orientation: "horizontal"
-            size_hint: (1.0, 0.2)
-
+            size_hint_x: 1.0
+            size_hint_y: 0.2
             Button:
-                size_hint: (0.25, None)
+                size_hint_x: 0.25
+                size_hint_y: None
                 text: "Back"
                 on_press:
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
-
             Label:
                 text: "Credits"
-
         BoxLayout:
             orientation: "vertical"
             padding: 50
             spacing: 25
-
             Label:
                 text: "Programmers:\nEric Canam & Feilan Jiang"
-
+                pos_hint: {"center_x":0.5}
             Label:
-                text: "Media and Customer Relations:\nWasiquious Gilani"
+                text: "Media and Customer Relations:\nWasiq Gilani"
+                pos_hint: {"center_x":0.5}
             Label:
-                text: "Media and Operations Supervisor:\nShivansh Lufthansa"
+                text: "Media and Operations Supervisor:\nShivansh Luthra"
+                pos_hint: {"center_x":0.5}
             
 <MainMenuScreen>:
     BoxLayout:
         orientation: "horizontal"
-
         BoxLayout:
             orientation: "vertical"
             padding: 75
             spacing: 50
-
             Button:
                 text: "Play"
                 on_press:
                     root.manager.transition.direction = "left"
                     root.manager.current = "conf"
-
             Button:
                 text: "Settings"
                 on_press:
                     root.manager.transition.direction = "left"
                     root.manager.current = "settings"
-
             Button:
                 text: "Credits"
                 on_press:
                     root.manager.transition.direction = "left"
                     root.manager.current = "credits"
-
         BoxLayout:
             orientation: "vertical"
-
             Label:
                 text: "chosen theme name here"
-
             Carousel:
-                size_hint: (1.0, 0.1)
+                size_hint_x: 1.0
+                size_hint_y: 0.1
                 pos_hint: {'center_x':0.5}
                 loop: True
-
                 Button:
-                    size_hint: (1.0, 1.0)
+                    size_hint_x: 1.0
+                    size_hint_y: 1.0
                     text: "Theme 1"
-
                 Button:
-                    size_hint: (1.0, 1.0)
+                    size_hint_x: 1.0
+                    size_hint_y: 1.0
                     text: "Theme 2"
-
                 Button:
-                    size_hint: (1.0, 1.0)
+                    size_hint_x: 1.0
+                    size_hint_y: 1.0
                     text: "Theme 3"
-
                 Button:
-                    size_hint: (1.0, 1.0)
+                    size_hint_x: 1.0
+                    size_hint_y: 1.0
                     text: "Theme 4"
 
 <GameConfigScreen>:
     BoxLayout:
         orientation: "vertical"
-
         BoxLayout:
             orientation: "horizontal"
-            size_hint: (1.0, 0.2)
-
+            size_hint_x: 1.0
+            size_hint_y: 0.2
             Label:
                 text: "Settings"
-
         BoxLayout:
-            size_hint: (1.0, 0.55)
+            size_hint_x: 1.0
+            size_hint_y: 0.55
             orientation: "vertical"
             padding: 50
             spacing: 25
-
             ToggleButton:
                 text: "Some Toggle"
-
             ToggleButton:
                 text: "T.B.D. when specifics determined"
-
             ToggleButton:
                 text: "Another Toggle"
-
             ToggleButton:
                 text: "This Screen Can Scroll Later"
-
         BoxLayout:
             orientation: "horizontal"
-            size_hint: (1.0, 0.25)
+            size_hint_x: 1.0
+            size_hint_y: 0.25
             padding: 50
             spacing: 25
             Button:
-                size_hint: (0.25, None)
+                size_hint_x: 0.25
+                size_hint_y: None
                 text: "Play"
                 on_press:
                     root.manager.transition.direction = "left"
                     root.manager.current = "play"
             Button:
-                size_hint: (0.25, None)
+                size_hint_x: 0.25
+                size_hint_y: None
                 text: "Back"
                 on_press:
                     root.manager.transition.direction = "right"
@@ -152,81 +143,86 @@
     BoxLayout:
         orientation: "horizontal"
         Label:
-            size_hint: (0.5, 1.0)
+            size_hint_x: 0.5
+            size_hint_y: 1.0
             text: "Output/Prompts"
         BoxLayout:
             orientation: "vertical"
-            size_hint: (0.5, 1.0)
+            size_hint_x: 0.5
+            size_hint_y: 1.0
             padding: 50
             spacing: 25
             Button:
-                size_hint: (1.0, 0.75)
+                size_hint_x: 1.0
+                size_hint_y: 0.75
                 text: "Player Input"
                 on_press:
                     root.manager.transition.direction = "left"
                     root.manager.current = "end"
             Button:
-                size_hint: (1.0, 0.25)
+                size_hint_x: 1.0
+                size_hint_y: 0.25
                 text: "Quit"
                 on_press:
                     root.manager.transition.direction = "down"
                     root.manager.current = "main"
+
 <EndScreen>:
     BoxLayout:
         orientation: "vertical"
         Label:
             text: "Game Over"
-            size_hint: (1.0, 0.25)
+            size_hint_x: 1.0
+            size_hint_y: 0.25
         Label:
             text: "Detailed Game Summary"
-            size_hint: (1.0, 0.5)
+            size_hint_x: 1.0
+            size_hint_y: 0.5
         BoxLayout:
             padding: 50
             spacing: 25
-            size_hint: (1.0, 0.25)
+            size_hint_x: 1.0
+            size_hint_y: 0.25
             Button:
-                size_hint: (0.5, 1.0)
+                size_hint_x: 0.5
+                size_hint_y: 1.0
                 text: "Menu"
                 on_press:
                     root.manager.transition.direction = "down"
                     root.manager.current = "main"
             Button:
-                size_hint: (0.5, 1.0)
+                size_hint_x: 0.5
+                size_hint_y: 1.0
                 text: "Restart"
                 on_press:
                     root.manager.transition.direction = "up"
                     root.manager.current = "play"
+
 <SettingsScreen>:
     BoxLayout:
         orientation: "vertical"
-
         BoxLayout:
             orientation: "horizontal"
-            size_hint: (1.0, 0.2)
-
+            size_hint_x: 1.0
+            size_hint_y: 0.2
             Button:
-                size_hint: (0.25, None)
+                size_hint_x: 0.25
+                size_hint_y: None
                 text: "Back"
                 on_press:
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
-
             Label:
                 text: "Settings"
-
         BoxLayout:
             orientation: "vertical"
             padding: 50
             spacing: 25
-
             ToggleButton:
                 text: "Music"
-
             ToggleButton:
                 text: "Sound Effects"
-
             Button:
                 text: "Reset Progress"
-
             Button:
                 text: "Stats"

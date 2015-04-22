@@ -30,7 +30,6 @@ class SplashScreen(Screen):
         animation.start(bar)
 
 
-
 class MainMenuScreen(Screen):
 
     pass
