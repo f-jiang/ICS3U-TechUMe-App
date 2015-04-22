@@ -1,9 +1,14 @@
 from kivy.app import App
-from kivy.properties import ObjectProperty
+
+from kivy.properties import ObjectProperty, BoundedNumericProperty
+
 from kivy.uix.screenmanager import ScreenManager, Screen, SwapTransition, WipeTransition, FadeTransition, \
     FallOutTransition
 from kivy.uix.carousel import Carousel
 from kivy.uix.button import Button
+from kivy.uix.progressbar import ProgressBar
+
+from kivy.animation import Animation
 
 '''
 how ScreenManagers work:
@@ -17,8 +22,14 @@ how ScreenManagers work:
 
 class SplashScreen(Screen):
 
-    def load(dt):
-        pass
+    bar = ObjectProperty(None)
+
+    def play_load_animation(self, *args):
+        bar = self.ids["loading_bar"]
+        animation = Animation(value=bar.max, duration=2.0)
+        animation.start(bar)
+
+
 
 class MainMenuScreen(Screen):
 
@@ -34,6 +45,7 @@ class CreditsScreen(Screen):
 
     pass
 
+
 class GameConfigScreen(Screen):
 
     pass
@@ -48,6 +60,7 @@ class EndScreen(Screen):
 
     pass
 
+
 class UndecidedName(App):
 
     def build(self):
@@ -59,8 +72,8 @@ class UndecidedName(App):
         screen_manager.add_widget(GameConfigScreen(name="conf")) # more specific settings
         screen_manager.add_widget(PlayScreen(name="play")) # gameplay
         screen_manager.add_widget(EndScreen(name="end")) # end screen, with score breakdown
-        screen_manager.current = "main"
-        
+        screen_manager.current = "splash"
+
         return screen_manager
 
 

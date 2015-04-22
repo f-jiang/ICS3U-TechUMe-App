@@ -5,14 +5,16 @@
     FloatLayout:
         Label:
             text: "background image here"
-
-        # TODO: make this load
+        #TODO: implement real loading later on
         ProgressBar:
-            id: bar
+            id: loading_bar
             size_hint: (0.7, None)
             pos_hint: {"top":0.2, "center_x":0.5}
             max: 100
-            value: 30
+            load: root.play_load_animation()
+            on_touch_up:
+                root.manager.transition.direction = "left"
+                root.manager.current = "main"
 
 <CreditsScreen>:
     BoxLayout:
@@ -28,18 +30,18 @@
                 on_press:
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
-                
+
             Label:
                 text: "Credits"
-            
+
         BoxLayout:
             orientation: "vertical"
             padding: 50
             spacing: 25
-            
+
             Label:
                 text: "Programmers:\nEric Canam & Feilan Jiang"
-            
+
             Label:
                 text: "Media and Customer Relations:\nWasiquious Gilani"
             Label:
@@ -106,7 +108,7 @@
         BoxLayout:
             orientation: "horizontal"
             size_hint: (1.0, 0.2)
-            
+
             Label:
                 text: "Settings"
 
@@ -127,7 +129,7 @@
 
             ToggleButton:
                 text: "This Screen Can Scroll Later"
-            
+
         BoxLayout:
             orientation: "horizontal"
             size_hint: (1.0, 0.25)
