@@ -62,8 +62,9 @@
             Button:
                 text: "Settings"
                 on_press:
-                    root.manager.transition.direction = "left"
-                    root.manager.current = "settings"
+                    # root.manager.transition.direction = "left"
+                    # root.manager.current = "settings"
+                    app.open_settings()
             Button:
                 text: "Credits"
                 on_press:

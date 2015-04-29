@@ -7,8 +7,11 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SwapTransition, WipeTr
 from kivy.uix.carousel import Carousel
 from kivy.uix.button import Button
 from kivy.uix.progressbar import ProgressBar
+from kivy.uix.settings import SettingsWithTabbedPanel
 
 from kivy.animation import Animation
+
+from settingsjson import settings_json
 
 '''
 how ScreenManagers work:
@@ -63,6 +66,10 @@ class EndScreen(Screen):
 class UndecidedName(App):
 
     def build(self):
+        self.settings_cls = SettingsWithTabbedPanel
+        self.use_kivy_settings = False
+        setting = self.config.get("example", "boolexample")
+
         screen_manager = ScreenManager()
         screen_manager.add_widget(SplashScreen(name="splash"))
         screen_manager.add_widget(MainMenuScreen(name="main"))
@@ -75,6 +82,16 @@ class UndecidedName(App):
 
         return screen_manager
 
+    def build_config(self, config):
+        config.setdefaults("example", {
+            "music": True,
+            "sfx": True
+        })
+
+    def build_settings(self, settings):
+        settings.add_json_panel("Panel Name",
+                                self.config,
+                                data=settings_json)
 
 if __name__ == "__main__":
     UndecidedName().run()
