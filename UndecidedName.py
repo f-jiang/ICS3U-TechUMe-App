@@ -3,6 +3,7 @@ from kivy.properties import ObjectProperty, BoundedNumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
 from kivy.animation import Animation
+from kivy.storage.jsonstore import JsonStore
 
 import json
 
@@ -50,6 +51,14 @@ class PlayScreen(Screen):
 class EndScreen(Screen):
 
     pass
+
+
+class GameSave():
+    source = None
+
+    @staticmethod
+    def load(self):
+        source = JsonStore('save.json')
 
 
 class UndecidedName(App):
