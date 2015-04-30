@@ -1,17 +1,11 @@
 from kivy.app import App
-
 from kivy.properties import ObjectProperty, BoundedNumericProperty
-
-from kivy.uix.screenmanager import ScreenManager, Screen, SwapTransition, WipeTransition, FadeTransition, \
-    FallOutTransition
-from kivy.uix.carousel import Carousel
-from kivy.uix.button import Button
-from kivy.uix.progressbar import ProgressBar
+from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
-
 from kivy.animation import Animation
 
-from settingsjson import settings_json
+import json
+
 
 '''
 how ScreenManagers work:
@@ -63,9 +57,8 @@ class UndecidedName(App):
     def build(self):
         self.settings_cls = SettingsWithTabbedPanel
         self.use_kivy_settings = False
-        setting = self.config.get("settings", "music")
 
-        screen_manager = ScreenManager()
+        screen_manager = ScreenManager(transition=SlideTransition())
         screen_manager.add_widget(SplashScreen(name="splash"))
         screen_manager.add_widget(MainMenuScreen(name="main"))
         screen_manager.add_widget(CreditsScreen(name="credits"))
@@ -85,7 +78,18 @@ class UndecidedName(App):
     def build_settings(self, settings):
         settings.add_json_panel("Settings",
                                 self.config,
-                                data=settings_json)
+                                data=json.dumps([
+                                    {'type': 'bool',
+                                     'title': 'Music',
+                                     'desc': 'Toggle Music',
+                                     'section': 'settings',
+                                     'key': 'music'},
+                                    {'type': 'bool',
+                                     'title': 'Sound Effects',
+                                     'desc': 'Toggle Sound Effects',
+                                     'section': 'settings',
+                                     'key': 'sfx'}])
+                                )
 
 if __name__ == "__main__":
     UndecidedName().run()
