@@ -38,11 +38,6 @@ class MainMenuScreen(Screen):
     pass
 
 
-class SettingsScreen(Screen):
-
-    pass
-
-
 class CreditsScreen(Screen):
 
     pass
@@ -68,12 +63,11 @@ class UndecidedName(App):
     def build(self):
         self.settings_cls = SettingsWithTabbedPanel
         self.use_kivy_settings = False
-        setting = self.config.get("example", "boolexample")
+        setting = self.config.get("settings", "music")
 
         screen_manager = ScreenManager()
         screen_manager.add_widget(SplashScreen(name="splash"))
         screen_manager.add_widget(MainMenuScreen(name="main"))
-        screen_manager.add_widget(SettingsScreen(name="settings"))
         screen_manager.add_widget(CreditsScreen(name="credits"))
         screen_manager.add_widget(GameConfigScreen(name="conf")) # more specific settings
         screen_manager.add_widget(PlayScreen(name="play")) # gameplay
@@ -83,13 +77,13 @@ class UndecidedName(App):
         return screen_manager
 
     def build_config(self, config):
-        config.setdefaults("example", {
+        config.setdefaults("settings", {
             "music": True,
             "sfx": True
         })
 
     def build_settings(self, settings):
-        settings.add_json_panel("Panel Name",
+        settings.add_json_panel("Settings",
                                 self.config,
                                 data=settings_json)
 

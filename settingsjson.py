@@ -6,12 +6,12 @@ settings_json = json.dumps([
      'title': 'example title'},
     {'type': 'bool',
      'title': 'Music',
-     'desc': 'Boolean description text',
-     'section': 'example',
+     'desc': 'Toggle Music',
+     'section': 'settings',
      'key': 'music'},
     {'type': 'bool',
      'title': 'Sound Effects',
-     'desc': 'Numeric description text',
-     'section': 'example',
+     'desc': 'Toggle Sound Effects',
+     'section': 'settings',
      'key': 'sfx'}
 ])

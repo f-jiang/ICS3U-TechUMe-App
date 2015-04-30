@@ -61,9 +61,7 @@
                     root.manager.current = "conf"
             Button:
                 text: "Settings"
-                on_press:
-                    # root.manager.transition.direction = "left"
-                    # root.manager.current = "settings"
+                on_release:
                     app.open_settings()
             Button:
                 text: "Credits"
@@ -198,32 +196,3 @@
                 on_press:
                     root.manager.transition.direction = "up"
                     root.manager.current = "play"
-
-<SettingsScreen>:
-    BoxLayout:
-        orientation: "vertical"
-        BoxLayout:
-            orientation: "horizontal"
-            size_hint_x: 1.0
-            size_hint_y: 0.2
-            Button:
-                size_hint_x: 0.25
-                size_hint_y: None
-                text: "Back"
-                on_press:
-                    root.manager.transition.direction = "right"
-                    root.manager.current = "main"
-            Label:
-                text: "Settings"
-        BoxLayout:
-            orientation: "vertical"
-            padding: 50
-            spacing: 25
-            ToggleButton:
-                text: "Music"
-            ToggleButton:
-                text: "Sound Effects"
-            Button:
-                text: "Reset Progress"
-            Button:
-                text: "Stats"
