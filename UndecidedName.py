@@ -81,6 +81,10 @@ class GameSave():
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
 
+class Assets():
+    pass
+
+
 class UndecidedName(App):
 
     def build(self):
