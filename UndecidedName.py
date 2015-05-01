@@ -53,27 +53,52 @@ class EndScreen(Screen):
     pass
 
 
+# TODO: determine what needs to be saved
 class GameSave():
-    source = None
+    source = JsonStore('save.json')
 
-    @staticmethod
-    def load(self):
-        source = JsonStore('save.json')
+    # loads game save
+    def load(*args):
+        # sets up json if it has no values yet
+        if GameSave.source.count() == 0:
+            GameSave.set_to_default()
+
+        # writes json values to class variables
+
+    # overwrites game save
+    def save(*args):
+        # writes class variables to json values
+        pass
+
+    # resets game save
+    def reset(*args):
+        GameSave.source.clear()     # clear the json
+        GameSave.set_to_default()   # set to default values
+        GameSave.load()             # load default values
+
+    # resets game save json to default values
+    def set_to_default(*args):
+        GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
 
 class UndecidedName(App):
 
     def build(self):
+        GameSave.load() # will probably move this somewhere else
+        print(len(GameSave.source.keys())) # just a test
+
+        # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
         self.use_kivy_settings = False
 
+        # create ScreenManager, set transition, add screens, and set current to splash screen
         screen_manager = ScreenManager(transition=SlideTransition())
-        screen_manager.add_widget(SplashScreen(name="splash"))
-        screen_manager.add_widget(MainMenuScreen(name="main"))
-        screen_manager.add_widget(CreditsScreen(name="credits"))
-        screen_manager.add_widget(GameConfigScreen(name="conf")) # more specific settings
-        screen_manager.add_widget(PlayScreen(name="play")) # gameplay
-        screen_manager.add_widget(EndScreen(name="end")) # end screen, with score breakdown
+        screen_manager.add_widget(SplashScreen(name="splash"))      # splash screen; loading occurs here
+        screen_manager.add_widget(MainMenuScreen(name="main"))      # main menu
+        screen_manager.add_widget(CreditsScreen(name="credits"))    # credits
+        screen_manager.add_widget(GameConfigScreen(name="conf"))    # more specific settings
+        screen_manager.add_widget(PlayScreen(name="play"))          # gameplay occurs here
+        screen_manager.add_widget(EndScreen(name="end"))            # end screen, with score breakdown
         screen_manager.current = "splash"
 
         return screen_manager
