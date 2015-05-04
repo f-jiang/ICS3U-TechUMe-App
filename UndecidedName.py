@@ -82,14 +82,40 @@ class GameSave():
 
 
 class Assets():
-    pass
+    word_source = JsonStore('words.json')   # TODO: for each word, add keys specified in Word class
+    words = []
+
+    # loads all assets and writes them to class variables
+    def load(*args):
+        # TODO: update parameters in Word
+        # bug: all words being set to 'pomme'
+        Assets.words = [Word(word, 0, [], []) for word in Assets.word_source.get('words')]
+
+
+class Word():
+    definition = ''
+    difficulty = 0
+    input_prompts = []
+    output_prompts = []
+    assets = {'graphic': None, 'sound': None}
+
+    # TODO: remove picture or sound output from list if no graphic or sound provided
+    def __init__(self, word, difficulty, inputs, outputs, graphic=None, sound=None, *args):
+        Word.definition = word
+        Word.difficulty = difficulty
+        Word.input_prompts = inputs
+        Word.output_prompts = outputs
+        Word.assets['graphic'] = graphic
+        Word.assets['sound'] = sound
 
 
 class UndecidedName(App):
 
     def build(self):
-        GameSave.load() # will probably move this somewhere else
-        print(len(GameSave.source.keys())) # just a test
+        # GameSave.load() # will probably move this somewhere else
+        # print(len(GameSave.source.keys())) # just a test
+
+        Assets.load()
 
         # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
