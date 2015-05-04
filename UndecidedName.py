@@ -88,25 +88,19 @@ class Assets():
     # loads all assets and writes them to class variables
     def load(*args):
         # TODO: update parameters in Word
-        # bug: all words being set to 'pomme'
         Assets.words = [Word(word, 0, [], []) for word in Assets.word_source.get('words')]
+        print([word.definition for word in Assets.words])   # just a test
 
 
 class Word():
-    definition = ''
-    difficulty = 0
-    input_prompts = []
-    output_prompts = []
-    assets = {'graphic': None, 'sound': None}
 
     # TODO: remove picture or sound output from list if no graphic or sound provided
-    def __init__(self, word, difficulty, inputs, outputs, graphic=None, sound=None, *args):
-        Word.definition = word
-        Word.difficulty = difficulty
-        Word.input_prompts = inputs
-        Word.output_prompts = outputs
-        Word.assets['graphic'] = graphic
-        Word.assets['sound'] = sound
+    def __init__(self, word, diff, inputs, outputs, graphic=None, sound=None, *args):
+        self.definition = word
+        self.difficulty = diff
+        self.input_prompts = inputs
+        self.output_prompts = outputs
+        self.assets = {'graphic': graphic, 'sound': sound}
 
 
 class UndecidedName(App):
