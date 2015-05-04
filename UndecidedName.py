@@ -82,7 +82,7 @@ class GameSave():
 
 
 class Assets():
-    word_source = JsonStore('words.json')   # TODO: for each word, add keys specified in Word class
+    word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
     words = []
 
     # loads all assets and writes them to class variables
