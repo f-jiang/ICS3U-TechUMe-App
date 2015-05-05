@@ -83,8 +83,8 @@ class GameSave():
 
 class InGame(): # allows for functions relating to gameplay
     
-    def __init__(self):
-        
+    def __init__(self, output, input, health, loop):
+        pass
         
 
 class Assets():
