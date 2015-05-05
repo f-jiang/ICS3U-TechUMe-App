@@ -83,7 +83,9 @@ class GameSave():
 
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
-    words = []
+
+    words = []  # TODO: list or dict?
+    sounds = {}
 
     # loads all assets and writes them to class variables
     def load(*args):
@@ -106,9 +108,8 @@ class Word():
 class UndecidedName(App):
 
     def build(self):
-        # GameSave.load() # will probably move this somewhere else
-        # print(len(GameSave.source.keys())) # just a test
-
+        # TODO: make a function for setting up game-related stuff?
+        GameSave.load()
         Assets.load()
 
         # configure Settings panel
