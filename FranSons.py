@@ -81,6 +81,7 @@ class GameSave():
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
 
+class InGame(*param): # allows for functions relating to gameplay
     
     def __init__(self):
         
