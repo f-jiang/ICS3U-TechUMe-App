@@ -81,6 +81,11 @@ class GameSave():
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
 
+    
+    def __init__(self):
+        
+        
+
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
 
