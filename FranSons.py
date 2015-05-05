@@ -105,7 +105,7 @@ class Word():
         self.assets = {'texture': texture, 'sound': sound}
 
 
-class UndecidedName(App):
+class FranSons(App):
 
     def build(self):
         # TODO: make a function for setting up game-related stuff?
@@ -151,4 +151,4 @@ class UndecidedName(App):
                                 )
 
 if __name__ == "__main__":
-    UndecidedName().run()
+    FranSons().run()
