@@ -94,13 +94,13 @@ class Assets():
 
 class Word():
 
-    # TODO: remove picture or sound output from list if no graphic or sound provided
-    def __init__(self, word, diff, inputs, outputs, graphic=None, sound=None, *args):
+    # TODO: remove picture or sound output from list if no texture or sound provided
+    def __init__(self, word, diff, inputs, outputs, texture=None, sound=None, *args):
         self.definition = word
         self.difficulty = diff
         self.input_prompts = inputs
         self.output_prompts = outputs
-        self.assets = {'graphic': graphic, 'sound': sound}
+        self.assets = {'texture': texture, 'sound': sound}
 
 
 class UndecidedName(App):
