@@ -90,7 +90,7 @@ class InGame(): # allows for functions relating to gameplay
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
 
-    words = {}  # TODO: list or dict?
+    words = {}  # TODO: experiment with using dict
     sounds = {}
 
     # loads all assets and writes them to class variables
