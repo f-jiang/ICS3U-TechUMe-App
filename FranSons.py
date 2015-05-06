@@ -90,14 +90,14 @@ class InGame(): # allows for functions relating to gameplay
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
 
-    words = []  # TODO: list or dict?
+    words = {}  # TODO: list or dict?
     sounds = {}
 
     # loads all assets and writes them to class variables
     def load(*args):
         # TODO: update parameters in Word
-        Assets.words = [Word(word, 0, [], []) for word in Assets.word_source.get('words')]
-        print([word.definition for word in Assets.words])   # just a test
+        Assets.words = {word:Word(word, 0, [], []) for word in Assets.word_source.get('words')}
+        print(Assets.words[2].definition)   # just a test
 
 
 class Word():
