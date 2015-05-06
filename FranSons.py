@@ -18,6 +18,7 @@ how ScreenManagers work:
 "down", "left", or "right"
 '''
 
+# TODO: for all classes determine which variables are "private"
 
 class SplashScreen(Screen):
 
@@ -90,12 +91,12 @@ class InGame(): # allows for functions relating to gameplay
 
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
-    sound_sources = set()
+    sound_sources = set()   # check out csv reader
 
     words = {}  # TODO: experiment with using dict
     sounds = {'backgroundmusic.mp3', 'buzzer.mp3', 'cheering.mp3', 'click.mp3', 'clock.mp3', 'correctanswer.mp3',
               'kidscheering.mp3', 'lel.mp3', 'losemusic.mp3', 'powerup.mp2', 'sadmusic.mp3', 'surprise.mp3',
-              'winmusic.mp3'} # TODO: move this to a csv file
+              'winmusic.mp3'}   # TODO: move this to a csv file
 
     # loads all assets and writes them to class variables
     def load(*args):
