@@ -4,9 +4,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
+from kivy.core.audio import Sound, SoundLoader
 
 import json
-
+import os
 
 '''
 how ScreenManagers work:
@@ -89,15 +90,21 @@ class InGame(): # allows for functions relating to gameplay
 
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
+    sound_sources = set()
 
     words = {}  # TODO: experiment with using dict
-    sounds = {}
+    sounds = {'backgroundmusic.mp3', 'buzzer.mp3', 'cheering.mp3', 'click.mp3', 'clock.mp3', 'correctanswer.mp3',
+              'kidscheering.mp3', 'lel.mp3', 'losemusic.mp3', 'powerup.mp2', 'sadmusic.mp3', 'surprise.mp3',
+              'winmusic.mp3'} # TODO: move this to a csv file
 
     # loads all assets and writes them to class variables
     def load(*args):
         # TODO: update parameters in Word
         Assets.words = {word:Word(word, 0, [], []) for word in Assets.word_source.get('words')}
-        print(Assets.words[2].definition)   # just a test
+        # print(Assets.words[2].definition)   # just a test
+
+        Assets.sounds = {SoundLoader.load(os.path.join(r'assets\sounds\'', file_name))
+                         for file_name in Assets.sound_sources}
 
 
 class Word():
