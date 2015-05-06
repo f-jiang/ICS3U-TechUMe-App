@@ -84,10 +84,24 @@ class GameSave():
 
 
 class InGame(): # allows for functions relating to gameplay
+    # call when reinitialising and when user inputs
+    def __init__(self, output, inputted, health, reinit, loop):
+        self.output = output
+        self.inputted = inputted
+        self.health = health
+        self.reinit = reinit
+
+        self.loop = loop
+
+    def go(self):
+        if self.reinit:
+            # calling by screen reinitialisation
+            # return necessary gameplay variables
+            return [self.output, self.inputted, self.health]
+        else:
+            self.loop += 1
+            return self.loop
     
-    def __init__(self, output, input, health, loop):
-        pass
-        
 
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
