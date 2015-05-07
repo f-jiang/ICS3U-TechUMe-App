@@ -105,21 +105,19 @@ class InGame(): # allows for functions relating to gameplay
 
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
-    sound_sources = set()   # check out csv reader
+    sound_sources = JsonStore('assets\sounds\index.json')
 
     words = {}  # TODO: experiment with using dict
-    sounds = {'backgroundmusic.wav', 'buzzer.wav', 'cheering.wav', 'click.wav', 'clock.wav', 'correctanswer.wav',
-              'kidscheering.wav', 'lel.wav', 'losemusic.wav', 'powerup.wav', 'sadmusic.wav', 'surprise.wav',
-              'winmusic.wav'}   # TODO: move this to a csv file
+    sounds = {}
 
     # loads all assets and writes them to class variables
     def load(*args):
         # TODO: update parameters in Word
         Assets.words = {word:Word(word, 0, [], []) for word in Assets.word_source.get('words')}
         # print(Assets.words[2].definition)   # just a test
-
-        Assets.sounds = {SoundLoader.load(os.path.join(r'assets\sounds\'', file_name))
-                         for file_name in Assets.sound_sources}
+        Assets.sounds = {file_name:SoundLoader.load(os.path.join(r'assets\sounds\'', file_name))
+                         for file_name in Assets.sound_sources.get('files')}
+        Sound.play(Assets.sounds['lel.wav'])    # play the sound (just a test)
 
 
 class Word():
