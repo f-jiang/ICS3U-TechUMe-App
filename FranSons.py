@@ -5,6 +5,7 @@ from kivy.uix.settings import SettingsWithTabbedPanel
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
+from kivy.lang import Builder
 
 import json
 import os
@@ -84,23 +85,40 @@ class GameSave():
 
 
 class InGame(): # allows for functions relating to gameplay
-    # call when reinitialising and when user inputs
-    def __init__(self, output, inputted, health, reinit, loop):
-        self.output = output
-        self.inputted = inputted
-        self.health = health
-        self.reinit = reinit
-
-        self.loop = loop
-
-    def go(self):
-        if self.reinit:
-            # calling by screen reinitialisation
-            # return necessary gameplay variables
-            return [self.output, self.inputted, self.health]
-        else:
-            self.loop += 1
-            return self.loop
+    def go(self, *args):
+        Builder.load_string("""
+<PlayScreen>:
+    name: "play"
+    BoxLayout:
+        orientation: "horizontal"
+        Label:
+            size_hint_x: 0.5
+            size_hint_y: 1.0
+            text: "Output/Prompts"
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: 0.5
+            size_hint_y: 1.0
+            padding: 50
+            spacing: 25
+            Button:
+                size_hint_x: 1.0
+                size_hint_y: 0.75
+                text: "Player Input"
+                on_press:
+                    InGame().level("pomme")
+            Button:
+                size_hint_x: 1.0
+                size_hint_y: 0.25
+                text: "Quit"
+                on_press:
+                    root.manager.transition.direction = "down"
+                    root.manager.current = "main"
+""")
+        
+    def level(self, *args):
+        # add args[0] to output
+        
     
 
 class Assets():
@@ -137,7 +155,7 @@ class FranSons(App):
     def build(self):
         # TODO: make a function for setting up game-related stuff?
         GameSave.load()
-        Assets.load()
+        #Assets.load()
 
         # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
