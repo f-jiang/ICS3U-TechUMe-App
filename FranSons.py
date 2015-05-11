@@ -117,6 +117,7 @@ class Assets():
         # print(Assets.words[2].definition)   # just a test
         Assets.sounds = {file_name:SoundLoader.load(os.path.join(r'assets\sounds\'', file_name))
                          for file_name in Assets.sound_sources.get('files')}
+        # TODO: get sounds working after visit
         Sound.play(Assets.sounds['lel.wav'])    # play the sound (just a test)
 
 
