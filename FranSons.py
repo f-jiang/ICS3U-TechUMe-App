@@ -48,7 +48,9 @@ class GameConfigScreen(Screen):
 
 class PlayScreen(Screen):
 
-    pass
+    def on_pre_enter():
+        InGame().go()
+        InGame().level("fraise")
 
 
 class EndScreen(Screen):
@@ -91,10 +93,13 @@ class InGame(): # allows for functions relating to gameplay
     name: "play"
     BoxLayout:
         orientation: "horizontal"
-        Label:
+        Button:
             size_hint_x: 0.5
             size_hint_y: 1.0
             text: "Output/Prompts"
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.current = "end"
         BoxLayout:
             orientation: "vertical"
             size_hint_x: 0.5
@@ -117,9 +122,39 @@ class InGame(): # allows for functions relating to gameplay
 """)
         
     def level(self, *args):
-        # add args[0] to output
+        Builder.load_string("""
+<PlayScreen>:
+    name: "play"
+    BoxLayout:
+        orientation: "horizontal"
+        Button:
+            size_hint_x: 0.5
+            size_hint_y: 1.0
+            text: "Output/Prompts"
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.current = "end"
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: 0.5
+            size_hint_y: 1.0
+            padding: 50
+            spacing: 25
+            Button:
+                size_hint_x: 1.0
+                size_hint_y: 0.75
+                text: "Player Input"
+                on_press:
+                    InGame().level(\"""" + str(args[0]) + """\")
+            Button:
+                size_hint_x: 1.0
+                size_hint_y: 0.25
+                text: "Quit"
+                on_press:
+                    root.manager.transition.direction = "down"
+                    root.manager.current = "main"
+""")
         
-    
 
 class Assets():
     word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
