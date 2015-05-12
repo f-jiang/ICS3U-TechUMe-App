@@ -8,6 +8,8 @@ from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
 from kivy.lang import Builder
 
+
+import random
 import json
 import os
 
@@ -49,10 +51,8 @@ class GameConfigScreen(Screen):
 
 
 class PlayScreen(Screen):
-
-    def on_pre_enter():
-        
-
+    
+    pass
 
 class EndScreen(Screen):
 
@@ -89,10 +89,25 @@ class GameSave():
 
 class InGame(): # allows for functions relating to gameplay
     def go(self, *args):
+        self.health = 3
+        self.progress = 0
+        self.difficulty = 0
         
+        self.banged = [] # each word's value that was banged is put into this array
         
+        level()
     def level(self, *args):
+        pp = Assets.words
+        possibilities = []
+        for p in pp:
+            if p.difficulty==self.diffculty and (not (p.definition in self.banged)):
+                possibilities.append(p.definition)
+        today = random.randrange(0, len(possibilities))
         
+        print(Assets.words[possibilities[int(today)]])
+        (self.banged).append(possibilities[int(today)])
+    def take(self, *args):
+        pass
         
 
 class Assets():
@@ -127,16 +142,16 @@ class Assets():
         Assets.textures = {file_name:os.path.join('assets/textures/', file_name)
                            for file_name in Assets.texture_sources.get('files')}
 
-
+# to access: Assets.words['the word you're looking for'].definition
 class Word():
 
     # TODO: remove picture or sound output from list if no texture or sound provided
     def __init__(self, word, diff, inputs, outputs, texture=None, sound=None, *args):
-        self.definition = word
-        self.difficulty = diff
-        self.input_prompts = inputs
-        self.output_prompts = outputs
-        self.assets = {'texture': texture, 'sound': sound}
+        self.definition = word                              # the actual word
+        self.difficulty = diff                              # the word's difficulty
+        self.input_prompts = inputs                         # the input types supported by the word (i might take this out, so don't worry about it for now)
+        self.output_prompts = outputs                       # the output types supported by the word (same here)
+        self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
 
 
 class FranSons(App):

@@ -9,7 +9,7 @@ function : input
     takes user input
     evaluates user input
         (correct/incorrect)
-        serve to appropriate function
+        serve to appropriate function - end/level
 
 function : end
     compile statistics
