@@ -22,6 +22,7 @@ how ScreenManagers work:
 
 # TODO: for all classes determine which variables are "private"
 
+
 class SplashScreen(Screen):
 
     bar = ObjectProperty(None)
@@ -169,9 +170,13 @@ class Assets():
     # loads all assets and writes them to class variables
     def load(*args):
         # Loading the words
-        # TODO: update parameters in Word
-        Assets.words = {word:Word(word, 0, [], []) for word in Assets.word_source.get('words')}
-        # print(Assets.words[2].definition)   # just a test
+        Assets.words = {word['definition']:Word(word['definition'],
+                                                word['difficulty'],
+                                                word['inputs'],
+                                                word['outputs'],
+                                                word['assets']['texture'],
+                                                word['assets']['sound'])
+                        for word in Assets.word_source.get('words')}
 
         # Loading the sounds
         Assets.sounds = {file_name:SoundLoader.load(os.path.join('assets/sounds/', file_name))
