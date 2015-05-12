@@ -1,0 +1,16 @@
+function : start
+    define starting values
+    store values
+
+function : level
+    ask a question
+
+function : input
+    takes user input
+    evaluates user input
+        (correct/incorrect)
+        serve to appropriate function
+
+function : end
+    compile statistics
+    serve to user

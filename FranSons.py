@@ -51,8 +51,7 @@ class GameConfigScreen(Screen):
 class PlayScreen(Screen):
 
     def on_pre_enter():
-        InGame().go()
-        InGame().level("fraise")
+        
 
 
 class EndScreen(Screen):
@@ -90,72 +89,10 @@ class GameSave():
 
 class InGame(): # allows for functions relating to gameplay
     def go(self, *args):
-        Builder.load_string("""
-<PlayScreen>:
-    name: "play"
-    BoxLayout:
-        orientation: "horizontal"
-        Button:
-            size_hint_x: 0.5
-            size_hint_y: 1.0
-            text: "Output/Prompts"
-            on_press:
-                root.manager.transition.direction = "right"
-                root.manager.current = "end"
-        BoxLayout:
-            orientation: "vertical"
-            size_hint_x: 0.5
-            size_hint_y: 1.0
-            padding: 50
-            spacing: 25
-            Button:
-                size_hint_x: 1.0
-                size_hint_y: 0.75
-                text: "Player Input"
-                on_press:
-                    InGame().level("pomme")
-            Button:
-                size_hint_x: 1.0
-                size_hint_y: 0.25
-                text: "Quit"
-                on_press:
-                    root.manager.transition.direction = "down"
-                    root.manager.current = "main"
-""")
+        
         
     def level(self, *args):
-        Builder.load_string("""
-<PlayScreen>:
-    name: "play"
-    BoxLayout:
-        orientation: "horizontal"
-        Button:
-            size_hint_x: 0.5
-            size_hint_y: 1.0
-            text: "Output/Prompts"
-            on_press:
-                root.manager.transition.direction = "right"
-                root.manager.current = "end"
-        BoxLayout:
-            orientation: "vertical"
-            size_hint_x: 0.5
-            size_hint_y: 1.0
-            padding: 50
-            spacing: 25
-            Button:
-                size_hint_x: 1.0
-                size_hint_y: 0.75
-                text: "Player Input"
-                on_press:
-                    InGame().level(\"""" + str(args[0]) + """\")
-            Button:
-                size_hint_x: 1.0
-                size_hint_y: 0.25
-                text: "Quit"
-                on_press:
-                    root.manager.transition.direction = "down"
-                    root.manager.current = "main"
-""")
+        
         
 
 class Assets():
@@ -207,7 +144,7 @@ class FranSons(App):
     def build(self):
         # TODO: make a function for setting up game-related stuff?
         GameSave.load()
-        Assets.load()
+        #Assets.load()
 
         # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
