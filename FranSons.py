@@ -47,14 +47,18 @@ class CreditsScreen(Screen):
 
 class GameConfigScreen(Screen):
 
-    pass
+    def go(self, *args):
+        InGame().go()
 
 
 class PlayScreen(Screen):
     
-    def updatePrompt(self, *args[0]):
-        newCource = args[0]
+    def updatePrompt(self, *args):
+        newSource = args[0]
         self.ids.promptImage.source = newSource # update image's source
+        
+    def level(self, *args):
+        InGame().level()
 
 class EndScreen(Screen):
 
@@ -91,26 +95,26 @@ class GameSave():
 class InGame(): # allows for functions relating to gameplay
     def go(self, *args):
         self.health = 3
-        self.progress = 0
+        self.progress = -1
         self.difficulty = 0
-        
         self.banged = [] # each word's value that was banged is put into this array
         
-        level()
-    def level(self, *args):\
+        self.level()
         
-        pp = Assets.words
+        
+    def level(self, *args):
+        
         self.progress += 1
-        possibilities = [] # creates list of possible prompts, picks random one from this later
-        for p in pp:
-            if p.difficulty==self.diffculty and (not (p.definition in self.banged)):
-                possibilities.append(p.definition)
+        possibilities = ["pomme"] # creates list of possible prompts, picks random one from this later
+        for p in Assets.words:
+            """if p.difficulty==self.diffculty and (not (p.definition in self.banged)):
+                possibilities.append(p.definition)"""
+            possibilibilities.append(p.definition)
         t = random.randrange(0, len(possibilities))
         
-        self.currentWord = Assets.words[possibilities[int(t)]] # sets the level's current word
-        PlayScreen.updatePrompt(self.currentWord)
+        self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
+        PlayScreen.updatePrompt(Assets.words[self.currentWord].assets.texture)
         
-        imagePrompt.source = Assets.words[self.currentWord].assets.texture
         (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
     def take(self, *args):
         userInput = args[0] # should be a string
