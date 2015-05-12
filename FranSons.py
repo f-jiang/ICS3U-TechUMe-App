@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.properties import ObjectProperty, BoundedNumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
+from kivy.uix.image import Image
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
@@ -157,21 +158,30 @@ class InGame(): # allows for functions relating to gameplay
         
 
 class Assets():
-    word_source = JsonStore('assets\words.json')   # TODO: for each word, add keys specified in Word class
-    sound_sources = JsonStore('assets\sounds\index.json')
+    word_source = JsonStore('assets/words.json')   # TODO: for each word, add keys specified in Word class
+    sound_sources = JsonStore('assets/sounds/index.json')
+    texture_sources = JsonStore('assets/textures/index.json')
 
-    words = {}  # TODO: experiment with using dict
+    words = {}
     sounds = {}
+    textures = {}
 
     # loads all assets and writes them to class variables
     def load(*args):
+        # Loading the words
         # TODO: update parameters in Word
         Assets.words = {word:Word(word, 0, [], []) for word in Assets.word_source.get('words')}
         # print(Assets.words[2].definition)   # just a test
-        Assets.sounds = {file_name:SoundLoader.load(os.path.join(r'assets\sounds\'', file_name))
+
+        # Loading the sounds
+        Assets.sounds = {file_name:SoundLoader.load(os.path.join('assets/sounds/', file_name))
                          for file_name in Assets.sound_sources.get('files')}
         # TODO: get sounds working after visit
-        Sound.play(Assets.sounds['lel.wav'])    # play the sound (just a test)
+        # Sound.play(Assets.sounds['lel.wav'])    # play the sound (just a test) (unsuccessful)
+
+        # Loading the textures
+        Assets.textures = {file_name:os.path.join('assets/textures/', file_name)
+                           for file_name in Assets.texture_sources.get('files')}
 
 
 class Word():
@@ -190,7 +200,7 @@ class FranSons(App):
     def build(self):
         # TODO: make a function for setting up game-related stuff?
         GameSave.load()
-        #Assets.load()
+        Assets.load()
 
         # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
