@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/apple.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/banana.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/bg1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/bg2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/bread.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/cookie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/pineapple.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/strawberry.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/textures/index.json" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Apple(Pomme).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Background_1(Bunnies).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Background_2.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Banana(banan).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Bread(Pain).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Cookie(Biscuit).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Pineapple(Anana).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\Strawberry(Fraise).png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\popsicle-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\School\Grade 11\Semester 2\ICS3U\ICS3U-TechUMe-App\assets\textures\sample1.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FranSons.py" afterPath="$PROJECT_DIR$/FranSons.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ICS3U-TechUMe-App (Git Repository).iml" afterPath="$PROJECT_DIR$/.idea/ICS3U-TechUMe-App (Git Repository).iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fransons.kv" afterPath="$PROJECT_DIR$/fransons.kv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ICS3U-TechUMe-App (Git Repository).iws" />
@@ -53,32 +31,12 @@
       <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FranSons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.7619047" vertical-offset="660" max-vertical-offset="2928">
-              <caret line="173" column="28" selection-start-line="173" selection-start-column="28" selection-end-line="173" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.46258503" vertical-offset="0" max-vertical-offset="2960">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
                 <element signature="e#2275#4279#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fransons.kv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fransons.kv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3344">
-              <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/textures/index.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="96">
-              <caret line="0" column="17" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -110,9 +68,9 @@
         <option value="$PROJECT_DIR$/assets/sounds/index.json" />
         <option value="$PROJECT_DIR$/assets/words.json" />
         <option value="$PROJECT_DIR$/assets/atlas/atlas.json" />
-        <option value="$PROJECT_DIR$/fransons.kv" />
         <option value="$PROJECT_DIR$/assets/textures/index.json" />
         <option value="$PROJECT_DIR$/FranSons.py" />
+        <option value="$PROJECT_DIR$/fransons.kv" />
       </list>
     </option>
   </component>
@@ -178,6 +136,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ICS3U-TechUMe-App (Git Repository)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ICS3U-TechUMe-App" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textures" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -470,7 +446,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431017385736</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implement graphics">
+      <created>1431404066454</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1431404066454</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -495,22 +477,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11433087" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32540542" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33405405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25237092" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11433087" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25237092" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -569,7 +551,8 @@
     <MESSAGE value="Rename &quot;texture&quot; directory to &quot;textures&quot;" />
     <MESSAGE value="Implement sound loading into code" />
     <MESSAGE value="Move list of sound files to a JSON file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move list of sound files to a JSON file" />
+    <MESSAGE value="Implement graphics" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement graphics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -925,26 +908,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/words.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="563">
-          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fransons.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3344">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/sounds/index.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.056838367" vertical-offset="0" max-vertical-offset="563">
           <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/words.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="563">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -957,10 +932,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fransons.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1908" max-vertical-offset="3504">
+          <caret line="168" column="30" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FranSons.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7619047" vertical-offset="660" max-vertical-offset="2928">
-          <caret line="173" column="28" selection-start-line="173" selection-start-column="28" selection-end-line="173" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.46258503" vertical-offset="0" max-vertical-offset="2960">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
             <element signature="e#2275#4279#0" expanded="false" />

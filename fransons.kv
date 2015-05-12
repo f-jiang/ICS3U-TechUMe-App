@@ -4,9 +4,8 @@
 <SplashScreen>:
     name: "splash"
     FloatLayout:
-        Label:
-            text: "background image here"
-        #TODO: implement real loading later on
+        Image:
+            source: 'assets/textures/bg1.png'
         ProgressBar:
             id: loading_bar
             size_hint_x: 0.7
@@ -17,9 +16,12 @@
             on_touch_up:
                 root.manager.transition.direction = "left"
                 root.manager.current = "main"
+                print(Assets.textures)
 
 <CreditsScreen>:
     name: "credits"
+    Image:
+        source: 'assets/textures/bg2.png'
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
@@ -51,6 +53,8 @@
             
 <MainMenuScreen>:
     name: "main"
+    Image:
+        source: 'assets/textures/bg2.png'
     BoxLayout:
         orientation: "horizontal"
         BoxLayout:
@@ -99,6 +103,8 @@
 
 <GameConfigScreen>:
     name: "conf"
+    Image:
+        source: 'assets/textures/bg2.png'
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
@@ -144,6 +150,8 @@
 
 <PlayScreen>:
     name: "play"
+    Image:
+        source: 'assets/textures/bg2.png'
     BoxLayout:
         orientation: "horizontal"
         Label:
@@ -172,6 +180,8 @@
 
 <EndScreen>:
     name: "end"
+    Image:
+        source: 'assets/textures/bg2.png'
     BoxLayout:
         orientation: "vertical"
         Label:

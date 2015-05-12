@@ -180,6 +180,8 @@ class Assets():
         # Sound.play(Assets.sounds['lel.wav'])    # play the sound (just a test) (unsuccessful)
 
         # Loading the textures
+        # for some reason this dict appears to be empty when accessed from the .kv file
+        # TODO: find out why this is empty in kv file
         Assets.textures = {file_name:os.path.join('assets/textures/', file_name)
                            for file_name in Assets.texture_sources.get('files')}
 
