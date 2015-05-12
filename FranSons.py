@@ -52,7 +52,9 @@ class GameConfigScreen(Screen):
 
 class PlayScreen(Screen):
     
-    pass
+    def updatePrompt(self, *args[0]):
+        newCource = args[0]
+        self.ids.promptImage.source = newSource # update image's source
 
 class EndScreen(Screen):
 
@@ -86,9 +88,7 @@ class GameSave():
     def set_to_default(*args):
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
-global imagePrompt
 class InGame(): # allows for functions relating to gameplay
-    global imagePrompt
     def go(self, *args):
         self.health = 3
         self.progress = 0
@@ -97,8 +97,7 @@ class InGame(): # allows for functions relating to gameplay
         self.banged = [] # each word's value that was banged is put into this array
         
         level()
-    def level(self, *args):
-        global imagePrompt
+    def level(self, *args):\
         
         pp = Assets.words
         self.progress += 1
@@ -109,6 +108,8 @@ class InGame(): # allows for functions relating to gameplay
         t = random.randrange(0, len(possibilities))
         
         self.currentWord = Assets.words[possibilities[int(t)]] # sets the level's current word
+        PlayScreen.updatePrompt(self.currentWord)
+        
         imagePrompt.source = Assets.words[self.currentWord].assets.texture
         (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
     def take(self, *args):
