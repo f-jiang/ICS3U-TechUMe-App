@@ -86,8 +86,9 @@ class GameSave():
     def set_to_default(*args):
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
-
+global imagePrompt
 class InGame(): # allows for functions relating to gameplay
+    global imagePrompt
     def go(self, *args):
         self.health = 3
         self.progress = 0
@@ -97,18 +98,29 @@ class InGame(): # allows for functions relating to gameplay
         
         level()
     def level(self, *args):
+        global imagePrompt
+        
         pp = Assets.words
-        possibilities = []
+        self.progress += 1
+        possibilities = [] # creates list of possible prompts, picks random one from this later
         for p in pp:
             if p.difficulty==self.diffculty and (not (p.definition in self.banged)):
                 possibilities.append(p.definition)
-        today = random.randrange(0, len(possibilities))
+        t = random.randrange(0, len(possibilities))
         
-        print(Assets.words[possibilities[int(today)]])
-        (self.banged).append(possibilities[int(today)])
+        self.currentWord = Assets.words[possibilities[int(t)]] # sets the level's current word
+        imagePrompt.source = Assets.words[self.currentWord].assets.texture
+        (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
     def take(self, *args):
+        userInput = args[0] # should be a string
+        if userInput == self.currentWord:
+            level()
+        else:
+            end()
+    
+    def end(self, *args):
         pass
-        
+
 
 class Assets():
     word_source = JsonStore('assets/words.json')   # TODO: for each word, add keys specified in Word class
