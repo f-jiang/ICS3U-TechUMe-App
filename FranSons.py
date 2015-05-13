@@ -105,15 +105,14 @@ class InGame(): # allows for functions relating to gameplay
     def level(self, *args):
         
         self.progress += 1
-        possibilities = ["pomme"] # creates list of possible prompts, picks random one from this later
+        possibilities = [] # creates list of possible prompts, picks random one from this later
         for p in Assets.words:
-            """if p.difficulty==self.diffculty and (not (p.definition in self.banged)):
-                possibilities.append(p.definition)"""
-            possibilibilities.append(p.definition)
+            if Assets.words[p].difficulty==self.difficulty and (not (p in self.banged)):
+                possibilities.append(p)
         t = random.randrange(0, len(possibilities))
         
         self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
-        PlayScreen.updatePrompt(Assets.words[self.currentWord].assets.texture)
+        PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"])
         
         (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
     def take(self, *args):
@@ -146,6 +145,7 @@ class Assets():
                                                 word['assets']['texture'],
                                                 word['assets']['sound'])
                         for word in Assets.word_source.get('words')}
+        
 
         # Loading the sounds
         Assets.sounds = {file_name:SoundLoader.load(os.path.join('assets/sounds/', file_name))
@@ -176,7 +176,7 @@ class FranSons(App):
     def build(self):
         # TODO: make a function for setting up game-related stuff?
         GameSave.load()
-        #Assets.load()
+        Assets.load()
 
         # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
