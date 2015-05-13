@@ -52,10 +52,10 @@ class GameConfigScreen(Screen):
 
 
 class PlayScreen(Screen):
-    
+
     def updatePrompt(self, *args):
         newSource = args[0]
-        self.ids.promptImage.source = newSource # update image's source
+        self.ids["promptImage"].source = newSource # update image's source
         
     def level(self, *args):
         InGame().level()
@@ -99,7 +99,7 @@ class InGame(): # allows for functions relating to gameplay
         self.difficulty = 0
         self.banged = [] # each word's value that was banged is put into this array
         
-        self.level()
+        #self.level()
         
         
     def level(self, *args):
