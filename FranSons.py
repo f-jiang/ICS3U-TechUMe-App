@@ -145,13 +145,10 @@ class Assets():
                                                 word['assets']['texture'],
                                                 word['assets']['sound'])
                         for word in Assets.word_source.get('words')}
-        
 
         # Loading the sounds
-        Assets.sounds = {file_name:SoundLoader.load(os.path.join('assets/sounds/', file_name))
+        Assets.sounds = {file_name:SoundLoader.load(filename=os.path.join('assets/sounds/', file_name))
                          for file_name in Assets.sound_sources.get('files')}
-        # TODO: get sounds working after visit
-        # Sound.play(Assets.sounds['lel.wav'])    # play the sound (just a test) (unsuccessful)
 
         # Loading the textures
         # for some reason this dict appears to be empty when accessed from the .kv file
