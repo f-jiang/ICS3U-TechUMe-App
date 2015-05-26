@@ -138,9 +138,10 @@
                 size_hint_y: None
                 text: "Play"
                 on_press:
-                    root.go()
+                    root.buildPlayScreen()
                     root.manager.transition.direction = "left"
                     root.manager.current = "play"
+
             Button:
                 size_hint_x: 0.25
                 size_hint_y: None
@@ -149,36 +150,36 @@
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
 
-<PlayScreen>:
-    name: "play"
-    Image:
-        source: 'assets/textures/bg2.png'
-    BoxLayout:
-        orientation: "horizontal"
-        Image:
-            id: promptImage
-            size_hint_x: 0.5
-            size_hint_y: 1.0
-            source: "assets/textures/strawberry.png"
-        BoxLayout:
-            orientation: "vertical"
-            size_hint_x: 0.5
-            size_hint_y: 1.0
-            padding: 50
-            spacing: 25
-            Button:
-                size_hint_x: 1.0
-                size_hint_y: 0.75
-                text: "Player Input"
-                on_press:
-                    root.level()
-            Button:
-                size_hint_x: 1.0
-                size_hint_y: 0.25
-                text: "Quit"
-                on_press:
-                    root.manager.transition.direction = "down"
-                    root.manager.current = "main"
+# <PlayScreen>:
+    # name: "play"
+    # Image:
+        # source: 'assets/textures/bg2.png'
+    # BoxLayout:
+        # orientation: "horizontal"
+        # Image:
+            # id: promptImage
+            # size_hint_x: 0.5
+            # size_hint_y: 1.0
+            # source: "assets/textures/strawberry.png"
+        # BoxLayout:
+            # orientation: "vertical"
+            # size_hint_x: 0.5
+            # size_hint_y: 1.0
+            # padding: 50
+            # spacing: 25
+            # Button:
+                # size_hint_x: 1.0
+                # size_hint_y: 0.75
+                # text: "Player Input"
+                # on_press:
+                    # root.level()
+            # Button:
+                # size_hint_x: 1.0
+                # size_hint_y: 0.25
+                # text: "Quit"
+                # on_press:
+                    # root.manager.transition.direction = "down"
+                    # root.manager.current = "main"
 
 <EndScreen>:
     name: "end"

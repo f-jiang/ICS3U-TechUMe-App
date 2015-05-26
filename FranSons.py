@@ -3,10 +3,12 @@ from kivy.properties import ObjectProperty, BoundedNumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
 from kivy.uix.image import Image
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
-from kivy.lang import Builder
+#from kivy.lang import Builder
 
 
 import random
@@ -49,13 +51,40 @@ class GameConfigScreen(Screen):
 
     def go(self, *args):
         InGame().go()
-
+    
+    def buildPlayScreen(self):
+        root = PlayScreen()
+        root.add_widget(Image(source="assets/textures/bg2.png"))
+        box1 = BoxLayout(orientation="horizontal")
+        box2 = BoxLayout(orientation="vertical",
+                         size_hint_x=0.5,
+                         size_hint_y=1.0,
+                         padding=50,
+                         spacing=25)
+        
+        ib=Button(size_hint_x=1.0,
+                  size_hint_y=0.75,
+                  text="Player Input"
+                  )
+        ib.bind(on_press=PlayScreen.level)
+        box2.add_widget(ib)
+        bb=Button(size_hint_x=1.0,
+                  size_hint_y=0.25,
+                  text="Quit"
+                  )
+        bb.bind(on_press=PlayScreen.gtm)
+        box2.add_widget(bb)
+        box1.add_widget(box2)
+        root.add_widget(box1)
 
 class PlayScreen(Screen):
-
+    def gtm(self):# go to menu
+        self.manager.transition.direction = "down"
+        self.manager.current = "main"
+    
     def updatePrompt(self, *args):
         newSource = args[0]
-        self.ids["promptImage"].source = newSource # update image's source
+        #self.ids["promptImage"].source = newSource # update image's source
         
     def level(self, *args):
         InGame().level()
@@ -93,13 +122,14 @@ class GameSave():
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
 class InGame(): # allows for functions relating to gameplay
+
+    health = 3
+    progress = -1
+    difficulty = 0
+    banged = [] # each word's face value that was banged is put into this array
+    
     def go(self, *args):
-        self.health = 3
-        self.progress = -1
-        self.difficulty = 0
-        self.banged = [] # each word's value that was banged is put into this array
-        
-        #self.level()
+        self.level()
         
         
     def level(self, *args):
