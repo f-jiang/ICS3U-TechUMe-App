@@ -51,10 +51,12 @@ class GameConfigScreen(Screen):
 
     def go(self, *args):
         InGame().go()
-    
-    def buildPlayScreen(self):
-        root = PlayScreen()
-        root.add_widget(Image(source="assets/textures/bg2.png"))
+
+class PlayScreen(Screen):
+    def __init__(self, **kwargs):
+        super(PlayScreen, self).__init__(**kwargs)
+        
+        self.add_widget(Image(source="assets/textures/bg2.png"))
         box1 = BoxLayout(orientation="horizontal")
         box2 = BoxLayout(orientation="vertical",
                          size_hint_x=0.5,
@@ -75,10 +77,9 @@ class GameConfigScreen(Screen):
         bb.bind(on_press=PlayScreen.gtm)
         box2.add_widget(bb)
         box1.add_widget(box2)
-        root.add_widget(box1)
-
-class PlayScreen(Screen):
-    def gtm(self):# go to menu
+        self.add_widget(box1)
+    
+    def gtm(self): # go to menu
         self.manager.transition.direction = "down"
         self.manager.current = "main"
     
