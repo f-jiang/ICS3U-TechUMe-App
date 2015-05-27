@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty, BoundedNumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
@@ -53,10 +54,15 @@ class GameConfigScreen(Screen):
         InGame().go()
 
 class PlayScreen(Screen):
+    global box1
+    global promptE
+    
     def __init__(self, **kwargs):
         super(PlayScreen, self).__init__(**kwargs)
         
         self.add_widget(Image(source="assets/textures/bg2.png"))
+        global box1
+        global promptE
         box1 = BoxLayout(orientation="horizontal")
         box2 = BoxLayout(orientation="vertical",
                          size_hint_x=0.5,
@@ -77,18 +83,26 @@ class PlayScreen(Screen):
         bb.bind(on_press=PlayScreen.gtm)
         box2.add_widget(bb)
         box1.add_widget(box2)
+        
+        promptE = Image(source="")
+        box1.add_widget(promptE)
         self.add_widget(box1)
     
     def gtm(self): # go to menu
-        self.manager.transition.direction = "down"
-        self.manager.current = "main"
+        #self.manager.transition.direction = "down"
+        #self.manager.current = "main"
+        pass # TODO: get this shit working
     
-    def updatePrompt(self, *args):
+    def updatePrompt(self, *args, **kwargs):
+        global box1
+        global promptE
         newSource = args[0]
-        #self.ids["promptImage"].source = newSource # update image's source
+        box1.remove_widget(promptE)
+        promptE = Image(source=newSource)
+        box1.add_widget(promptE)
         
     def level(self, *args):
-        InGame().level()
+        InGame.level(InGame)
 
 class EndScreen(Screen):
 
@@ -122,7 +136,7 @@ class GameSave():
     def set_to_default(*args):
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
 
-class InGame(): # allows for functions relating to gameplay
+class InGame(): # host for functions relating to gameplay
 
     health = 3
     progress = -1
@@ -140,12 +154,16 @@ class InGame(): # allows for functions relating to gameplay
         for p in Assets.words:
             if Assets.words[p].difficulty==self.difficulty and (not (p in self.banged)):
                 possibilities.append(p)
-        t = random.randrange(0, len(possibilities))
+        if(len(possibilities)>0):
+            t = random.randrange(0, len(possibilities))
+            self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
+            PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"])
+            
+            (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
+            
+        else:
+            pass
         
-        self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
-        PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"])
-        
-        (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
     def take(self, *args):
         userInput = args[0] # should be a string
         if userInput == self.currentWord:
