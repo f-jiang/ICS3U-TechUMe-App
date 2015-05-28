@@ -44,8 +44,12 @@ class MainMenuScreen(Screen):
 
 
 class CreditsScreen(Screen):
-
-    pass
+    shitter = 0
+    def ericEaster(self, *args):
+        self.shitter += 1
+        if self.shitter==3:
+            self.shitter = 0
+            Assets.sounds['lel.wav'].play()
 
 
 class GameConfigScreen(Screen):
@@ -56,6 +60,7 @@ class GameConfigScreen(Screen):
 class PlayScreen(Screen):
     global box1
     global promptE
+    global ib
     
     def __init__(self, **kwargs):
         super(PlayScreen, self).__init__(**kwargs)
@@ -63,6 +68,7 @@ class PlayScreen(Screen):
         self.add_widget(Image(source="assets/textures/bg2.png"))
         global box1
         global promptE
+        global ib
         box1 = BoxLayout(orientation="horizontal")
         box2 = BoxLayout(orientation="vertical",
                          size_hint_x=0.5,
@@ -74,7 +80,6 @@ class PlayScreen(Screen):
                   size_hint_y=0.75,
                   text="Player Input"
                   )
-        ib.bind(on_press=PlayScreen.level)
         box2.add_widget(ib)
         bb=Button(size_hint_x=1.0,
                   size_hint_y=0.25,
@@ -89,16 +94,18 @@ class PlayScreen(Screen):
         self.add_widget(box1)
     
     def gtm(self): # go to menu
-        #self.manager.transition.direction = "down"
-        #self.manager.current = "main"
+        ScreenManager().transition.direction = "down"
+        ScreenManager().current = "main"
         pass # TODO: get this shit working
     
     def updatePrompt(self, *args, **kwargs):
         global box1
         global promptE
+        global ib
+        
         newSource = args[0]
         box1.remove_widget(promptE)
-        promptE = Image(source=newSource)
+        promptE = Image(source=newSource, size_hint_x=0.5)
         box1.add_widget(promptE)
         
     def level(self, *args):
@@ -178,8 +185,8 @@ class InGame(): # host for functions relating to gameplay
 class Assets():
     word_source = JsonStore('assets/words.json')   # TODO: for each word, add keys specified in Word class
     sound_sources = JsonStore('assets/sounds/index.json')
-    texture_sources = JsonStore('assets/textures/index.json')
-
+    texture_sources = JsonStore('assets/textures/index.json')\
+    
     words = {}
     sounds = {}
     textures = {}
@@ -189,8 +196,7 @@ class Assets():
         # Loading the words
         Assets.words = {word['definition']:Word(word['definition'],
                                                 word['difficulty'],
-                                                word['inputs'],
-                                                word['outputs'],
+                                                word['mc'],
                                                 word['assets']['texture'],
                                                 word['assets']['sound'])
                         for word in Assets.word_source.get('words')}
@@ -209,11 +215,10 @@ class Assets():
 class Word():
 
     # TODO: remove picture or sound output from list if no texture or sound provided
-    def __init__(self, word, diff, inputs, outputs, texture=None, sound=None, *args):
+    def __init__(self, word, diff, mc, texture=None, sound=None, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
-        self.input_prompts = inputs                         # the input types supported by the word (i might take this out, so don't worry about it for now)
-        self.output_prompts = outputs                       # the output types supported by the word (same here)
+        self.mc = mc                                        # multiple choice possible answers
         self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
 
 
@@ -223,7 +228,7 @@ class FranSons(App):
         # TODO: make a function for setting up game-related stuff?
         GameSave.load()
         Assets.load()
-
+        
         # configure Settings panel
         self.settings_cls = SettingsWithTabbedPanel
         self.use_kivy_settings = False

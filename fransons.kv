@@ -41,13 +41,15 @@
             orientation: "vertical"
             padding: 50
             spacing: 25
-            Label:
+            Button:
                 text: "Programmers:\nEric Canam & Feilan Jiang"
                 pos_hint: {"center_x":0.5}
-            Label:
+                on_press:
+                    root.ericEaster()
+            Button:
                 text: "Media and Customer Relations:\nWasiq Gilani"
                 pos_hint: {"center_x":0.5}
-            Label:
+            Button:
                 text: "Media and Operations Supervisor:\nShivansh Luthra"
                 pos_hint: {"center_x":0.5}
             
