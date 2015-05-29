@@ -94,8 +94,8 @@ class PlayScreen(Screen):
         self.add_widget(box1)
     
     def gtm(self): # go to menu
-        ScreenManager().transition.direction = "down"
-        ScreenManager().current = "main"
+        #ScreenManager.transition.direction = "down"
+        ScreenManager.current = "main"
         pass # TODO: get this shit working
     
     def updatePrompt(self, *args, **kwargs):
