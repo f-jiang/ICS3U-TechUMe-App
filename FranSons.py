@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.graphics import BorderImage
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty, BoundedNumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
@@ -29,7 +30,6 @@ how ScreenManagers work:
 
 
 class SplashScreen(Screen):
-
     bar = ObjectProperty(None)
 
     def play_load_animation(self, *args):
@@ -65,7 +65,7 @@ class PlayScreen(Screen):
     def __init__(self, **kwargs):
         super(PlayScreen, self).__init__(**kwargs)
         
-        self.add_widget(Image(source="assets/textures/bg2.png"))
+        # self.add_widget(Image(source="assets/textures/bg2.png"))
         global box1
         global promptE
         global ib
@@ -94,9 +94,8 @@ class PlayScreen(Screen):
         self.add_widget(box1)
     
     def gtm(self): # go to menu
-        #ScreenManager.transition.direction = "down"
-        ScreenManager.current = "main"
-        pass # TODO: get this shit working
+        FranSons.screen_manager.transition.direction = "down"
+        FranSons.screen_manager.current = "main"
     
     def updatePrompt(self, *args, **kwargs):
         global box1
@@ -212,7 +211,7 @@ class Assets():
                            for file_name in Assets.texture_sources.get('files')}
 
 # to access: Assets.words['the word you're looking for'].definition
-class Word():
+class Word:
 
     # TODO: remove picture or sound output from list if no texture or sound provided
     def __init__(self, word, diff, mc, texture=None, sound=None, *args):
@@ -221,9 +220,18 @@ class Word():
         self.mc = mc                                        # multiple choice possible answers
         self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
 
+class BackgroundScreenManager(ScreenManager):
+    background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
+
+    """def __init__(self, **kwargs):    # TODO: fix sm size problems in python code
+        super(BackgroundScreenManager, self).__init__(**kwargs)
+
+        with self.canvas.before: # TODO: size of the screenmanager is wrong
+            BorderImage(texture=BorderImage(source=Assets.textures['bg1.png']).texture, pos=self.pos, size=self.size)"""
 
 class FranSons(App):
-
+    screen_manager = None
+    
     def build(self):
         # TODO: make a function for setting up game-related stuff?
         GameSave.load()
@@ -233,17 +241,17 @@ class FranSons(App):
         self.settings_cls = SettingsWithTabbedPanel
         self.use_kivy_settings = False
 
-        # create ScreenManager, set transition, add screens, and set current to splash screen
-        screen_manager = ScreenManager(transition=SlideTransition())
-        screen_manager.add_widget(SplashScreen(name="splash"))      # splash screen; loading occurs here
-        screen_manager.add_widget(MainMenuScreen(name="main"))      # main menu
-        screen_manager.add_widget(CreditsScreen(name="credits"))    # credits
-        screen_manager.add_widget(GameConfigScreen(name="conf"))    # more specific settings
-        screen_manager.add_widget(PlayScreen(name="play"))          # gameplay occurs here
-        screen_manager.add_widget(EndScreen(name="end"))            # end screen, with score breakdown
-        screen_manager.current = "splash"
+        # initialize ScreenManager, set transition, add screens, and set current to splash screen
+        FranSons.screen_manager = BackgroundScreenManager(transition=SlideTransition())
+        FranSons.screen_manager.add_widget(SplashScreen(name="splash"))      # splash screen; loading occurs here
+        FranSons.screen_manager.add_widget(MainMenuScreen(name="main"))      # main menu
+        FranSons.screen_manager.add_widget(CreditsScreen(name="credits"))    # credits
+        FranSons.screen_manager.add_widget(GameConfigScreen(name="conf"))    # more specific settings
+        FranSons.screen_manager.add_widget(PlayScreen(name="play"))          # gameplay occurs here
+        FranSons.screen_manager.add_widget(EndScreen(name="end"))            # end screen, with score breakdown
+        FranSons.screen_manager.current = "splash"
 
-        return screen_manager
+        return FranSons.screen_manager
 
     def build_config(self, config):
         config.setdefaults("settings", {
