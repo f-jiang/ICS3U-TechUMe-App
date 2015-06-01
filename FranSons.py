@@ -46,7 +46,7 @@ class MainMenuScreen(Screen):
 
 class CreditsScreen(Screen):
     shitter = 0
-    def ericEaster(self, *args):
+    def ericEaster(self, *args): # Eric's Easter Egg. Click his name three times in credits to have the time of your life.
         self.shitter += 1
         if self.shitter==3:
             self.shitter = 0
@@ -60,6 +60,7 @@ class GameConfigScreen(Screen):
 
 class PlayScreen(Screen):
     global box1
+    global box3
     global promptE
     global ib
     
@@ -68,6 +69,7 @@ class PlayScreen(Screen):
         
         # self.add_widget(Image(source="assets/textures/bg2.png"))
         global box1
+        global box3
         global promptE
         global ib
         box1 = BoxLayout(orientation="horizontal")
@@ -97,9 +99,10 @@ class PlayScreen(Screen):
     
     def updatePrompt(self, *args, **kwargs):
         global box1
+        global box3
         global promptE
         global ib
-        
+        ib.clear_widgets(children=None)
         newSource = args[0]
         potentialAnswers = args[1]
         box1.remove_widget(promptE)
@@ -166,11 +169,15 @@ class InGame(): # host for functions relating to gameplay
         if(len(possibilities)>0):
             t = random.randrange(0, len(possibilities))
             self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
-            pa0 = random.shuffle(Assets.words[self.currentWord].mc) # possible answers
-            pa1 = random.shuffle([pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
-                                  pa0[1],
-                                  pa0[2],
-                                  self.currentWord])
+            
+            pa0 = Assets.words["pomme"].mc # possible answers
+            random.shuffle(pa0)
+            pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
+                   pa0[1],
+                   pa0[2],
+                   self.currentWord]
+            random.shuffle(pa1)
+            
             PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"], pa1)
             
             (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
@@ -207,7 +214,7 @@ class Assets():
                                                 word['assets']['texture'],
                                                 word['assets']['sound'])
                         for word in Assets.word_source.get('words')}
-
+        
         # Loading the sounds
         Assets.sounds = {file_name:SoundLoader.load(filename=os.path.join('assets/sounds/', file_name))
                          for file_name in Assets.sound_sources.get('files')}
@@ -227,6 +234,7 @@ class Word:
         self.difficulty = diff                              # the word's difficulty
         self.mc = mc                                        # multiple choice possible answers
         self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
+        
 
 class BackgroundScreenManager(ScreenManager):
     background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
