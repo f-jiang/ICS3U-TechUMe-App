@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.settings import SettingsWithTabbedPanel
 from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
@@ -76,10 +77,7 @@ class PlayScreen(Screen):
                          padding=50,
                          spacing=25)
         
-        ib=Button(size_hint_x=1.0,
-                  size_hint_y=0.75,
-                  text="Player Input"
-                  )
+        ib=GridLayout(cols=2) # input stuffs go here
         box2.add_widget(ib)
         bb=Button(size_hint_x=1.0,
                   size_hint_y=0.25,
@@ -103,7 +101,12 @@ class PlayScreen(Screen):
         global ib
         
         newSource = args[0]
+        potentialAnswers = args[1]
         box1.remove_widget(promptE)
+        for pa in potentialAnswers:
+            ib.add_widget(Button(text=pa,
+                                 size_hint_x=0.5,
+                                 size_hint_y=0.5))
         promptE = Image(source=newSource, size_hint_x=0.5)
         box1.add_widget(promptE)
         
@@ -150,11 +153,11 @@ class InGame(): # host for functions relating to gameplay
     banged = [] # each word's face value that was banged is put into this array
     
     def go(self, *args):
+        #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
         self.level()
         
         
     def level(self, *args):
-        
         self.progress += 1
         possibilities = [] # creates list of possible prompts, picks random one from this later
         for p in Assets.words:
@@ -163,7 +166,12 @@ class InGame(): # host for functions relating to gameplay
         if(len(possibilities)>0):
             t = random.randrange(0, len(possibilities))
             self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
-            PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"])
+            pa0 = random.shuffle(Assets.words[self.currentWord].mc) # possible answers
+            pa1 = random.shuffle([pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
+                                  pa0[1],
+                                  pa0[2],
+                                  self.currentWord])
+            PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"], pa1)
             
             (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
             
@@ -184,7 +192,7 @@ class InGame(): # host for functions relating to gameplay
 class Assets():
     word_source = JsonStore('assets/words.json')   # TODO: for each word, add keys specified in Word class
     sound_sources = JsonStore('assets/sounds/index.json')
-    texture_sources = JsonStore('assets/textures/index.json')\
+    texture_sources = JsonStore('assets/textures/index.json')
     
     words = {}
     sounds = {}
