@@ -110,15 +110,16 @@ class PlayScreen(Screen):
         box3 = []
         box3data = []
         for pa in potentialAnswers:
-            box3.append(Button(text=pa,
-                                 size_hint_x=0.5,
-                                 size_hint_y=0.5))
+            box3.append(Button(text0=str(pa),
+                               size_hint_x=0.5,
+                               size_hint_y=0.5))
             box3data.append(pa)
         for i in range(0,4):
             if box3data[i]==correctAnswer:
                 box3[i].bind(on_press=InGame.takeCorrect)
             else:
                 box3[i].bind(on_press=InGame.takeWrong)
+            ib.add_widget(box3[i])
         promptE = Image(source=newSource, size_hint_x=0.5)
         box1.add_widget(promptE)
         
@@ -179,7 +180,7 @@ class InGame(): # host for functions relating to gameplay
             t = random.randrange(0, len(possibilities))
             self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
             
-            pa0 = Assets.words["pomme"].mc # possible answers
+            pa0 = Assets.words["pomme"].inputs["mc"] # possible answers
             random.shuffle(pa0)
             pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
                    pa0[1],
@@ -218,7 +219,8 @@ class Assets():
         # Loading the words
         Assets.words = {word['definition']:Word(word['definition'],
                                                 word['difficulty'],
-                                                word['input'],
+                                                word['inputs']["mc"],
+                                                word['inputs']["wp"],
                                                 word['assets']['texture'],
                                                 word['assets']['sound'])
                         for word in Assets.word_source.get('words')}
@@ -237,10 +239,10 @@ class Assets():
 class Word:
 
     # TODO: remove picture or sound output from list if no texture or sound provided
-    def __init__(self, word, diff, input, mc=None, wp=None, texture=None, sound=None, *args):
+    def __init__(self, word, diff, inputs, mc=None, wp=None, texture=None, sound=None, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
-        self.input = {"mc": mc, "wp": wp}                                  # multiple choice possible answers
+        self.inputs = {"mc": mc, "wp": wp}                                  # multiple choice possible answers
         self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
         
 
