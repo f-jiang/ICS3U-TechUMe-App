@@ -99,7 +99,7 @@ class PlayScreen(Screen):
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
     
-    def updatePrompt(self, newSource, potentialAnswers, correctAnswer, **kwargs):
+    def updatePrompt(self, hint, input_data, correct_answer, **kwargs):
         global box1
         global box3
         global box3data
@@ -112,18 +112,18 @@ class PlayScreen(Screen):
         box1.remove_widget(promptE)
         box3 = []
         box3data = []
-        for pa in potentialAnswers:
+        for pa in input_data:
             box3.append(Button(text=str(pa),
                                size_hint_x=0.5,
                                size_hint_y=0.5))
             box3data.append(pa)
         for i in range(0,4):
-            if box3data[i]==correctAnswer:
+            if box3data[i]==correct_answer:
                 box3[i].bind(on_press=InGame.takeCorrect)
             else:
                 box3[i].bind(on_press=InGame.takeWrong)
             ib.add_widget(box3[i])
-        promptE = Image(source=newSource, size_hint_x=0.5)
+        promptE = Image(source=hint, size_hint_x=0.5)
         box1.add_widget(promptE)
         
     def level(self, *args):
@@ -184,7 +184,7 @@ class InGame(): # host for functions relating to gameplay
             self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
             
             pa0 = Assets.words[self.currentWord].inputs["mc"] # possible answers
-            promptValue = Assets.words[self.currentWord].assets["texture"]
+            hint = Assets.words[self.currentWord].assets["texture"]
             random.shuffle(pa0)
             pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
                    pa0[1],
@@ -192,7 +192,7 @@ class InGame(): # host for functions relating to gameplay
                    self.currentWord]
             random.shuffle(pa1)
             
-            PlayScreen.updatePrompt(PlayScreen, promptValue, pa1, self.currentWord)
+            PlayScreen.updatePrompt(PlayScreen, hint, pa1, self.currentWord)
             
             (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
             
