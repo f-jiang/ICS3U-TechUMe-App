@@ -105,11 +105,20 @@ class PlayScreen(Screen):
         ib.clear_widgets(children=None)
         newSource = args[0]
         potentialAnswers = args[1]
+        correctAnswer = args[2]
         box1.remove_widget(promptE)
+        box3 = []
+        box3data = []
         for pa in potentialAnswers:
-            ib.add_widget(Button(text=pa,
+            box3.append(Button(text=pa,
                                  size_hint_x=0.5,
                                  size_hint_y=0.5))
+            box3data.append(pa)
+        for i in range(0,4):
+            if box3data[i]==correctAnswer:
+                box3[i].bind(on_press=InGame.takeCorrect)
+            else:
+                box3[i].bind(on_press=InGame.takeWrong)
         promptE = Image(source=newSource, size_hint_x=0.5)
         box1.add_widget(promptE)
         
@@ -178,19 +187,18 @@ class InGame(): # host for functions relating to gameplay
                    self.currentWord]
             random.shuffle(pa1)
             
-            PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"], pa1)
+            PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"], pa1, self.currentWord)
             
             (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
             
         else:
             pass
         
-    def take(self, *args):
-        userInput = args[0] # should be a string
-        if userInput == self.currentWord:
-            level()
-        else:
-            end()
+    def takeCorrect(self, *args):
+        print("Correct")
+        
+    def takeWrong(self, *args):
+        print("Incorrect")
     
     def end(self, *args):
         pass
