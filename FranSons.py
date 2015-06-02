@@ -99,16 +99,16 @@ class PlayScreen(Screen):
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
     
-    def updatePrompt(self, *args, **kwargs):
+    def updatePrompt(self, newSource, potentialAnswers, correctAnswer, **kwargs):
         global box1
         global box3
         global box3data
         global promptE
         global ib
         ib.clear_widgets(children=None)
-        newSource = args[0]
-        potentialAnswers = args[1]
-        correctAnswer = args[2]
+        # newSource = args[0]
+        # potentialAnswers = args[1]
+        # correctAnswer = args[2]
         box1.remove_widget(promptE)
         box3 = []
         box3data = []
@@ -184,9 +184,7 @@ class InGame(): # host for functions relating to gameplay
             self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
             
             pa0 = Assets.words[self.currentWord].inputs["mc"] # possible answers
-            print(Assets.words[self.currentWord].inputs["wp"])
-            print("mega nigga")
-            print(Assets.words[self.currentWord].inputs["mc"])
+            promptValue = Assets.words[self.currentWord].assets["texture"]
             random.shuffle(pa0)
             pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
                    pa0[1],
@@ -194,7 +192,7 @@ class InGame(): # host for functions relating to gameplay
                    self.currentWord]
             random.shuffle(pa1)
             
-            PlayScreen.updatePrompt(PlayScreen, Assets.words[self.currentWord].assets["texture"], pa1, self.currentWord)
+            PlayScreen.updatePrompt(PlayScreen, promptValue, pa1, self.currentWord)
             
             (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
             
