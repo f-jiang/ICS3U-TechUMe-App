@@ -61,6 +61,7 @@ class GameConfigScreen(Screen):
 class PlayScreen(Screen):
     global box1
     global box3
+    global box3data
     global promptE
     global ib
     
@@ -70,6 +71,7 @@ class PlayScreen(Screen):
         # self.add_widget(Image(source="assets/textures/bg2.png"))
         global box1
         global box3
+        global box3data
         global promptE
         global ib
         box1 = BoxLayout(orientation="horizontal")
@@ -100,6 +102,7 @@ class PlayScreen(Screen):
     def updatePrompt(self, *args, **kwargs):
         global box1
         global box3
+        global box3data
         global promptE
         global ib
         ib.clear_widgets(children=None)
@@ -110,7 +113,7 @@ class PlayScreen(Screen):
         box3 = []
         box3data = []
         for pa in potentialAnswers:
-            box3.append(Button(text0=str(pa),
+            box3.append(Button(text=str(pa),
                                size_hint_x=0.5,
                                size_hint_y=0.5))
             box3data.append(pa)
@@ -180,7 +183,10 @@ class InGame(): # host for functions relating to gameplay
             t = random.randrange(0, len(possibilities))
             self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
             
-            pa0 = Assets.words["pomme"].inputs["mc"] # possible answers
+            pa0 = Assets.words[self.currentWord].inputs["mc"] # possible answers
+            print(Assets.words[self.currentWord].inputs["wp"])
+            print("mega nigga")
+            print(Assets.words[self.currentWord].inputs["mc"])
             random.shuffle(pa0)
             pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
                    pa0[1],
@@ -206,7 +212,7 @@ class InGame(): # host for functions relating to gameplay
 
 
 class Assets():
-    word_source = JsonStore('assets/words.json')   # TODO: for each word, add keys specified in Word class
+    word_source = JsonStore('assets/words.json') # TODO: for each word, add keys specified in Word class
     sound_sources = JsonStore('assets/sounds/index.json')
     texture_sources = JsonStore('assets/textures/index.json')
     
@@ -239,7 +245,7 @@ class Assets():
 class Word:
 
     # TODO: remove picture or sound output from list if no texture or sound provided
-    def __init__(self, word, diff, inputs, mc=None, wp=None, texture=None, sound=None, *args):
+    def __init__(self, word, diff, mc=None, wp=None, texture=None, sound=None, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
         self.inputs = {"mc": mc, "wp": wp}                                  # multiple choice possible answers
