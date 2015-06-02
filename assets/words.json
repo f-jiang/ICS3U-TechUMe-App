@@ -2,27 +2,44 @@
   {"definition": "fraise",
   "difficulty": 0,
   "inputs": {
-      "mc": ["pomme","banane","strawberry"], // penis
-  }
+      "mc": ["frayse","freeze","banane"], 
+	  "wp": [{"def":"aise", "isCorrect": true},{"def":"ise", "isCorrect": true},{"def":"ayse", "isCorrect": false},{"def":"nane", "isCorrect": false}],
+  },
   "assets": {"texture":"assets/textures/strawberry.png", "sound":null}},
   {"definition": "pain",
   "difficulty": 0,
-  
+  "inputs": {
+      "mc": ["peen","pane","poisson"], 
+	  "wp": ["ain","in","ane","een"],
+  },
   "assets": {"texture":"assets/textures/bread.png", "sound":null}},
-  {"definition": "anana",
+  {"definition": "ananas",
   "difficulty": 0,
-  
+  "inputs": {
+      "mc": ["anannes","nanana","banane"], 
+	  "wp": ["nas","anas","nnes","ane"],
+  },
   "assets": {"texture":"assets/textures/pineapple.png", "sound":null}},
   {"definition": "pomme",
   "difficulty": 0,
-  
+  "inputs": {
+      "mc": ["pumme","paumme","paeme"], 
+	  "wp": ["omme","mme","aume","aumme"],
+  },
   "assets": {"texture":"assets/textures/apple.png", "sound":null}},
   {"definition": "banane",
   "difficulty": 0,
-  
+  "inputs": {
+      "mc": ["bannane","baunan","bunan"], 
+	  "wp": ["anane","ane","aune","nan"],
+  },
   "assets": {"texture":"assets/textures/banana.png", "sound":null}},
   {"definition": "biscuit",
   "difficulty": 0,
-  
+  "inputs": {
+      "mc": ["biscuiet","buscuot","biscuite"], 
+	  "wp": ["uit","cuit","ote","eit"],
+  },
   "assets": {"texture":"assets/textures/cookie.png", "sound":null}}
   ]}
+  
