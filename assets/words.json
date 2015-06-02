@@ -1,26 +1,28 @@
 {"words": [
   {"definition": "fraise",
   "difficulty": 0,
-  "mc": ["merde", "salupe", "futre", "Feilan", "Helena"],
+  "inputs": {
+      "mc": ["pomme","banane","strawberry"], // penis
+  }
   "assets": {"texture":"assets/textures/strawberry.png", "sound":null}},
   {"definition": "pain",
   "difficulty": 0,
-  "mc": ["merde", "salupe", "futre", "Feilan", "Helena"],
+  
   "assets": {"texture":"assets/textures/bread.png", "sound":null}},
   {"definition": "anana",
   "difficulty": 0,
-  "mc": ["merde", "salupe", "futre", "Feilan", "Helena"],
+  
   "assets": {"texture":"assets/textures/pineapple.png", "sound":null}},
   {"definition": "pomme",
   "difficulty": 0,
-  "mc": ["merde", "salupe", "futre", "Feilan", "Helena"],
+  
   "assets": {"texture":"assets/textures/apple.png", "sound":null}},
   {"definition": "banane",
   "difficulty": 0,
-  "mc": ["merde", "salupe", "futre", "Feilan", "Helena"],
+  
   "assets": {"texture":"assets/textures/banana.png", "sound":null}},
   {"definition": "biscuit",
   "difficulty": 0,
-  "mc": ["merde", "salupe", "futre", "Feilan", "Helena"],
+  
   "assets": {"texture":"assets/textures/cookie.png", "sound":null}}
   ]}

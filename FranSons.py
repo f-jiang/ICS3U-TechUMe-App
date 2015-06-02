@@ -210,7 +210,7 @@ class Assets():
         # Loading the words
         Assets.words = {word['definition']:Word(word['definition'],
                                                 word['difficulty'],
-                                                word['mc'],
+                                                word['input'],
                                                 word['assets']['texture'],
                                                 word['assets']['sound'])
                         for word in Assets.word_source.get('words')}
@@ -229,10 +229,10 @@ class Assets():
 class Word:
 
     # TODO: remove picture or sound output from list if no texture or sound provided
-    def __init__(self, word, diff, mc, texture=None, sound=None, *args):
+    def __init__(self, word, diff, input, mc=None, wp=None, texture=None, sound=None, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
-        self.mc = mc                                        # multiple choice possible answers
+        self.input = {"mc": mc, "wp": wp}                                  # multiple choice possible answers
         self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
         
 
