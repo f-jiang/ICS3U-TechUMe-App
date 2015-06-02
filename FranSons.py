@@ -225,10 +225,9 @@ class Assets():
         # Loading the words
         Assets.words = {word['definition']:Word(word['definition'],
                                                 word['difficulty'],
-                                                word['inputs']["mc"],
-                                                word['inputs']["wp"],
-                                                word['assets']['texture'],
-                                                word['assets']['sound'])
+                                                word['inputs'],
+                                                word['hints']
+                                                )
                         for word in Assets.word_source.get('words')}
         
         # Loading the sounds
@@ -245,11 +244,11 @@ class Assets():
 class Word:
 
     # TODO: remove picture or sound output from list if no texture or sound provided
-    def __init__(self, word, diff, mc=None, wp=None, texture=None, sound=None, *args):
+    def __init__(self, word, diff, inputs, hints, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
-        self.inputs = {"mc": mc, "wp": wp}                                  # multiple choice possible answers
-        self.assets = {'texture': texture, 'sound': sound}  # the texture and sound that go with the word (use these in the InGame class)
+        self.inputs = inputs                                 # multiple choice possible answers
+        self.assets = hints  # the texture and sound that go with the word (use these in the InGame class)
         
 
 class BackgroundScreenManager(ScreenManager):

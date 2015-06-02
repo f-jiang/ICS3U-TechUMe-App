@@ -5,40 +5,40 @@
       "mc": ["frayse","freeze","banane"], 
 	  "wp": [{"def":"aise", "isCorrect": true},{"def":"ise", "isCorrect": true},{"def":"ayse", "isCorrect": false},{"def":"nane", "isCorrect": false}]
   },
-  "assets": {"texture":"assets/textures/strawberry.png", "sound":null}},
+  "hints": {"texture":"assets/textures/strawberry.png", "sound":null}},
   {"definition": "pain",
   "difficulty": 0,
   "inputs": {
       "mc": ["peen","pane","poisson"], 
 	  "wp":[{"def":"ain", "isCorrect": true},{"def":"in", "isCorrect": true},{"def":"ane", "isCorrect": false},{"def":"een", "isCorrect": false}]
   },
-  "assets": {"texture":"assets/textures/bread.png", "sound":null}},
+  "hints": {"texture":"assets/textures/bread.png", "sound":null}},
   {"definition": "ananas",
   "difficulty": 0,
   "inputs": {
       "mc": ["anannes","nanana","banane"], 
 	  "wp": [{"def":"nas", "isCorrect": true},{"def":"anas", "isCorrect": true},{"def":"nnes", "isCorrect": false},{"def":"ane", "isCorrect": false}]
   },
-  "assets": {"texture":"assets/textures/pineapple.png", "sound":null}},
+  "hints": {"texture":"assets/textures/pineapple.png", "sound":null}},
   {"definition": "pomme",
   "difficulty": 0,
   "inputs": {
       "mc": ["pumme","paumme","paeme"], 
 	  "wp": [{"def":"omme", "isCorrect": true},{"def":"mme", "isCorrect": true},{"def":"aume", "isCorrect": false},{"def":"aumme", "isCorrect": false}]
   },
-  "assets": {"texture":"assets/textures/apple.png", "sound":null}},
+  "hints": {"texture":"assets/textures/apple.png", "sound":null}},
   {"definition": "banane",
   "difficulty": 0,
   "inputs": {
       "mc": ["bannane","baunan","bunan"], 
 	  "wp": [{"def":"anane", "isCorrect": true},{"def":"ane", "isCorrect": true},{"def":"aune", "isCorrect": false},{"def":"nan", "isCorrect": false}]
   },
-  "assets": {"texture":"assets/textures/banana.png", "sound":null}},
+  "hints": {"texture":"assets/textures/banana.png", "sound":null}},
   {"definition": "biscuit",
   "difficulty": 0,
   "inputs": {
       "mc": ["biscuiet","buscuot","biscuite"], 
 	  "wp": [{"def":"uit", "isCorrect": true},{"def":"cuit", "isCorrect": true},{"def":"ote", "isCorrect": false},{"def":"eit", "isCorrect": false}]
   },
-  "assets": {"texture":"assets/textures/cookie.png", "sound":null}}
+  "hints": {"texture":"assets/textures/cookie.png", "sound":null}}
   ]}
