@@ -55,8 +55,9 @@ class CreditsScreen(Screen):
 
 class GameConfigScreen(Screen):
 
+    # feilan: because ingame is a part of the playscreen, ingame.go should be called in playscreen class
     def go(self, *args):
-        InGame().go()
+        InGame().go(2, 5)
 
 class PlayScreen(Screen):
     global box1
@@ -105,7 +106,10 @@ class PlayScreen(Screen):
         global box3data
         global promptE
         global ib
+
         ib.clear_widgets(children=None)
+
+        # if input_data is of mc format
         # newSource = args[0]
         # potentialAnswers = args[1]
         # correctAnswer = args[2]
@@ -123,10 +127,12 @@ class PlayScreen(Screen):
             else:
                 box3[i].bind(on_press=InGame.takeWrong)
             ib.add_widget(box3[i])
+
+        # if the hint provided is an image
         promptE = Image(source=hint, size_hint_x=0.5)
         box1.add_widget(promptE)
         
-    def level(self, *args):
+    def level(self, *args): # feilan: could remove because not being used anywhere
         InGame.level(InGame)
 
 
@@ -134,52 +140,91 @@ class EndScreen(Screen):
 
     pass
 
-
+# feilan: for this class we need to decide whether we should use it as a static (would use InGame instead of self)
+# class or an instance (would use self) because using both conventions at the same time will cause us a lot of problems
+# for now ive made it so that we use ingame as a static class
+# also if we choose not to use instances, we may as well go procedural and move all the code in this class back into
+# playscreen (i say we do it)
 class InGame(): # host for functions relating to gameplay
 
     health = 3
     progress = -1
+    goal = 0    # the value progress needs to be if we want to win
     difficulty = 0
     banged = [] # each word's face value that was banged is put into this array
 
-    def go(self, *args):
+    def go(self, starting_health, goal):
         #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
-        self.level()
 
+        InGame.health = starting_health
+        InGame.progress = 0
+        InGame.goal = goal
 
-    def level(self, *args):
-        self.progress += 1
+        print('starting values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
+
+        InGame.level()
+
+    def level(*args):
+        """feilan: BASIC GAMEFLOW DESCRIPTION:
+        -progress increases when answer correct
+        -health decreases when answer incorrect
+        -win by getting progress to certain value
+        -lose by losing all health"""
+
+        # self.progress += 1
+
+        # making a list of words that can be asked
         possibilities = [] # creates list of possible prompts, picks random one from this later
         for p in Assets.words:
-            if Assets.words[p].difficulty==self.difficulty and (not (p in self.banged)):
+            if Assets.words[p].difficulty==InGame.difficulty and (not (p in InGame.banged)):
                 possibilities.append(p)
-        if(len(possibilities)>0):
+        if len(possibilities) > 0 or InGame.progress < InGame.goal or InGame.health > 0:
+            # selecting a word
             t = random.randrange(0, len(possibilities))
-            self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
+            InGame.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
+            (InGame.banged).append(InGame.currentWord) # adds to list of already used words, so as not to use it in the future
 
-            pa0 = Assets.words[self.currentWord].inputs["mc"] # possible answers
-            hint = Assets.words[self.currentWord].assets["texture"]
+            # here: add code for picking answer format, hint format
+
+            # if mc is the chosen answer format
+            hint = Assets.words[InGame.currentWord].assets["texture"]
+            pa0 = Assets.words[InGame.currentWord].inputs["mc"] # possible answers
             random.shuffle(pa0)
-            pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
+            inputData = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
                    pa0[1],
                    pa0[2],
-                   self.currentWord]
-            random.shuffle(pa1)
+                   InGame.currentWord]
+            random.shuffle(inputData)
 
-            PlayScreen.updatePrompt(PlayScreen, hint, pa1, self.currentWord)
-
-            (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
-
+            # feilan: suggestion: move updateprompt into this class
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord)
         else:
+            InGame.end()
             pass
 
-    def takeCorrect(self, *args):
+    def takeCorrect(*args):
+        InGame.progress += 1
         print("Correct")
+        print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
 
-    def takeWrong(self, *args):
+        if InGame.progress >= InGame.goal:
+            InGame.end()
+        else:
+            InGame.level()
+
+    def takeWrong(*args):
+        InGame.health -= 1
         print("Incorrect")
+        print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
 
-    def end(self, *args):
+        if InGame.health > 0:
+            InGame.level()
+        else:
+            InGame.end()
+
+    def end(*args):
+        InGame.banged = []
+        print('game over')
         pass
 
 
