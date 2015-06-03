@@ -225,7 +225,8 @@ class InGame(): # host for functions relating to gameplay
     def end(*args):
         InGame.banged = []
         print('game over')
-        pass
+
+        PlayScreen.gtm(None)
 
 
 # TODO: determine what needs to be saved
