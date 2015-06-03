@@ -129,9 +129,58 @@ class PlayScreen(Screen):
     def level(self, *args):
         InGame.level(InGame)
 
+
 class EndScreen(Screen):
 
     pass
+
+
+class InGame(): # host for functions relating to gameplay
+
+    health = 3
+    progress = -1
+    difficulty = 0
+    banged = [] # each word's face value that was banged is put into this array
+
+    def go(self, *args):
+        #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
+        self.level()
+
+
+    def level(self, *args):
+        self.progress += 1
+        possibilities = [] # creates list of possible prompts, picks random one from this later
+        for p in Assets.words:
+            if Assets.words[p].difficulty==self.difficulty and (not (p in self.banged)):
+                possibilities.append(p)
+        if(len(possibilities)>0):
+            t = random.randrange(0, len(possibilities))
+            self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
+
+            pa0 = Assets.words[self.currentWord].inputs["mc"] # possible answers
+            hint = Assets.words[self.currentWord].assets["texture"]
+            random.shuffle(pa0)
+            pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
+                   pa0[1],
+                   pa0[2],
+                   self.currentWord]
+            random.shuffle(pa1)
+
+            PlayScreen.updatePrompt(PlayScreen, hint, pa1, self.currentWord)
+
+            (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
+
+        else:
+            pass
+
+    def takeCorrect(self, *args):
+        print("Correct")
+
+    def takeWrong(self, *args):
+        print("Incorrect")
+
+    def end(self, *args):
+        pass
 
 
 # TODO: determine what needs to be saved
@@ -160,53 +209,6 @@ class GameSave():
     # resets game save json to default values
     def set_to_default(*args):
         GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
-
-class InGame(): # host for functions relating to gameplay
-
-    health = 3
-    progress = -1
-    difficulty = 0
-    banged = [] # each word's face value that was banged is put into this array
-    
-    def go(self, *args):
-        #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
-        self.level()
-        
-        
-    def level(self, *args):
-        self.progress += 1
-        possibilities = [] # creates list of possible prompts, picks random one from this later
-        for p in Assets.words:
-            if Assets.words[p].difficulty==self.difficulty and (not (p in self.banged)):
-                possibilities.append(p)
-        if(len(possibilities)>0):
-            t = random.randrange(0, len(possibilities))
-            self.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
-            
-            pa0 = Assets.words[self.currentWord].inputs["mc"] # possible answers
-            hint = Assets.words[self.currentWord].assets["texture"]
-            random.shuffle(pa0)
-            pa1 = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
-                   pa0[1],
-                   pa0[2],
-                   self.currentWord]
-            random.shuffle(pa1)
-            
-            PlayScreen.updatePrompt(PlayScreen, hint, pa1, self.currentWord)
-            
-            (self.banged).append(self.currentWord) # adds to list of already used words, so as not to use it in the future
-            
-        else:
-            pass
-        
-    def takeCorrect(self, *args):
-        print("Correct")
-        
-    def takeWrong(self, *args):
-        print("Incorrect")
-    
-    def end(self, *args):
-        pass
 
 
 class Assets():
