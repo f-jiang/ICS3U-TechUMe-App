@@ -152,7 +152,9 @@ class InGame(): # host for functions relating to gameplay
     goal = 0    # the value progress needs to be if we want to win
     difficulty = 0
     banged = [] # each word's face value that was banged is put into this array
-
+    
+    
+    
     def go(self, starting_health, goal):
         #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
 
