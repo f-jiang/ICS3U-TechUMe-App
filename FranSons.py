@@ -41,7 +41,10 @@ class SplashScreen(Screen):
 
 class MainMenuScreen(Screen):
 
-    pass
+    def __init__(self, **kwargs):
+        super(MainMenuScreen, self).__init__(**kwargs)
+        Assets.sounds['backgroundmusic.wav'].play()
+        Assets.sounds['backgroundmusic.wav'].loop = True
 
 
 class CreditsScreen(Screen):
@@ -57,6 +60,7 @@ class GameConfigScreen(Screen):
 
     # feilan: because ingame is a part of the playscreen, ingame.go should be called in playscreen class
     def go(self, *args):
+        Assets.sounds['backgroundmusic.wav'].stop()
         InGame().go(2, 5)
 
 class PlayScreen(Screen):
@@ -99,6 +103,9 @@ class PlayScreen(Screen):
     def gtm(self): # go to menu
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
+
+        Assets.sounds['backgroundmusic.wav'].play()
+        Assets.sounds['backgroundmusic.wav'].loop = True
     
     def updatePrompt(self, hint, input_data, correct_answer, **kwargs):
         global box1
@@ -212,6 +219,8 @@ class InGame(): # host for functions relating to gameplay
         else:
             InGame.level()
 
+        Assets.sounds['correctanswer.wav'].play()
+
     def takeWrong(*args):
         InGame.health -= 1
         print("Incorrect")
@@ -221,6 +230,8 @@ class InGame(): # host for functions relating to gameplay
             InGame.level()
         else:
             InGame.end()
+
+        Assets.sounds['surprise.wav'].play()
 
     def end(*args):
         InGame.banged = []
