@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FranSons.py" afterPath="$PROJECT_DIR$/FranSons.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save.json" afterPath="$PROJECT_DIR$/save.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ICS3U-TechUMe-App (Git Repository).iws" />
@@ -27,11 +28,21 @@
       <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FranSons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.5555553">
-              <caret line="182" column="49" selection-start-line="182" selection-start-column="49" selection-end-line="182" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="261" column="69" selection-start-line="261" selection-start-column="69" selection-end-line="261" selection-end-column="69" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="save.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/save.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,6 +76,7 @@
         <option value="$PROJECT_DIR$/assets/textures/index.json" />
         <option value="$PROJECT_DIR$/assets/words.json" />
         <option value="$PROJECT_DIR$/fransons.kv" />
+        <option value="$PROJECT_DIR$/save.json" />
         <option value="$PROJECT_DIR$/FranSons.py" />
       </list>
     </option>
@@ -506,7 +518,13 @@
       <option name="project" value="LOCAL" />
       <updated>1433457083681</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Add sounds">
+      <created>1433459996641</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1433459996641</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -535,10 +553,11 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11398417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30340558" sideWeight="0.50292826" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32258064" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32222223" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28555554" sideWeight="0.49707174" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19472295" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -546,7 +565,6 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3988889" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -610,7 +628,8 @@
     <MESSAGE value="Rearrange classes for better organization&#10;Order used: Screens; InGame and other game-related objects; internal, behind-the-scenes classes; App class" />
     <MESSAGE value="Add basic gameflow and a few suggestions&#10;To find suggestions, search &quot;feilan&quot;" />
     <MESSAGE value="Revert changes&#10;Should work now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert changes&#10;Should work now" />
+    <MESSAGE value="Add sounds" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add sounds" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -982,13 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/save.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/words.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.72649574">
@@ -1003,10 +1015,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/save.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FranSons.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.5555553">
-          <caret line="182" column="49" selection-start-line="182" selection-start-column="49" selection-end-line="182" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="261" column="69" selection-start-line="261" selection-start-column="69" selection-end-line="261" selection-end-column="69" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>

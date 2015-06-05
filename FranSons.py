@@ -244,18 +244,31 @@ class InGame(): # host for functions relating to gameplay
 class GameSave():
     source = JsonStore('save.json')
 
+    total_correct = 0
+    total_wrong = 0
+    total_unanswered = 0
+    time_played_s = 0
+
     # loads game save
     def load(*args):
         # sets up json if it has no values yet
-        if GameSave.source.count() == 0:
-            GameSave.set_to_default()
+        # if GameSave.source.count() == 0:
+        GameSave.set_to_default()
 
         # writes json values to class variables
+        GameSave.total_correct = GameSave.source.get('answers')['total_correct']
+        GameSave.total_wrong = GameSave.source.get('answers')['total_wrong']
+        GameSave.total_wrong = GameSave.source.get('answers')['total_unanswered']
+        GameSave.time_played_s = GameSave.source.get('time_played_s')
 
     # overwrites game save
     def save(*args):
         # writes class variables to json values
-        pass
+        GameSave.source.put('answers',
+                            total_correct=GameSave.total_correct,
+                            total_wrong=GameSave.total_wrong,
+                            total_unanswered=GameSave.total_unanswered)
+        GameSave.source.put('time_played_s', value=GameSave.time_played_s)
 
     # resets game save
     def reset(*args):
@@ -265,7 +278,9 @@ class GameSave():
 
     # resets game save json to default values
     def set_to_default(*args):
-        GameSave.source.put('example', value=1)    # placeholder; will replace with real values later
+        GameSave.source.put('answers', total_correct=0, total_wrong=0, total_unanswered=0)
+        GameSave.source.put('time_played_s', value=0)
+        print(GameSave.source.get('answers'))
 
 
 class Assets():
