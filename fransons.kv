@@ -20,35 +20,24 @@
     name: "credits"
     BoxLayout:
         orientation: "vertical"
+        padding: 20
+        Label:
+            halign: "center"
+            font_size: 32
+            line_height: 1.4
+            color: (0, 0, 0, 1)
+            text: "Programmers:\nEric Canam & Feilan Jiang\n\nMedia and Customer Relations:\nWasiq Gilani\n\nMedia and Operations Supervisor:\nShivansh Luthra"
         BoxLayout:
             orientation: "horizontal"
-            size_hint_x: 1.0
+            size_hint_x: 0.25
             size_hint_y: 0.2
             Button:
-                size_hint_x: 0.25
-                size_hint_y: None
                 text: "Back"
                 on_press:
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
-            Label:
-                text: "Credits"
-        BoxLayout:
-            orientation: "vertical"
-            padding: 50
-            spacing: 25
-            Button:
-                text: "Programmers:\nEric Canam & Feilan Jiang"
-                pos_hint: {"center_x":0.5}
-                on_press:
-                    root.ericEaster()
-            Button:
-                text: "Media and Customer Relations:\nWasiq Gilani"
-                pos_hint: {"center_x":0.5}
-            Button:
-                text: "Media and Operations Supervisor:\nShivansh Luthra"
-                pos_hint: {"center_x":0.5}
-            
+
+
 <MainMenuScreen>:
     name: "main"
     BoxLayout:
@@ -60,8 +49,10 @@
             Button:
                 text: "Play"
                 on_press:
+                    root.go()
                     root.manager.transition.direction = "left"
-                    root.manager.current = "conf"
+                    # root.manager.current = "conf"
+                    root.manager.current = "play"
             Button:
                 text: "Settings"
                 on_release:
@@ -97,52 +88,50 @@
         #             size_hint_y: 1.0
         #             text: "Theme 4"
 
-<GameConfigScreen>:
-    name: "conf"
-    BoxLayout:
-        orientation: "vertical"
-        BoxLayout:
-            orientation: "horizontal"
-            size_hint_x: 1.0
-            size_hint_y: 0.2
-            Label:
-                text: "Settings"
-        BoxLayout:
-            size_hint_x: 1.0
-            size_hint_y: 0.55
-            orientation: "vertical"
-            padding: 50
-            spacing: 25
-            ToggleButton:
-                text: "Some Toggle"
-            ToggleButton:
-                text: "T.B.D. when specifics determined"
-            ToggleButton:
-                text: "Another Toggle"
-            ToggleButton:
-                text: "This Screen Can Scroll Later"
-        BoxLayout:
-            orientation: "horizontal"
-            size_hint_x: 1.0
-            size_hint_y: 0.25
-            padding: 50
-            spacing: 25
-            Button:
-                size_hint_x: 0.25
-                size_hint_y: None
-                text: "Play"
-                on_press:
-                    root.go()
-                    root.manager.transition.direction = "left"
-                    root.manager.current = "play"
+# <GameConfigScreen>:
+#    name: "conf"
+#    BoxLayout:
+#        padding: 20
+#        spacing: 25
+#        orientation: "vertical"
+#        BoxLayout:
+#            orientation: "horizontal"
+#            size_hint_x: 1.0
+#            size_hint_y: 0.2
+#            Label:
+#                text: "Settings"
+#        BoxLayout:
+#            size_hint_x: 1.0
+#            size_hint_y: 0.55
+#            orientation: "vertical"
+#            Label:
+#
+#                text: "Game settings"
+#        BoxLayout:
+#            orientation: "horizontal"
+#            padding: 10
+#            size_hint_x: 1.0
+#            size_hint_y: 0.25
+#            Button:
+#                size_hint_x: 1.0
+#                size_hint_y: None
+#                text: "Play"
+#                on_press:
+#                    root.go()
+#                    root.manager.transition.direction = "left"
+#                    root.manager.current = "play"
+#        BoxLayout:
+#            orientation: "horizontal"
+#            size_hint_x: 0.25
+#            size_hint_y: 0.2
+#            Button:
+#                text: "Back"
+#                on_press:
+#                    root.manager.transition.direction = "right"
+#                    root.manager.current = "main"
 
-            Button:
-                size_hint_x: 0.25
-                size_hint_y: None
-                text: "Back"
-                on_press:
-                    root.manager.transition.direction = "right"
-                    root.manager.current = "main"
+
+
 
 # <PlayScreen>:
     # name: "play"
@@ -177,14 +166,17 @@
     name: "end"
     BoxLayout:
         orientation: "vertical"
+        padding: 0.2
         Label:
             text: "Game Over"
             size_hint_x: 1.0
             size_hint_y: 0.25
+            color: (0, 0, 0, 1)
         Label:
             text: "Detailed Game Summary"
             size_hint_x: 1.0
             size_hint_y: 0.5
+            color: (0, 0, 0, 1)
         BoxLayout:
             padding: 50
             spacing: 25

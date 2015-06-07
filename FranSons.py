@@ -3,7 +3,7 @@ from kivy.graphics import BorderImage
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty, BoundedNumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-from kivy.uix.settings import SettingsWithTabbedPanel
+from kivy.uix.settings import *
 from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
@@ -46,6 +46,9 @@ class MainMenuScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].play()
         Assets.sounds['backgroundmusic.wav'].loop = True
 
+    def go(self, *args):
+        Assets.sounds['backgroundmusic.wav'].stop()
+        InGame().go(2, 5)
 
 class CreditsScreen(Screen):
     shitter = 0
@@ -56,12 +59,13 @@ class CreditsScreen(Screen):
             Assets.sounds['lel.wav'].play()
 
 
-class GameConfigScreen(Screen):
+'''class GameConfigScreen(Screen):
 
     # feilan: because ingame is a part of the playscreen, ingame.go should be called in playscreen class
     def go(self, *args):
         Assets.sounds['backgroundmusic.wav'].stop()
-        InGame().go(2, 5)
+        InGame().go(2, 5)'''
+
 
 class PlayScreen(Screen):
     global box1
@@ -349,7 +353,7 @@ class FranSons(App):
         FranSons.screen_manager.add_widget(SplashScreen(name="splash"))      # splash screen; loading occurs here
         FranSons.screen_manager.add_widget(MainMenuScreen(name="main"))      # main menu
         FranSons.screen_manager.add_widget(CreditsScreen(name="credits"))    # credits
-        FranSons.screen_manager.add_widget(GameConfigScreen(name="conf"))    # more specific settings
+        # FranSons.screen_manager.add_widget(GameConfigScreen(name="conf"))    # more specific settings
         FranSons.screen_manager.add_widget(PlayScreen(name="play"))          # gameplay occurs here
         FranSons.screen_manager.add_widget(EndScreen(name="end"))            # end screen, with score breakdown
         FranSons.screen_manager.current = "splash"
