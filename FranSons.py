@@ -45,10 +45,11 @@ class SplashScreen(Screen):
 
 
 class MainMenuScreen(Screen):
-
+    def ericEaster(selfs, *args):
+        CreditsScreen.ericEaster()
     def on_enter(self, *args):
         if Assets.sounds['backgroundmusic.wav'].state == 'stop':
-            Assets.sounds['backgroundmusic.wav'].play()
+            Assets.sounds['backgroundmussic.wav'].play()
             Assets.sounds['backgroundmusic.wav'].loop = True
 
 
@@ -56,7 +57,7 @@ class CreditsScreen(Screen):
     shitter = 0
     def ericEaster(self, *args): # Eric's Easter Egg. Click his name three times in credits to have the time of your life.
         self.shitter += 1
-        if self.shitter==3:
+        if self.shitter==6:
             self.shitter = 0
             Assets.sounds['lel.wav'].play()
 
