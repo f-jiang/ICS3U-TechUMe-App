@@ -33,22 +33,24 @@ how ScreenManagers work:
 class SplashScreen(Screen):
     bar = ObjectProperty(None)
 
-    def play_load_animation(self, *args):
+    def on_enter(self, *args):
         bar = self.ids["loading_bar"]
         animation = Animation(value=bar.max, duration=2.0)
         animation.start(bar)
+        animation.bind (on_complete=SplashScreen.complete)
+
+    def complete(self, *args):
+        FranSons.screen_manager.transition.direction = "left"
+        FranSons.screen_manager.current = "main"
 
 
 class MainMenuScreen(Screen):
 
-    def __init__(self, **kwargs):
-        super(MainMenuScreen, self).__init__(**kwargs)
-        Assets.sounds['backgroundmusic.wav'].play()
-        Assets.sounds['backgroundmusic.wav'].loop = True
+    def on_enter(self, *args):
+        if Assets.sounds['backgroundmusic.wav'].state == 'stop':
+            Assets.sounds['backgroundmusic.wav'].play()
+            Assets.sounds['backgroundmusic.wav'].loop = True
 
-    def go(self, *args):
-        Assets.sounds['backgroundmusic.wav'].stop()
-        InGame().go(2, 5)
 
 class CreditsScreen(Screen):
     shitter = 0
@@ -103,7 +105,13 @@ class PlayScreen(Screen):
         promptE = Image(source="")
         box1.add_widget(promptE)
         self.add_widget(box1)
-    
+
+    def on_pre_enter(self, *args):
+        InGame().go(2, 5)
+
+    def on_enter(self, *args):
+        Assets.sounds['backgroundmusic.wav'].stop()
+
     def gtm(self): # go to menu
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
@@ -149,7 +157,9 @@ class PlayScreen(Screen):
 
 class EndScreen(Screen):
 
-    pass
+    def on_enter(self, *args):
+        Assets.sounds['backgroundmusic.wav'].play()
+        Assets.sounds['backgroundmusic.wav'].loop = True
 
 # feilan: for this class we need to decide whether we should use it as a static (would use InGame instead of self)
 # class or an instance (would use self) because using both conventions at the same time will cause us a lot of problems

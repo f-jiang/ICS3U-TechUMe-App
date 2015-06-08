@@ -10,11 +10,6 @@
             size_hint_y: None
             pos_hint: {"top":0.2, "center_x":0.5}
             max: 100
-            load: root.play_load_animation()
-            on_touch_up:
-                root.manager.transition.direction = "left"
-                root.manager.current = "main"
-                print(Assets.textures)
 
 <CreditsScreen>:
     name: "credits"
@@ -49,7 +44,6 @@
             Button:
                 text: "Play"
                 on_press:
-                    root.go()
                     root.manager.transition.direction = "left"
                     # root.manager.current = "conf"
                     root.manager.current = "play"
