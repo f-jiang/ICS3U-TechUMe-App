@@ -29,6 +29,7 @@
             Button:
                 text: "Back"
                 on_press:
+                    root.ericEaster()
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
 
@@ -54,7 +55,6 @@
             Button:
                 text: "Credits"
                 on_press:
-                    root.ericEaster()
                     root.manager.transition.direction = "left"
                     root.manager.current = "credits"
         BoxLayout:

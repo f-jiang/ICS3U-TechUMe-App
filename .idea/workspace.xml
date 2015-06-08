@@ -28,21 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FranSons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5" vertical-offset="244" max-vertical-offset="6749">
-              <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.5318792" vertical-offset="380" max-vertical-offset="6715">
+              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fransons.kv" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fransons.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fransons.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6276923" vertical-offset="510" max-vertical-offset="3485">
-              <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="3485">
+              <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -97,8 +97,8 @@
         <option value="$PROJECT_DIR$/assets/words.json" />
         <option value="$PROJECT_DIR$/save.json" />
         <option value="$PROJECT_DIR$/assets/textures/index.json" />
-        <option value="$PROJECT_DIR$/fransons.kv" />
         <option value="$PROJECT_DIR$/FranSons.py" />
+        <option value="$PROJECT_DIR$/fransons.kv" />
       </list>
     </option>
   </component>
@@ -561,7 +561,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1011,18 +1011,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FranSons.py">
+    <entry file="file://$PROJECT_DIR$/fransons.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5" vertical-offset="244" max-vertical-offset="6749">
-          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="3485">
+          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fransons.kv">
+    <entry file="file://$PROJECT_DIR$/FranSons.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6276923" vertical-offset="510" max-vertical-offset="3485">
-          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.5318792" vertical-offset="380" max-vertical-offset="6715">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
           <folding />
         </state>
       </provider>

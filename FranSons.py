@@ -45,11 +45,9 @@ class SplashScreen(Screen):
 
 
 class MainMenuScreen(Screen):
-    def ericEaster(selfs, *args):
-        CreditsScreen.ericEaster()
     def on_enter(self, *args):
         if Assets.sounds['backgroundmusic.wav'].state == 'stop':
-            Assets.sounds['backgroundmussic.wav'].play()
+            Assets.sounds['backgroundmusic.wav'].play()
             Assets.sounds['backgroundmusic.wav'].loop = True
 
 
