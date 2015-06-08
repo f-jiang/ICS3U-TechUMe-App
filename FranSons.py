@@ -110,7 +110,13 @@ class PlayScreen(Screen):
         InGame().go(2, 5)
 
     def on_enter(self, *args):
+        animation = Animation(volume=0.0, duration=0.5)
+        animation.start(Assets.sounds['backgroundmusic.wav'])
+        animation.bind(on_complete=PlayScreen.on_mute)
+
+    def on_mute(self, *args):
         Assets.sounds['backgroundmusic.wav'].stop()
+        Assets.sounds['backgroundmusic.wav'].volume = 1.0
 
     def gtm(self): # go to menu
         FranSons.screen_manager.transition.direction = "down"
