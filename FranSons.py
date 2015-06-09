@@ -11,6 +11,7 @@ from kivy.uix.button import Button
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
+from kivy.uix.progressbar import ProgressBar
 #from kivy.lang import Builder
 
 
@@ -84,6 +85,7 @@ class PlayScreen(Screen):
         global box3data
         global promptE
         global ib
+        box0 = BoxLayout(orientation="vertical")
         box1 = BoxLayout(orientation="horizontal")
         box2 = BoxLayout(orientation="vertical",
                          size_hint_x=0.5,
@@ -97,13 +99,16 @@ class PlayScreen(Screen):
                   size_hint_y=0.25,
                   text="Quit"
                   )
-        bb.bind(on_press=PlayScreen.gtm)
+        bb.bind(on_release=PlayScreen.gtm)
         box2.add_widget(bb)
         box1.add_widget(box2)
         
         promptE = Image(source="")
         box1.add_widget(promptE)
-        self.add_widget(box1)
+        timerbar = ProgressBar(max=100, height=0.1)
+        box0.add_widget(timerbar)
+        box0.add_widget(box1)
+        self.add_widget(box0)
 
     def on_pre_enter(self, *args):
         InGame().go(2, 5)
@@ -124,7 +129,7 @@ class PlayScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].play()
         Assets.sounds['backgroundmusic.wav'].loop = True
     
-    def updatePrompt(self, hint, input_data, correct_answer, **kwargs):
+    def updatePrompt(self, hint, input_data, correct_answer, type, **kwargs):
         global box1
         global box3
         global box3data
@@ -147,9 +152,9 @@ class PlayScreen(Screen):
             box3data.append(pa)
         for i in range(0,4):
             if box3data[i]==correct_answer:
-                box3[i].bind(on_press=InGame.takeCorrect)
+                box3[i].bind(on_release=InGame.takeCorrect)
             else:
-                box3[i].bind(on_press=InGame.takeWrong)
+                box3[i].bind(on_release=InGame.takeWrong)
             ib.add_widget(box3[i])
 
         # if the hint provided is an image
@@ -191,6 +196,7 @@ class InGame(): # host for functions relating to gameplay
         InGame.level()
 
     def level(*args):
+        global time
         """feilan: BASIC GAMEFLOW DESCRIPTION:
         -progress increases when answer correct
         -health decreases when answer incorrect
@@ -211,7 +217,8 @@ class InGame(): # host for functions relating to gameplay
             (InGame.banged).append(InGame.currentWord) # adds to list of already used words, so as not to use it in the future
 
             # here: add code for picking answer format, hint format
-
+            opts = ["mc","wp"]
+            random.shuffle(opts)
             # if mc is the chosen answer format
             hint = Assets.words[InGame.currentWord].assets["texture"]
             pa0 = Assets.words[InGame.currentWord].inputs["mc"] # possible answers
@@ -223,10 +230,9 @@ class InGame(): # host for functions relating to gameplay
             random.shuffle(inputData)
 
             # feilan: suggestion: move updateprompt into this class
-            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord)
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0])
         else:
             InGame.end()
-            pass
 
     def takeCorrect(*args):
         InGame.progress += 1
