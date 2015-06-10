@@ -157,7 +157,8 @@ class PlayScreen(Screen):
         global promptE
         global ib
         global timerbar
-        global timeholder
+        global timerholder
+        global timerO
 
         ib.clear_widgets(children=None)
 
@@ -250,7 +251,7 @@ class InGame(): # host for functions relating to gameplay
         for p in Assets.words:
             if not (p in InGame.banged):
                 possibilities.append(p)
-        if len(possibilities) > 0 or InGame.progress < InGame.goal or InGame.health > 0:
+        if len(possibilities) > 0 and InGame.progress < InGame.goal and InGame.health > 0:
             # selecting a word
             t = random.randrange(0, len(possibilities))
             InGame.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
@@ -264,9 +265,9 @@ class InGame(): # host for functions relating to gameplay
             pa0 = Assets.words[InGame.currentWord].inputs["mc"] # possible answers
             random.shuffle(pa0)
             inputData = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
-                   pa0[1],
-                   pa0[2],
-                   InGame.currentWord]
+                         pa0[1],
+                         pa0[2],
+                         InGame.currentWord]
             random.shuffle(inputData)
             timeLength = ((0.5**((4/InGame.goal)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
             # feilan: suggestion: move updateprompt into this class
@@ -275,6 +276,12 @@ class InGame(): # host for functions relating to gameplay
             InGame.end()
 
     def takeCorrect(*args):
+        global timerO
+        global timerbar
+        global timerholder
+        timerO.stop(timerbar)
+        timerholder.remove_widget(timerbar)
+        
         # update stat
         GameSave.total_correct += 1
 
@@ -290,9 +297,14 @@ class InGame(): # host for functions relating to gameplay
         Assets.sounds['correctanswer.wav'].play()
 
     def takeWrong(*args):
+        global timerO
+        global timerbar
+        global timerholder
+        timerO.stop(timerbar)
+        timerholder.remove_widget(timerbar)
+        
         # update stat
         GameSave.total_wrong += 1
-
         InGame.health -= 1
         print("Incorrect")
         print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
