@@ -99,7 +99,7 @@ class PlayScreen(Screen):
                   size_hint_y=0.25,
                   text="Quit"
                   )
-        bb.bind(on_release=PlayScreen.gtm)
+        bb.bind(on_release=PlayScreen.toMenu)
         box2.add_widget(bb)
         box1.add_widget(box2)
         
@@ -132,13 +132,24 @@ class PlayScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].stop()
         Assets.sounds['backgroundmusic.wav'].volume = 1.0
 
-    def gtm(self): # go to menu
+    def toMenu(self): # go to menu
+        InGame.stop()
+
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
 
         Assets.sounds['backgroundmusic.wav'].play()
         Assets.sounds['backgroundmusic.wav'].loop = True
-    
+
+    def toEndScreen(self):
+        InGame.stop()
+
+        FranSons.screen_manager.transition.direction = "left"
+        FranSons.screen_manager.current = "end"
+
+        Assets.sounds['backgroundmusic.wav'].play()
+        Assets.sounds['backgroundmusic.wav'].loop = True
+
     def updatePrompt(self, hint, input_data, correct_answer, type, tl, **kwargs):
         global box1
         global box3
@@ -221,6 +232,10 @@ class InGame(): # host for functions relating to gameplay
 
         InGame.level()
 
+    def stop(self):
+        GameSave.save()
+        InGame.banged = []
+
     def level(*args):
         global time
         """feilan: BASIC GAMEFLOW DESCRIPTION:
@@ -291,13 +306,11 @@ class InGame(): # host for functions relating to gameplay
         Assets.sounds['surprise.wav'].play()
 
     def end(*args):
-        # save stats
-        GameSave.save()
-
-        InGame.banged = []
+        InGame.stop(None)
         print('game over')
 
-        PlayScreen.gtm(None)
+        # go to end screen instead
+        PlayScreen.toEndScreen(None)
 
 
 # TODO: determine what needs to be saved
