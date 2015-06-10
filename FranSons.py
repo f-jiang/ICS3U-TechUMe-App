@@ -28,9 +28,6 @@ how ScreenManagers work:
 "down", "left", or "right"
 '''
 
-# TODO: for all classes determine which variables are "private"
-
-
 class SplashScreen(Screen):
     bar = ObjectProperty(None)
 
@@ -309,7 +306,7 @@ class GameSave():
 
 
 class Assets():
-    word_source = JsonStore('assets/words.json') # TODO: for each word, add keys specified in Word class
+    word_source = JsonStore('assets/words.json')
     sound_sources = JsonStore('assets/sounds/index.json')
     texture_sources = JsonStore('assets/textures/index.json')
     
@@ -340,7 +337,6 @@ class Assets():
 # to access: Assets.words['the word you're looking for'].definition
 class Word:
 
-    # TODO: remove picture or sound output from list if no texture or sound provided
     def __init__(self, word, diff, inputs, hints, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
@@ -359,14 +355,14 @@ class BackgroundScreenManager(ScreenManager):
 
 class FranSons(App):
     screen_manager = None
-    
+    settings = None
+
     def build(self):
-        # TODO: make a function for setting up game-related stuff?
         GameSave.load()
         Assets.load()
         
         # configure Settings panel
-        self.settings_cls = SettingsWithTabbedPanel
+        self.settings_cls = SettingsWithSidebar
         self.use_kivy_settings = False
 
         # initialize ScreenManager, set transition, add screens, and set current to splash screen
@@ -379,28 +375,68 @@ class FranSons(App):
         FranSons.screen_manager.add_widget(EndScreen(name="end"))            # end screen, with score breakdown
         FranSons.screen_manager.current = "splash"
 
+        ''' the app's settings can now be accessed through this variable
+            how to access this from an outside class:
+            print(FranSons.settings.get('gameplay', 'difficulty'))
+        '''
+        FranSons.settings = self.config
+
         return FranSons.screen_manager
 
     def build_config(self, config):
-        config.setdefaults("settings", {
+        config.setdefaults("app", {
             "music": True,
             "sfx": True
         })
+        config.setdefaults("gameplay", {
+            "difficulty": 'Normal',
+            "nature": True,
+            "food": True,
+            "machines": True
+        })
 
     def build_settings(self, settings):
-        settings.add_json_panel("Settings",
+        settings.add_json_panel("App",
                                 self.config,
                                 data=json.dumps([
                                     {'type': 'bool',
                                      'title': 'Music',
                                      'desc': 'Toggle Music',
-                                     'section': 'settings',
-                                     'key': 'music'},
+                                     'section': 'app',
+                                     'key': 'music',
+                                     'values': ['False', 'True']},
                                     {'type': 'bool',
                                      'title': 'Sound Effects',
                                      'desc': 'Toggle Sound Effects',
-                                     'section': 'settings',
-                                     'key': 'sfx'}])
+                                     'section': 'app',
+                                     'key': 'sfx',
+                                     'values': ['False', 'True']}])
+                                )
+        settings.add_json_panel("Gameplay",
+                                self.config,
+                                data=json.dumps([
+                                    {'type': 'options',
+                                     'title': 'Difficulty',
+                                     'section': 'gameplay',
+                                     'key': 'difficulty',
+                                     'options': ['Easy', 'Normal', 'Hard']},
+                                    {'type': 'title',
+                                     'title': 'Word Categories'},
+                                    {'type': 'bool',
+                                     'title': 'Nature',
+                                     'section': 'gameplay',
+                                     'key': 'nature',
+                                     'values': ['False', 'True']},
+                                    {'type': 'bool',
+                                     'title': 'Food',
+                                     'section': 'gameplay',
+                                     'key': 'food',
+                                     'values': ['False', 'True']},
+                                    {'type': 'bool',
+                                     'title': 'Machines',
+                                     'section': 'gameplay',
+                                     'key': 'machines',
+                                     'values': ['False', 'True']}])
                                 )
 
 if __name__ == "__main__":
