@@ -134,7 +134,9 @@ class PlayScreen(Screen):
 
     def toMenu(self): # go to menu
         InGame.stop(self)
-
+        global timerO
+        global timerbar
+        timerO.cancel(timerbar)
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
 
