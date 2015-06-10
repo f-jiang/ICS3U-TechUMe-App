@@ -12,6 +12,8 @@ from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
 from kivy.uix.progressbar import ProgressBar
+from kivy.config import ConfigParser
+from kivy.config import Config
 #from kivy.lang import Builder
 
 
@@ -225,7 +227,8 @@ class InGame(): # host for functions relating to gameplay
 
     health = 3
     progress = -1
-    goal = 0    # the value progress needs to be if we want to win
+    goal = 10       # the value progress needs to be if we want to win
+    #goal = 
     difficulty = 1  # TODO: to be user-defined
     banged = [] # each word's face value that was banged is put into this array
 
@@ -461,6 +464,7 @@ class FranSons(App):
         })
         config.setdefaults("gameplay", {
             "difficulty": 'Normal',
+            "words": 10,
             "nature": True,
             "food": True,
             "machines": True
@@ -491,6 +495,11 @@ class FranSons(App):
                                      'section': 'gameplay',
                                      'key': 'difficulty',
                                      'options': ['Easy', 'Normal', 'Hard']},
+                                    {'type': 'options', # number of words per game
+                                     'title': 'Words per Game',
+                                     'section': 'gameplay',
+                                     'key': 'words',
+                                     'options': ["5","10","25","50","Unlimited"]},
                                     {'type': 'title',
                                      'title': 'Word Categories'},
                                     {'type': 'bool',
