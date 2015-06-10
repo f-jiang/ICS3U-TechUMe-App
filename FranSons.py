@@ -209,7 +209,12 @@ class EndScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].loop = True
 
 class StatsScreen(Screen):
-    pass
+    stats_box = ObjectProperty(None)
+
+    def on_pre_enter(self, *args):
+        stats_box = self.ids['stats_box']
+        stats_box.text = "Correct Answers: " + str(GameSave.total_correct) + "\nWrong Answers: " + str(GameSave.total_wrong) + "\nUnanswered Questions: " + str(GameSave.total_unanswered) + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
+
 
 # feilan: for this class we need to decide whether we should use it as a static (would use InGame instead of self)
 # class or an instance (would use self) because using both conventions at the same time will cause us a lot of problems
@@ -273,6 +278,8 @@ class InGame(): # host for functions relating to gameplay
                          InGame.currentWord]
             random.shuffle(inputData)
             timeLength = ((0.5**((4/InGame.goal)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
+
+            GameSave.time_played_s += int(timeLength)
             # feilan: suggestion: move updateprompt into this class
             PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength)
         else:
@@ -331,7 +338,6 @@ class GameSave():
     total_wrong = 0
     total_unanswered = 0    # TODO: find a place to update this stat
     time_played_s = 0       # TODO: find a place to update this stat
-    av_question_time = 0
 
     # loads game save
     def load(*args):
@@ -342,8 +348,8 @@ class GameSave():
         # writes json values to class variables
         GameSave.total_correct = GameSave.source.get('answers')['total_correct']
         GameSave.total_wrong = GameSave.source.get('answers')['total_wrong']
-        GameSave.total_wrong = GameSave.source.get('answers')['total_unanswered']
-        GameSave.time_played_s = GameSave.source.get('time_played_s')
+        GameSave.total_unanswered = GameSave.source.get('answers')['total_unanswered']
+        GameSave.time_played_s = GameSave.source.get('time_played_s')['value']
 
     # overwrites game save
     def save(*args):

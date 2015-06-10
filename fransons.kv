@@ -204,11 +204,11 @@
         orientation: "vertical"
         padding: 20
         Label:
+            id: stats_box
             halign: "center"
             font_size: 32
             line_height: 2.0
             color: (0, 0, 0, 1)
-            text: "Correct Answers: " + str(GameSave.total_correct) + "\nWrong Answers: " + str(GameSave.total_wrong) + "\nUnanswered Questions: " + str(GameSave.total_unanswered) + "\nAverage Time Taken per Question: " + str(GameSave.av_question_time) + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
         BoxLayout:
             orientation: "horizontal"
             size_hint_x: 0.25
