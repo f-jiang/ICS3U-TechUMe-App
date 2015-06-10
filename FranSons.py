@@ -75,6 +75,7 @@ class PlayScreen(Screen):
     global box3data
     global promptE
     global ib
+    global timerbar
     
     def __init__(self, **kwargs):
         super(PlayScreen, self).__init__(**kwargs)
@@ -85,8 +86,10 @@ class PlayScreen(Screen):
         global box3data
         global promptE
         global ib
+        global timerbar
+        global timerholder
         box0 = BoxLayout(orientation="vertical")
-        box1 = BoxLayout(orientation="horizontal")
+        box1 = BoxLayout(orientation="horizontal", size_hint_y=0.9)
         box2 = BoxLayout(orientation="vertical",
                          size_hint_x=0.5,
                          size_hint_y=1.0,
@@ -105,8 +108,18 @@ class PlayScreen(Screen):
         
         promptE = Image(source="")
         box1.add_widget(promptE)
-        timerbar = ProgressBar(max=100, height=0.1)
-        box0.add_widget(timerbar)
+        timerbar = ProgressBar(max=100,
+                               size_hint_y=1.0,
+                               size_hint_x=0.8,
+                               pos_hint={'right': 0.9}
+                               )
+        timerholder = GridLayout(cols=1,
+                                 size_hint_y=0.1,
+                                 size_hint_x=0.8,
+                                 pos_hint={'right': 0.9}
+                                 )
+        timerholder.add_widget(timerbar)
+        box0.add_widget(timerholder)
         box0.add_widget(box1)
         self.add_widget(box0)
 
@@ -129,12 +142,14 @@ class PlayScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].play()
         Assets.sounds['backgroundmusic.wav'].loop = True
     
-    def updatePrompt(self, hint, input_data, correct_answer, type, **kwargs):
+    def updatePrompt(self, hint, input_data, correct_answer, type, tl, **kwargs):
         global box1
         global box3
         global box3data
         global promptE
         global ib
+        global timerbar
+        global timeholder
 
         ib.clear_widgets(children=None)
 
@@ -143,8 +158,10 @@ class PlayScreen(Screen):
         # potentialAnswers = args[1]
         # correctAnswer = args[2]
         box1.remove_widget(promptE)
+        timerholder.remove_widget(timerbar)
         box3 = []
         box3data = []
+        timerbar = None
         for pa in input_data:
             box3.append(Button(text=str(pa),
                                size_hint_x=0.5,
@@ -152,14 +169,22 @@ class PlayScreen(Screen):
             box3data.append(pa)
         for i in range(0,4):
             if box3data[i]==correct_answer:
-                box3[i].bind(on_release=InGame.takeCorrect)
+                box3[i].bind(on_press=InGame.takeCorrect)
             else:
-                box3[i].bind(on_release=InGame.takeWrong)
+                box3[i].bind(on_press=InGame.takeWrong)
             ib.add_widget(box3[i])
 
         # if the hint provided is an image
         promptE = Image(source=hint, size_hint_x=0.5)
         box1.add_widget(promptE)
+        timerbar = ProgressBar(max=100,
+                               size_hint_y=1.0,
+                               size_hint_x=1.0
+                               )
+        timerholder.add_widget(timerbar)
+        timerO = Animation(value=timerbar.max, duration=tl)
+        timerO.start(timerbar)
+        timerO.bind(on_complete = InGame.takeWrong)
         
     def level(self, *args): # feilan: could remove because not being used anywhere
         InGame.level(InGame)
@@ -181,7 +206,8 @@ class InGame(): # host for functions relating to gameplay
     health = 3
     progress = -1
     goal = 0    # the value progress needs to be if we want to win
-    difficulty = 0
+    difficulty = 1  # TODO: to be user-defined
+    wordsAmount = 10      # TODO: to be user-defined
     banged = [] # each word's face value that was banged is put into this array
 
     def go(self, starting_health, goal):
@@ -208,7 +234,7 @@ class InGame(): # host for functions relating to gameplay
         # making a list of words that can be asked
         possibilities = [] # creates list of possible prompts, picks random one from this later
         for p in Assets.words:
-            if Assets.words[p].difficulty==InGame.difficulty and (not (p in InGame.banged)):
+            if not (p in InGame.banged):
                 possibilities.append(p)
         if len(possibilities) > 0 or InGame.progress < InGame.goal or InGame.health > 0:
             # selecting a word
@@ -228,9 +254,9 @@ class InGame(): # host for functions relating to gameplay
                    pa0[2],
                    InGame.currentWord]
             random.shuffle(inputData)
-
+            timeLength = ((0.5**((4/InGame.wordsAmount)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
             # feilan: suggestion: move updateprompt into this class
-            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0])
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength)
         else:
             InGame.end()
 
