@@ -278,9 +278,7 @@ class InGame(): # host for functions relating to gameplay
     def takeCorrect(*args):
         global timerO
         global timerbar
-        global timerholder
-        timerO.stop(timerbar)
-        timerholder.remove_widget(timerbar)
+        timerO.cancel(timerbar)
         
         # update stat
         GameSave.total_correct += 1
@@ -299,9 +297,7 @@ class InGame(): # host for functions relating to gameplay
     def takeWrong(*args):
         global timerO
         global timerbar
-        global timerholder
-        timerO.stop(timerbar)
-        timerholder.remove_widget(timerbar)
+        timerO.cancel(timerbar)
         
         # update stat
         GameSave.total_wrong += 1
