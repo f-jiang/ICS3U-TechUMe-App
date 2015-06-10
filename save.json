@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"time_played_s": {"value": {"value": 0}}, "answers": {"total_correct": 5, "total_wrong": 1, "total_unanswered": 0}}
+=======
+{"answers": {"total_unanswered": 0, "total_correct": 0, "total_wrong": 2}, "time_played_s": {"value": {"value": 0}}}
+>>>>>>> origin/master
