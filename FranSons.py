@@ -187,13 +187,14 @@ class PlayScreen(Screen):
         promptE = Image(source=hint, size_hint_x=0.5)
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
+                               value=100,
                                size_hint_y=1.0,
                                size_hint_x=1.0
                                )
         timerholder.add_widget(timerbar)
-        timerO = Animation(value=timerbar.max, duration=tl)
+        timerO = Animation(value=0, duration=tl)
         timerO.start(timerbar)
-        timerO.bind(on_complete = InGame.takeWrong)
+        timerO.bind(on_complete=InGame.takeWrong)
         
     def level(self, *args): # feilan: could remove because not being used anywhere
         InGame.level(InGame)
