@@ -391,8 +391,8 @@ class Word:
     def __init__(self, word, diff, inputs, hints, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
-        self.inputs = inputs                                # multiple choice possible answers
-        self.assets = hints                                 # the texture and sound that go with the word (use these in the InGame class)
+        self.inputs = inputs                                 # multiple choice possible answers
+        self.assets = hints  # the texture and sound that go with the word (use these in the InGame class)
         
 
 class BackgroundScreenManager(ScreenManager):
@@ -404,11 +404,13 @@ class BackgroundScreenManager(ScreenManager):
         with self.canvas.before: # TODO: size of the screenmanager is wrong
             BorderImage(texture=BorderImage(source=Assets.textures['bg1.png']).texture, pos=self.pos, size=self.size)"""
 
+
 class FranSons(App):
     screen_manager = None
     settings = None
 
     def build(self):
+        # TODO: make a function for setting up game-related stuff?
         GameSave.load()
         Assets.load()
         
@@ -436,7 +438,7 @@ class FranSons(App):
         return FranSons.screen_manager
 
     def build_config(self, config):
-        config.setdefaults("app", {
+        config.setdefaults("settings", {
             "music": True,
             "sfx": True
         })
