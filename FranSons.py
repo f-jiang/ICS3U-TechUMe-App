@@ -133,7 +133,7 @@ class PlayScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].volume = 1.0
 
     def toMenu(self): # go to menu
-        InGame.stop()
+        InGame.stop(self)
 
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
@@ -142,7 +142,7 @@ class PlayScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].loop = True
 
     def toEndScreen(self):
-        InGame.stop()
+        InGame.stop(self)
 
         FranSons.screen_manager.transition.direction = "left"
         FranSons.screen_manager.current = "end"
