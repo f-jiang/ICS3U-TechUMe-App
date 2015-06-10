@@ -193,6 +193,9 @@ class EndScreen(Screen):
         Assets.sounds['backgroundmusic.wav'].play()
         Assets.sounds['backgroundmusic.wav'].loop = True
 
+class StatsScreen(Screen):
+    pass
+
 # feilan: for this class we need to decide whether we should use it as a static (would use InGame instead of self)
 # class or an instance (would use self) because using both conventions at the same time will cause us a lot of problems
 # for now ive made it so that we use ingame as a static class
@@ -258,6 +261,9 @@ class InGame(): # host for functions relating to gameplay
             InGame.end()
 
     def takeCorrect(*args):
+        # update stat
+        GameSave.total_correct += 1
+
         InGame.progress += 1
         print("Correct")
         print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
@@ -270,6 +276,9 @@ class InGame(): # host for functions relating to gameplay
         Assets.sounds['correctanswer.wav'].play()
 
     def takeWrong(*args):
+        # update stat
+        GameSave.total_wrong += 1
+
         InGame.health -= 1
         print("Incorrect")
         print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
@@ -282,6 +291,9 @@ class InGame(): # host for functions relating to gameplay
         Assets.sounds['surprise.wav'].play()
 
     def end(*args):
+        # save stats
+        GameSave.save()
+
         InGame.banged = []
         print('game over')
 
@@ -294,8 +306,9 @@ class GameSave():
 
     total_correct = 0
     total_wrong = 0
-    total_unanswered = 0
-    time_played_s = 0
+    total_unanswered = 0    # TODO: find a place to update this stat
+    time_played_s = 0       # TODO: find a place to update this stat
+    av_question_time = 0
 
     # loads game save
     def load(*args):
@@ -366,8 +379,8 @@ class Word:
     def __init__(self, word, diff, inputs, hints, *args):
         self.definition = word                              # the actual word
         self.difficulty = diff                              # the word's difficulty
-        self.inputs = inputs                                 # multiple choice possible answers
-        self.assets = hints  # the texture and sound that go with the word (use these in the InGame class)
+        self.inputs = inputs                                # multiple choice possible answers
+        self.assets = hints                                 # the texture and sound that go with the word (use these in the InGame class)
         
 
 class BackgroundScreenManager(ScreenManager):
@@ -399,6 +412,7 @@ class FranSons(App):
         # FranSons.screen_manager.add_widget(GameConfigScreen(name="conf"))    # more specific settings
         FranSons.screen_manager.add_widget(PlayScreen(name="play"))          # gameplay occurs here
         FranSons.screen_manager.add_widget(EndScreen(name="end"))            # end screen, with score breakdown
+        FranSons.screen_manager.add_widget(StatsScreen(name="stats"))        # players stats
         FranSons.screen_manager.current = "splash"
 
         ''' the app's settings can now be accessed through this variable

@@ -1,5 +1,6 @@
 #1.8.0
 #:import Assets FranSons.Assets
+#:import GameSave FranSons.GameSave
 
 <SplashScreen>:
     name: "splash"
@@ -52,6 +53,11 @@
                 text: "Settings"
                 on_release:
                     app.open_settings()
+            Button:
+                text: "Stats"
+                on_press:
+                    root.manager.transition.direction = "left"
+                    root.manager.current = "stats"
             Button:
                 text: "Credits"
                 on_press:
@@ -191,6 +197,27 @@
                 on_press:
                     root.manager.transition.direction = "up"
                     root.manager.current = "play"
+
+<StatsScreen>:
+    name: "stats"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        Label:
+            halign: "center"
+            font_size: 32
+            line_height: 2.0
+            color: (0, 0, 0, 1)
+            text: "Correct Answers: " + str(GameSave.total_correct) + "\nWrong Answers: " + str(GameSave.total_wrong) + "\nUnanswered Questions: " + str(GameSave.total_unanswered) + "\nAverage Time Taken per Question: " + str(GameSave.av_question_time) + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: 0.25
+            size_hint_y: 0.2
+            Button:
+                text: "Back"
+                on_press:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "main"
 
 <BackgroundScreenManager>:
     canvas.before:
