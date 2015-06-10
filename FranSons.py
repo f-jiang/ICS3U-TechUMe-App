@@ -207,7 +207,6 @@ class InGame(): # host for functions relating to gameplay
     progress = -1
     goal = 0    # the value progress needs to be if we want to win
     difficulty = 1  # TODO: to be user-defined
-    wordsAmount = 10      # TODO: to be user-defined
     banged = [] # each word's face value that was banged is put into this array
 
     def go(self, starting_health, goal):
@@ -254,7 +253,7 @@ class InGame(): # host for functions relating to gameplay
                    pa0[2],
                    InGame.currentWord]
             random.shuffle(inputData)
-            timeLength = ((0.5**((4/InGame.wordsAmount)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
+            timeLength = ((0.5**((4/InGame.goal)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
             # feilan: suggestion: move updateprompt into this class
             PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength)
         else:
