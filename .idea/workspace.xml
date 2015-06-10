@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FranSons.py" afterPath="$PROJECT_DIR$/FranSons.py" />
+    <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="Pre-merge code&#10;&#10;(cherry picked from commit e061421a3d402a9b6a427c01dcc800dcf1176c43)&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fransons.ini" afterPath="$PROJECT_DIR$/fransons.ini" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save.json" afterPath="$PROJECT_DIR$/save.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -28,8 +28,8 @@
       <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FranSons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82447666">
-              <caret line="282" column="29" selection-start-line="282" selection-start-column="29" selection-end-line="282" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.30756843">
+              <caret line="154" column="19" selection-start-line="154" selection-start-column="19" selection-end-line="154" selection-end-column="19" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -569,13 +569,7 @@
       <option name="project" value="LOCAL" />
       <updated>1433954840693</updated>
     </task>
-    <task id="LOCAL-00031" summary="Merged code">
-      <created>1433956126589</created>
-      <option name="number" value="00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1433956126589</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -647,6 +641,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Continue implementation of Settings menu" />
     <MESSAGE value="Begin implementation of word-loading&#10;Create Word class&#10;Add load function to Assets class" />
     <MESSAGE value="Create dict in Assets class for storing sounds" />
     <MESSAGE value="Name app &quot;FranSons&quot;" />
@@ -671,8 +666,7 @@
     <MESSAGE value="Create function to end game" />
     <MESSAGE value="Added missing parameter to stop function" />
     <MESSAGE value="Pre-merge code" />
-    <MESSAGE value="Merged code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pre-merge code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1062,6 +1056,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fransons.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fransons.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5">
@@ -1078,18 +1080,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fransons.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FranSons.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82447666">
-          <caret line="282" column="29" selection-start-line="282" selection-start-column="29" selection-end-line="282" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.30756843">
+          <caret line="154" column="19" selection-start-line="154" selection-start-column="19" selection-end-line="154" selection-end-column="19" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
