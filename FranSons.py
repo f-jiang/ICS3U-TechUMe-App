@@ -217,9 +217,16 @@ class PlayScreen(Screen):
 
 
 class EndScreen(Screen):
+    summary = ObjectProperty(None)
 
     def on_enter(self, *args):
         Assets.play_music('backgroundmusic.wav', True)
+
+    def on_pre_enter(self, *args):
+        summary = self.ids['summary']
+        summary.text = "Correct Answers: " + str(InGame.num_correct) \
+                       + "\nWrong Answers: " + str(InGame.num_wrong) \
+                       + "\nUnanswered Questions: " + str(InGame.num_unanswered)
 
 class StatsScreen(Screen):
     stats_box = ObjectProperty(None)
@@ -243,8 +250,12 @@ class InGame(): # host for functions relating to gameplay
     progress = -1
     goal = 10       # the value progress needs to be if we want to win
     difficulty = 1  # TODO: to be user-defined
-    length = None   # the number of words to be asked during the game
     banged = [] # each word's face value that was banged is put into this array
+
+    num_correct = 0
+    num_wrong = 0
+    num_unanswered = 0
+    time = 0
 
     def go(self, starting_health, goal):
         #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
@@ -253,11 +264,20 @@ class InGame(): # host for functions relating to gameplay
         InGame.progress = 0
         InGame.goal = goal
 
+        InGame.num_correct = 0
+        InGame.num_wrong = 0
+        InGame.num_unanswered = 0
+        InGame.time = 0
+
         print('starting values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
 
         InGame.level()
 
     def stop(self):
+        GameSave.total_correct += InGame.num_correct
+        GameSave.total_wrong += InGame.num_wrong
+        GameSave.total_unanswered += InGame.num_unanswered
+        GameSave.time_played_s += InGame.time
         GameSave.save()
         InGame.banged = []
 
@@ -296,7 +316,7 @@ class InGame(): # host for functions relating to gameplay
             random.shuffle(inputData)
             timeLength = ((0.5**((4/InGame.goal)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
 
-            GameSave.time_played_s += int(timeLength)
+            InGame.time += int(timeLength)
             # feilan: suggestion: move updateprompt into this class
             PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength)
         else:
@@ -308,7 +328,7 @@ class InGame(): # host for functions relating to gameplay
         timerO.cancel(timerbar)
         
         # update stat
-        GameSave.total_correct += 1
+        InGame.num_correct += 1
 
         InGame.progress += 1
         print("Correct")
@@ -328,7 +348,8 @@ class InGame(): # host for functions relating to gameplay
         timerO.cancel(timerbar)
         
         # update stat
-        GameSave.total_wrong += 1
+        InGame.num_wrong += 1
+
         InGame.health -= 1
         print("Incorrect")
         print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
