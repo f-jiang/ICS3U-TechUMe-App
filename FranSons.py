@@ -47,8 +47,7 @@ class SplashScreen(Screen):
 class MainMenuScreen(Screen):
     def on_enter(self, *args):
         if Assets.sounds['backgroundmusic.wav'].state == 'stop':
-            Assets.sounds['backgroundmusic.wav'].play()
-            Assets.sounds['backgroundmusic.wav'].loop = True
+            Assets.play_music('backgroundmusic.wav', True)
 
 
 class CreditsScreen(Screen):
@@ -57,7 +56,7 @@ class CreditsScreen(Screen):
         self.shitter += 1
         if self.shitter==6:
             self.shitter = 0
-            Assets.sounds['lel.wav'].play()
+            Assets.sounds['lel.wav'].play() # this will play even if sound effects have been muted in the settings!
 
 
 '''class GameConfigScreen(Screen):
@@ -75,10 +74,10 @@ class PlayScreen(Screen):
     global promptE
     global ib
     global timerbar
-    
+
     def __init__(self, **kwargs):
         super(PlayScreen, self).__init__(**kwargs)
-        
+
         # self.add_widget(Image(source="assets/textures/bg2.png"))
         global box1
         global box3
@@ -94,7 +93,7 @@ class PlayScreen(Screen):
                          size_hint_y=1.0,
                          padding=50,
                          spacing=25)
-        
+
         ib=GridLayout(cols=2) # input stuffs go here
         box2.add_widget(ib)
         bb=Button(size_hint_x=1.0,
@@ -104,7 +103,7 @@ class PlayScreen(Screen):
         bb.bind(on_release=PlayScreen.toMenu)
         box2.add_widget(bb)
         box1.add_widget(box2)
-        
+
         promptE = Image(source="")
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
@@ -123,7 +122,26 @@ class PlayScreen(Screen):
         self.add_widget(box0)
 
     def on_pre_enter(self, *args):
-        InGame().go(2, 5)
+        health = 0
+        length = 0
+
+        # sets health according to difficulty level
+        if FranSons.settings.get('gameplay', 'difficulty') == 'Easy':
+            health = 7
+        elif FranSons.settings.get('gameplay', 'difficulty') == 'Normal':
+            health = 5
+        elif FranSons.settings.get('gameplay', 'difficulty') == 'Hard':
+            health = 3
+
+        if FranSons.settings.get('gameplay', 'words') == 'All Words':
+            length = len(Assets.words)
+        else:
+            length = int(FranSons.settings.get('gameplay', 'words'))
+
+        print('length: ', length, ' health: ', health)
+
+        # starts the game and uses length and health variables as parameters
+        InGame().go(health, length)
 
     def on_enter(self, *args):
         animation = Animation(volume=0.0, duration=0.5)
@@ -142,17 +160,11 @@ class PlayScreen(Screen):
         FranSons.screen_manager.transition.direction = "down"
         FranSons.screen_manager.current = "main"
 
-        Assets.sounds['backgroundmusic.wav'].play()
-        Assets.sounds['backgroundmusic.wav'].loop = True
-
     def toEndScreen(self):
         InGame.stop(self)
 
         FranSons.screen_manager.transition.direction = "left"
         FranSons.screen_manager.current = "end"
-
-        Assets.sounds['backgroundmusic.wav'].play()
-        Assets.sounds['backgroundmusic.wav'].loop = True
 
     def updatePrompt(self, hint, input_data, correct_answer, type, tl, **kwargs):
         global box1
@@ -199,7 +211,7 @@ class PlayScreen(Screen):
         timerO = Animation(value=0, duration=tl)
         timerO.start(timerbar)
         timerO.bind(on_complete=InGame.takeWrong)
-        
+
     def level(self, *args): # feilan: could remove because not being used anywhere
         InGame.level(InGame)
 
@@ -207,15 +219,17 @@ class PlayScreen(Screen):
 class EndScreen(Screen):
 
     def on_enter(self, *args):
-        Assets.sounds['backgroundmusic.wav'].play()
-        Assets.sounds['backgroundmusic.wav'].loop = True
+        Assets.play_music('backgroundmusic.wav', True)
 
 class StatsScreen(Screen):
     stats_box = ObjectProperty(None)
 
     def on_pre_enter(self, *args):
         stats_box = self.ids['stats_box']
-        stats_box.text = "Correct Answers: " + str(GameSave.total_correct) + "\nWrong Answers: " + str(GameSave.total_wrong) + "\nUnanswered Questions: " + str(GameSave.total_unanswered) + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
+        stats_box.text = "Correct Answers: " + str(GameSave.total_correct) \
+                         + "\nWrong Answers: " + str(GameSave.total_wrong) \
+                         + "\nUnanswered Questions: " + str(GameSave.total_unanswered) \
+                         + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
 
 
 # feilan: for this class we need to decide whether we should use it as a static (would use InGame instead of self)
@@ -228,8 +242,8 @@ class InGame(): # host for functions relating to gameplay
     health = 3
     progress = -1
     goal = 10       # the value progress needs to be if we want to win
-    #goal = 
     difficulty = 1  # TODO: to be user-defined
+    length = None   # the number of words to be asked during the game
     banged = [] # each word's face value that was banged is put into this array
 
     def go(self, starting_health, goal):
@@ -305,7 +319,8 @@ class InGame(): # host for functions relating to gameplay
         else:
             InGame.level()
 
-        Assets.sounds['correctanswer.wav'].play()
+        Assets.play_sound('correctanswer.wav')
+
 
     def takeWrong(*args):
         global timerO
@@ -323,7 +338,7 @@ class InGame(): # host for functions relating to gameplay
         else:
             InGame.end()
 
-        Assets.sounds['surprise.wav'].play()
+        Assets.play_sound('surprise.wav')
 
     def end(*args):
         InGame.stop(None)
@@ -404,6 +419,19 @@ class Assets():
         # TODO: find out why this is empty in kv file
         Assets.textures = {file_name:os.path.join('assets/textures/', file_name)
                            for file_name in Assets.texture_sources.get('files')}
+
+    def play_sound(name: str, do_loop=False):
+        if FranSons.settings.get('app', 'sfx') and name in Assets.sounds:
+            Assets.sounds[name].play()
+            if do_loop:
+                Assets.sounds[name].loop = True
+
+    def play_music(name: str, do_loop=False):
+        if FranSons.settings.get('app', 'music') and name in Assets.sounds:
+            Assets.sounds[name].play()
+            if do_loop:
+                Assets.sounds[name].loop = True
+
 
 # to access: Assets.words['the word you're looking for'].definition
 class Word:
@@ -499,7 +527,7 @@ class FranSons(App):
                                      'title': 'Words per Game',
                                      'section': 'gameplay',
                                      'key': 'words',
-                                     'options': ["5","10","25","50","Unlimited"]},
+                                     'options': ["5", "10", "25", "50", "All Words"]},
                                     {'type': 'title',
                                      'title': 'Word Categories'},
                                     {'type': 'bool',
