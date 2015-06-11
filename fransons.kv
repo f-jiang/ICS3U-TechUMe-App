@@ -214,13 +214,19 @@
             color: (0, 0, 0, 1)
         BoxLayout:
             orientation: "horizontal"
-            size_hint_x: 0.25
+            spacing: 25
+            size_hint_x: 1.0
             size_hint_y: 0.2
             Button:
+                size_hint_x: 0.25
                 text: "Back"
                 on_press:
                     root.manager.transition.direction = "right"
                     root.manager.current = "main"
+            Button:
+                id: stats_reset
+                size_hint_x: 0.75
+                text: "Reset Stats"
 
 <BackgroundScreenManager>:
     canvas.before:

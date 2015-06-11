@@ -8,12 +8,14 @@ from kivy.uix.image import Image
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.animation import Animation
 from kivy.storage.jsonstore import JsonStore
 from kivy.core.audio import Sound, SoundLoader
 from kivy.uix.progressbar import ProgressBar
 from kivy.config import ConfigParser
 from kivy.config import Config
+from kivy.uix.popup import Popup
 #from kivy.lang import Builder
 
 
@@ -230,13 +232,46 @@ class EndScreen(Screen):
 
 class StatsScreen(Screen):
     stats_box = ObjectProperty(None)
+    stats_reset = ObjectProperty(None)
+    popup = None
+
+    def __init__(self, **kwargs):
+        super(StatsScreen, self).__init__(**kwargs)
+
+        StatsScreen.popup = Popup(title='Reset Stats',
+                                  size_hint=(0.6, 0.6),
+                                  auto_dismiss=False)
+        popup_content = BoxLayout(orientation='vertical')
+        popup_content.add_widget(Label(text='Are you sure you want to do this?'))
+        popup_buttons = BoxLayout(size_hint_y=0.2)
+        yes_btn = Button(text='Yes')
+        yes_btn.bind(on_press=StatsScreen.reset_stats)
+        no_btn = Button(text='No')
+        no_btn.bind(on_press=StatsScreen.popup.dismiss)
+        popup_buttons.add_widget(yes_btn)
+        popup_buttons.add_widget(no_btn)
+        popup_content.add_widget(popup_buttons)
+        StatsScreen.popup.content = popup_content
+
+        stats_reset = self.ids['stats_reset']
+        stats_reset.bind(on_press=StatsScreen.popup.open)
 
     def on_pre_enter(self, *args):
+        print(self)
+        StatsScreen.refresh_stats_box(self)
+
+    def reset_stats(self, *args):
+        GameSave.reset()
+        StatsScreen.refresh_stats_box(FranSons.screen_manager.current_screen)
+        StatsScreen.popup.dismiss()
+
+    def refresh_stats_box(self):
         stats_box = self.ids['stats_box']
         stats_box.text = "Correct Answers: " + str(GameSave.total_correct) \
                          + "\nWrong Answers: " + str(GameSave.total_wrong) \
                          + "\nUnanswered Questions: " + str(GameSave.total_unanswered) \
                          + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
+
 
 
 # feilan: for this class we need to decide whether we should use it as a static (would use InGame instead of self)
@@ -401,9 +436,8 @@ class GameSave():
 
     # resets game save
     def reset(*args):
-        GameSave.source.clear()     # clear the json
-        GameSave.set_to_default()   # set to default values
-        GameSave.load()             # load default values
+        GameSave.set_to_default()     # clear the json
+        GameSave.load()               # load default values
 
     # resets game save json to default values
     def set_to_default(*args):
@@ -539,6 +573,8 @@ class FranSons(App):
                                 data=json.dumps([
                                     {'type': 'options',
                                      'title': 'Difficulty',
+                                     'desc': 'In harder games, you have fewer lives and less time to answer each '
+                                             'question.',
                                      'section': 'gameplay',
                                      'key': 'difficulty',
                                      'options': ['Easy', 'Normal', 'Hard']},
