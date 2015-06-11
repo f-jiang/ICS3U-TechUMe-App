@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="Add submarine.png">
+    <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ICS3U-TechUMe-App (Git Repository).iws" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FranSons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.88214284">
-              <caret line="523" column="3" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.79642856">
+              <caret line="520" column="27" selection-start-line="520" selection-start-column="27" selection-end-line="520" selection-end-column="27" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -188,6 +188,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1148" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -586,7 +587,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434060166585</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Pre-merge code">
+      <created>1434060275409</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1434060275409</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TodoView">
@@ -600,11 +607,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30333334" sideWeight="0.50292826" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30333334" sideWeight="0.50292826" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3211111" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -658,7 +665,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update TODO item for words list in Assets" />
     <MESSAGE value="Rename &quot;texture&quot; directory to &quot;textures&quot;" />
     <MESSAGE value="Implement sound loading into code" />
     <MESSAGE value="Move list of sound files to a JSON file" />
@@ -683,7 +689,8 @@
     <MESSAGE value="Finish stats screen" />
     <MESSAGE value="Currently adding on/off functionality for sounds" />
     <MESSAGE value="Add submarine.png" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add submarine.png" />
+    <MESSAGE value="Pre-merge code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pre-merge code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1054,8 +1061,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FranSons.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88214284">
-          <caret line="523" column="3" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.79642856">
+          <caret line="520" column="27" selection-start-line="520" selection-start-column="27" selection-end-line="520" selection-end-column="27" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
