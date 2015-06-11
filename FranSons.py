@@ -495,6 +495,9 @@ class Assets():
     sounds = {}
     textures = {}
 
+    current_music = []
+    current_sound_effects = []
+
     # loads all assets and writes them to class variables
     def load(*args):
         # Loading the words
@@ -525,6 +528,28 @@ class Assets():
             Assets.sounds[name].play()
             if do_loop:
                 Assets.sounds[name].loop = True
+
+    def toggle_sounds(do_mute: bool):
+        if do_mute:
+            volume = 0
+        else:
+            volume = 1
+
+        print(Assets.current_sound_effects)
+
+        for name in Assets.current_sound_effects:
+            Assets.sounds[name].volume = volume
+
+    def toggle_music(do_mute: bool):
+        if do_mute:
+            volume = 0
+        else:
+            volume = 1
+
+        print(Assets.current_music)
+
+        for name in Assets.current_music:
+            Assets.sounds[name].volume = volume
 
 
 # to access: Assets.words['the word you're looking for'].definition
@@ -641,6 +666,18 @@ class FranSons(App):
                                      'key': 'machines',
                                      'values': ['False', 'True']}])
                                 )
+
+    def on_config_change(self, config, section, key, value):
+        print(section, key, value)
+
+        if section == 'app':
+            if key == 'music':
+                print('toggling music')
+                Assets.toggle_music(value)
+            elif key == 'sfx':
+                print('toggling sound')
+                Assets.toggle_sounds(value)
+
 
 if __name__ == "__main__":
     FranSons().run()
