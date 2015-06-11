@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="">
+    <list default="true" id="1db9b008-fe93-489a-9415-a2567e02a553" name="Default" comment="Add submarine.png">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ICS3U-TechUMe-App (Git Repository).iws" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="FranSons.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FranSons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7107143">
-              <caret line="514" column="13" selection-start-line="514" selection-start-column="13" selection-end-line="514" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.88214284">
+              <caret line="523" column="3" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -580,7 +580,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434060123894</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Add submarine.png">
+      <created>1434060166585</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1434060166585</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -652,7 +658,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add sound files" />
     <MESSAGE value="Update TODO item for words list in Assets" />
     <MESSAGE value="Rename &quot;texture&quot; directory to &quot;textures&quot;" />
     <MESSAGE value="Implement sound loading into code" />
@@ -677,7 +682,8 @@
     <MESSAGE value="Update .json file for new words and graphics&#10;-implementation of sounds to come" />
     <MESSAGE value="Finish stats screen" />
     <MESSAGE value="Currently adding on/off functionality for sounds" />
-    <option name="LAST_COMMIT_MESSAGE" value="Currently adding on/off functionality for sounds" />
+    <MESSAGE value="Add submarine.png" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add submarine.png" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1048,8 +1054,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FranSons.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7107143">
-          <caret line="514" column="13" selection-start-line="514" selection-start-column="13" selection-end-line="514" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.88214284">
+          <caret line="523" column="3" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
