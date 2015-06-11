@@ -279,7 +279,7 @@ class StatsScreen(Screen):
         stats_box.text = "Correct Answers: " + str(GameSave.total_correct) \
                          + "\nWrong Answers: " + str(GameSave.total_wrong) \
                          + "\nUnanswered Questions: " + str(GameSave.total_unanswered) \
-                         + " s\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
+                         + "\nTotal Time Played: " + str(GameSave.time_played_s) + " s"
 
 
 
