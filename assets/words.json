@@ -1,44 +1,211 @@
 {"words": [
   {"definition": "fraise",
-  "difficulty": 0,
   "inputs": {
       "mc": ["frayse","freeze","banane"], 
 	  "wp": [{"def":"aise", "isCorrect": true},{"def":"ise", "isCorrect": true},{"def":"ayse", "isCorrect": false},{"def":"nane", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/strawberry.png", "sound":null}},
+
   {"definition": "pain",
-  "difficulty": 0,
   "inputs": {
       "mc": ["peen","pane","poisson"], 
 	  "wp":[{"def":"ain", "isCorrect": true},{"def":"in", "isCorrect": true},{"def":"ane", "isCorrect": false},{"def":"een", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/bread.png", "sound":null}},
+
   {"definition": "ananas",
-  "difficulty": 0,
   "inputs": {
       "mc": ["anannes","nanana","banane"], 
 	  "wp": [{"def":"nas", "isCorrect": true},{"def":"anas", "isCorrect": true},{"def":"nnes", "isCorrect": false},{"def":"ane", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/pineapple.png", "sound":null}},
+
   {"definition": "pomme",
-  "difficulty": 0,
   "inputs": {
       "mc": ["pumme","paumme","paeme"], 
 	  "wp": [{"def":"omme", "isCorrect": true},{"def":"mme", "isCorrect": true},{"def":"aume", "isCorrect": false},{"def":"aumme", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/apple.png", "sound":null}},
+
   {"definition": "banane",
-  "difficulty": 0,
   "inputs": {
       "mc": ["bannane","baunan","bunan"], 
 	  "wp": [{"def":"anane", "isCorrect": true},{"def":"ane", "isCorrect": true},{"def":"aune", "isCorrect": false},{"def":"nan", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/banana.png", "sound":null}},
+
   {"definition": "biscuit",
-  "difficulty": 0,
   "inputs": {
       "mc": ["biscuiet","buscuot","biscuite"], 
 	  "wp": [{"def":"uit", "isCorrect": true},{"def":"cuit", "isCorrect": true},{"def":"ote", "isCorrect": false},{"def":"eit", "isCorrect": false}]
   },
-  "hints": {"texture":"assets/textures/cookie.png", "sound":null}}
+  "hints": {"texture":"assets/textures/cookie.png", "sound":null}},
+
+  {"definition": "oiseau",
+  "inputs": {
+      "mc": ["wazo","huaso","oisu"], 
+	  "wp": [{"def":"eau", "isCorrect": true},{"def":"seau", "isCorrect": true},{"def":"oo", "isCorrect": false},{"def":"zo", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/bird.png", "sound":null}},
+
+  {"definition": "céleri",
+  "inputs": {
+      "mc": ["selary","celary","selerie"],
+	  "wp": [{"def":"ri", "isCorrect": true},{"def":"eri", "isCorrect": true},{"def":"ry", "isCorrect": false},{"def":"rie", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/celery.png", "sound":null}},
+
+  {"definition": "fromage",
+  "inputs": {
+      "mc": ["phromag","fraomje","fruit"], 
+	  "wp": [{"def":"age", "isCorrect": true},{"def":"mage", "isCorrect": true},{"def":"aje", "isCorrect": false},{"def":"moge", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/cheese.png", "sound":null}},
+
+  {"definition": "croissant",
+  "inputs": {
+      "mc": ["crwason","crasant","céleri"], 
+	  "wp": [{"def":"ssant", "isCorrect": true},{"def":"oissant", "isCorrect": true},{"def":"sont", "isCorrect": false},{"def":"wasont", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/croissant.png", "sound":null}},
+
+  {"definition": "cheval",
+  "inputs": {
+      "mc": ["sheval","chavale","chavle"], 
+	  "wp": [{"def":"val", "isCorrect": true},{"def":"eval", "isCorrect": true},{"def":"vale", "isCorrect": false},{"def":"aval", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/horse.png", "sound":null}},
+
+  {"definition": "singe",
+  "inputs": {
+      "mc": ["sange","sinj","cange"], 
+	  "wp": [{"def":"inge", "isCorrect": true},{"def":"ge", "isCorrect": true},{"def":"ange", "isCorrect": false},{"def":"anje", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/monkey.png", "sound":null}},
+
+  {"definition": "souris",
+  "inputs": {
+      "mc": ["sourire","soory","tsourie"], 
+	  "wp": [{"def":"ris", "isCorrect": true},{"def":"ouris", "isCorrect": true},{"def":"ry", "isCorrect": false},{"def":"rie", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/mouse.png", "sound":null}},
+
+  {"definition": "orange",
+  "inputs": {
+      "mc": ["owrange","oranje","oorang"], 
+	  "wp": [{"def":"ange", "isCorrect": true},{"def":"range", "isCorrect": true},{"def":"ranje", "isCorrect": false},{"def":"rang", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/orange.png", "sound":null}},
+
+  {"definition": "poire",
+  "inputs": {
+      "mc": ["pwar","poar","boire"], 
+	  "wp": [{"def":"ire", "isCorrect": true},{"def":"oire", "isCorrect": true},{"def":"ar", "isCorrect": false},{"def":"war", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/pear.png", "sound":null}},
+
+  {"definition": "manchot",
+  "inputs": {
+      "mc": ["mangon","manchoote","munchoit"], 
+	  "wp": [{"def":"chot", "isCorrect": true},{"def":"ot", "isCorrect": true},{"def":"ote", "isCorrect": false},{"def":"iot", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/penguin.png", "sound":null}},
+
+  {"definition": "serpent",
+  "inputs": {
+      "mc": ["cerpant","sarpent","carpant"], 
+	  "wp": [{"def":"ent", "isCorrect": true},{"def":"pent", "isCorrect": true},{"def":"ant", "isCorrect": false},{"def":"ente", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/snake.png", "sound":null}},
+
+  {"definition": "avion",
+  "inputs": {
+      "mc": ["aveione","avyon","aveon"], 
+	  "wp": [{"def":"on", "isCorrect": true},{"def":"ion", "isCorrect": true},{"def":"yon", "isCorrect": false},{"def":"ione", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/airplane.png", "sound":null}},
+
+  {"definition": "bateau",
+  "inputs": {
+      "mc": ["bato","batau","butao"], 
+	  "wp": [{"def":"eau", "isCorrect": true},{"def":"teau", "isCorrect": true},{"def":"ow", "isCorrect": false},{"def":"aue", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/boat.png", "sound":null}},
+
+  {"definition": "voiture",
+  "inputs": {
+      "mc": ["vwature","voature","voitoor"], 
+	  "wp": [{"def":"ure", "isCorrect": true},{"def":"ture", "isCorrect": true},{"def":"toor", "isCorrect": false},{"def":"yure", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/car.png", "sound":null}},
+
+  {"definition": "chat",
+  "inputs": {
+      "mc": ["chot","chate","shaut"], 
+	  "wp": [{"def":"at", "isCorrect": true},{"def":"hat", "isCorrect": true},{"def":"ate", "isCorrect": false},{"def":"ot", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/cat.png", "sound":null}},
+
+  {"definition": "horloge",
+  "inputs": {
+      "mc": ["orlag","aurlage","horlaje"], 
+	  "wp": [{"def":"oge", "isCorrect": true},{"def":"loge", "isCorrect": true},{"def":"age", "isCorrect": false},{"def":"oje", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/clock.png", "sound":null}},
+
+  {"definition": "ordinateur",
+  "inputs": {
+      "mc": ["ordinatur","hordinator","ordinature"], 
+	  "wp": [{"def":"eur", "isCorrect": true},{"def":"nateur", "isCorrect": true},{"def":"ture", "isCorrect": false},{"def":"tor", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/computer.png", "sound":null}},
+
+  {"definition": "chien",
+  "inputs": {
+      "mc": ["chyan","chian","chene"], 
+	  "wp": [{"def":"en", "isCorrect": true},{"def":"ien", "isCorrect": true},{"def":"yan", "isCorrect": false},{"def":"ane", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/dog.png", "sound":null}},
+
+  {"definition": "éléphant",
+  "inputs": {
+      "mc": ["éléfant","élaphant","aléfante"], 
+	  "wp": [{"def":"ant", "isCorrect": true},{"def":"phant", "isCorrect": true},{"def":"fant", "isCorrect": false},{"def":"ante", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/elephant.png", "sound":null}},
+
+  {"definition": "poisson",
+  "inputs": {
+      "mc": ["pwason","pwasion","poisan"], 
+	  "wp": [{"def":"son", "isCorrect": true},{"def":"oisson", "isCorrect": true},{"def":"san", "isCorrect": false},{"def":"sone", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/fish.png", "sound":null}},
+
+  {"definition": "ampoule",
+  "inputs": {
+      "mc": ["ampool","ampaul","ampolo"], 
+	  "wp": [{"def":"ule", "isCorrect": true},{"def":"oule", "isCorrect": true},{"def":"ole", "isCorrect": false},{"def":"ool", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/lightBulb.png", "sound":null}},
+
+  {"definition": "sous-marin",
+  "inputs": {
+      "mc": ["soumarine","sous-mreen","sus-marin"], 
+	  "wp": [{"def":"ous", "isCorrect": true},{"def":"arin", "isCorrect": true},{"def":"rine", "isCorrect": false},{"def":"sus", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/submarine.png", "sound":null}},
+
+  {"definition": "t.v.",
+  "inputs": {
+      "mc": ["teve","tayvay","tae-vae"], 
+	  "wp": [{"def":"v.", "isCorrect": true},{"def":"vae", "isCorrect": false},{"def":"vay", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/tv.png", "sound":null}},
+
+  {"definition": "tortue",
+  "inputs": {
+      "mc": ["tortoo","twartu","toortoor"], 
+	  "wp": [{"def":"ue", "isCorrect": true},{"def":"ortue", "isCorrect": true},{"def":"tu", "isCorrect": false},{"def":"oo", "isCorrect": false}]
+  },
+  "hints": {"texture":"assets/textures/turtle.png", "sound":null}}
   ]}

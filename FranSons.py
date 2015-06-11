@@ -381,8 +381,8 @@ class GameSave():
     # loads game save
     def load(*args):
         # sets up json if it has no values yet
-        # if GameSave.source.count() == 0:
-        GameSave.set_to_default()
+        if GameSave.source.count() == 0:
+            GameSave.set_to_default()
 
         # writes json values to class variables
         GameSave.total_correct = GameSave.source.get('answers')['total_correct']
@@ -425,7 +425,6 @@ class Assets():
     def load(*args):
         # Loading the words
         Assets.words = {word['definition']:Word(word['definition'],
-                                                word['difficulty'],
                                                 word['inputs'],
                                                 word['hints']
                                                 )
@@ -457,9 +456,8 @@ class Assets():
 # to access: Assets.words['the word you're looking for'].definition
 class Word:
 
-    def __init__(self, word, diff, inputs, hints, *args):
+    def __init__(self, word, inputs, hints, *args):
         self.definition = word                              # the actual word
-        self.difficulty = diff                              # the word's difficulty
         self.inputs = inputs                                 # multiple choice possible answers
         self.assets = hints  # the texture and sound that go with the word (use these in the InGame class)
         
