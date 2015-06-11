@@ -88,6 +88,7 @@ class PlayScreen(Screen):
         global ib
         global timerbar
         global timerholder
+        global healthLabel
         box0 = BoxLayout(orientation="vertical")
         box1 = BoxLayout(orientation="horizontal", size_hint_y=0.9)
         box2 = BoxLayout(orientation="vertical",
@@ -110,15 +111,19 @@ class PlayScreen(Screen):
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
                                size_hint_y=1.0,
-                               size_hint_x=0.8,
+                               size_hint_x=0.5,
                                pos_hint={'right': 0.9}
                                )
-        timerholder = GridLayout(cols=1,
+        healthLabel = Label(text="HEALTH",
+                            size_hint_y=1.0,
+                            size_hint_x=0.5)
+        timerholder = GridLayout(cols=2,
                                  size_hint_y=0.1,
                                  size_hint_x=0.8,
                                  pos_hint={'right': 0.9}
                                  )
         timerholder.add_widget(timerbar)
+        timerholder.add_widget(healthLabel)
         box0.add_widget(timerholder)
         box0.add_widget(box1)
         self.add_widget(box0)
@@ -126,24 +131,28 @@ class PlayScreen(Screen):
     def on_pre_enter(self, *args):
         health = 0
         length = 0
+        diffculty = 0
 
         # sets health according to difficulty level
         if FranSons.settings.get('gameplay', 'difficulty') == 'Easy':
             health = 7
+            difficulty = 1
         elif FranSons.settings.get('gameplay', 'difficulty') == 'Normal':
             health = 5
+            difficulty = 2
         elif FranSons.settings.get('gameplay', 'difficulty') == 'Hard':
             health = 3
+            difficulty = 3
 
         if FranSons.settings.get('gameplay', 'words') == 'All Words':
             length = len(Assets.words)
         else:
             length = int(FranSons.settings.get('gameplay', 'words'))
 
-        print('length: ', length, ' health: ', health)
+        print('length: ', length, ' health: ', health, ' difficulty number: ', difficulty)
 
         # starts the game and uses length and health variables as parameters
-        InGame().go(health, length)
+        InGame().go(health, length, difficulty)
 
     def on_enter(self, *args):
         animation = Animation(volume=0.0, duration=0.5)
@@ -212,7 +221,7 @@ class PlayScreen(Screen):
         timerholder.add_widget(timerbar)
         timerO = Animation(value=0, duration=tl)
         timerO.start(timerbar)
-        timerO.bind(on_complete=InGame.takeWrong)
+        timerO.bind(on_complete=InGame.takeTime)
 
     def level(self, *args): # feilan: could remove because not being used anywhere
         InGame.level(InGame)
@@ -292,12 +301,13 @@ class InGame(): # host for functions relating to gameplay
     num_unanswered = 0
     time = 0
 
-    def go(self, starting_health, goal):
+    def go(self, starting_health, goal, difficulty):
         #BackgroundScreenManager.background_image = ObjectProperty(Image(source='assets/textures/bg1.png'))
 
         InGame.health = starting_health
         InGame.progress = 0
         InGame.goal = goal
+        InGame.difficulty = difficulty
 
         InGame.num_correct = 0
         InGame.num_wrong = 0
@@ -318,6 +328,8 @@ class InGame(): # host for functions relating to gameplay
 
     def level(*args):
         global time
+        global healthLabel
+        global timerholder
         """feilan: BASIC GAMEFLOW DESCRIPTION:
         -progress increases when answer correct
         -health decreases when answer incorrect
@@ -352,8 +364,19 @@ class InGame(): # host for functions relating to gameplay
             timeLength = ((0.5**((4/InGame.goal)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
 
             InGame.time += int(timeLength)
+            
             # feilan: suggestion: move updateprompt into this class
-            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength)
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength) # update level
+            # update health display:
+            timerholder.remove_widget(healthLabel)
+            healthLabel = None
+            healthLabel = Label(text="Health: "+str(InGame.health),
+                            size_hint_y=1.0,
+                            size_hint_x=0.5,
+                            font_size=32,
+                            color=[0, 0, 0, 1],
+                            halign="center")
+            timerholder.add_widget(healthLabel)
         else:
             InGame.end()
 
@@ -395,7 +418,24 @@ class InGame(): # host for functions relating to gameplay
             InGame.end()
 
         Assets.play_sound('surprise.wav')
+    def takeTime(*args):
+        global timerO
+        global timerbar
+        timerO.cancel(timerbar)
+        
+        # update stat
+        InGame.num_unanswered += 1
 
+        InGame.health -= 1
+        print("unanswered")
+        print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
+
+        if InGame.health > 0:
+            InGame.level()
+        else:
+            InGame.end()
+
+        Assets.play_sound('surprise.wav')
     def end(*args):
         InGame.stop(None)
         print('game over')
