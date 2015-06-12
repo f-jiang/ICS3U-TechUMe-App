@@ -178,7 +178,7 @@ class PlayScreen(Screen):
         FranSons.screen_manager.transition.direction = "left"
         FranSons.screen_manager.current = "end"
 
-    def updatePrompt(self, hint, input_data, correct_answer, type, tl, **kwargs):
+    def updatePrompt(self, hint, input_data, correct_answer, type, promptType, tl, **kwargs):
         global box1
         global box3
         global box3data
@@ -214,7 +214,12 @@ class PlayScreen(Screen):
 
         # if the hint provided is an image
         if type == "mc":
-            promptE = Image(source=hint, size_hint_x=0.5)
+            if promptType == "texture":
+                promptE = Image(source=hint, size_hint_x=0.5)
+            else:
+                promptE = Button(text="(sound)", size_hint_x=0.3, size_hint_y=0.3, font_size=64, color=[1,1,1, 1], )
+                promptE.bind(on_press=InGame.playCurrentPrompt)
+                InGame.playCurrentPrompt()
         else:
             promptE = Button(text=hint,
                              size_hint_x=0.5,
@@ -364,7 +369,8 @@ class InGame(): # host for functions relating to gameplay
             random.shuffle(opts)
             # if mc is the chosen answer format
             if opts[0]=="mc":
-                hint = Assets.words[InGame.currentWord].assets["texture"]
+                promptType = ["texture", "sound"][random.randint(0,1)]
+                hint = Assets.words[InGame.currentWord].assets[promptType]
                 pa0 = Assets.words[InGame.currentWord].inputs["mc"] # possible answers
                 random.shuffle(pa0)
                 inputData = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
@@ -373,6 +379,7 @@ class InGame(): # host for functions relating to gameplay
                              InGame.currentWord]
                 correct_answer = InGame.currentWord
             elif opts[0]=="wp":
+                promptType = "giant penis" # null value, will not be used, just here to fill a parameter space that is only necessary for "mc". Do not remove.
                 hn = random.randint(0, 1)
                 hint = (InGame.currentWord).replace(Assets.words[InGame.currentWord].inputs["wp"][hn]["def"], "qwertyuiop")
                 bsl = ""
@@ -390,7 +397,7 @@ class InGame(): # host for functions relating to gameplay
             InGame.time += int(timeLength)
             
             # feilan: suggestion: move updateprompt into this class
-            PlayScreen.updatePrompt(PlayScreen, hint, inputData, correct_answer, opts[0], timeLength) # update level
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, correct_answer, opts[0], promptType, timeLength) # update level
             # update health display:
             timerholder.remove_widget(healthLabel)
             healthLabel = None
@@ -403,7 +410,9 @@ class InGame(): # host for functions relating to gameplay
             timerholder.add_widget(healthLabel)
         else:
             InGame.end()
-
+    def playCurrentPrompt(*args):
+        Assets.sounds[Assets.words[InGame.currentWord].assets["sound"]].play()
+        
     def takeCorrect(*args):
         global timerO
         global timerbar
