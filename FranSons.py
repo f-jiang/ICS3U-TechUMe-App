@@ -90,12 +90,13 @@ class PlayScreen(Screen):
         global timerholder
         global healthLabel
         box0 = BoxLayout(orientation="vertical")
-        box1 = BoxLayout(orientation="horizontal", size_hint_y=0.9)
-        box2 = BoxLayout(orientation="vertical",
-                         size_hint_x=0.5,
-                         size_hint_y=1.0,
+        box1 = BoxLayout(orientation="horizontal",
+                         size_hint_y=0.9,
                          padding=50,
                          spacing=25)
+        box2 = BoxLayout(orientation="vertical",
+                         size_hint_x=0.5,
+                         size_hint_y=1.0)
 
         ib=GridLayout(cols=2) # input stuffs go here
         box2.add_widget(ib)
@@ -215,7 +216,12 @@ class PlayScreen(Screen):
         if type == "mc":
             promptE = Image(source=hint, size_hint_x=0.5)
         else:
-            promptE = Button(text=hint, size_hint_x=0.3, size_hint_y=0.3, font_size=64, color=[1,1,1, 1], )
+            promptE = Button(text=hint,
+                             size_hint_x=0.5,
+                             size_hint_y=0.5,
+                             font_size=64,
+                             color=[1,1,1, 1],
+                             pos_hint={'center_y': 0.5})
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
                                value=100,
