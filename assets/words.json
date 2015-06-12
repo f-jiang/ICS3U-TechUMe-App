@@ -198,7 +198,7 @@
   {"definition": "t.v.",
   "inputs": {
       "mc": ["teve","tayvay","tae-vae"], 
-	  "wp": [{"def":"v.", "isCorrect": true},{"def":"vae", "isCorrect": false},{"def":"vay", "isCorrect": false}]
+	  "wp": [{"def":"t.", "isCorrect": true},{"def":"v.", "isCorrect": true},{"def":"vae", "isCorrect": false},{"def":"vay", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/tv.png", "sound":null}},
 
