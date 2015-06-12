@@ -215,7 +215,7 @@ class PlayScreen(Screen):
         if type == "mc":
             promptE = Image(source=hint, size_hint_x=0.5)
         else:
-            promptE = Label(text=hint, size_hint_x=0.5, font_size=64, color=[0,0,0, 1])
+            promptE = Button(text=hint, size_hint_x=0.3, size_hint_y=0.3, font_size=64, color=[1,1,1, 1], )
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
                                value=100,
@@ -368,7 +368,11 @@ class InGame(): # host for functions relating to gameplay
                 correct_answer = InGame.currentWord
             elif opts[0]=="wp":
                 hn = random.randint(0, 1)
-                hint = (InGame.currentWord).replace(Assets.words[InGame.currentWord].inputs["wp"][hn]["def"], "")
+                hint = (InGame.currentWord).replace(Assets.words[InGame.currentWord].inputs["wp"][hn]["def"], "qwertyuiop")
+                bsl = ""
+                for i in range(0, len(Assets.words[InGame.currentWord].inputs["wp"][hn]["def"])):
+                    bsl += "_"
+                hint = hint.replace("qwertyuiop", bsl)
                 pa0 = Assets.words[InGame.currentWord].inputs["wp"][random.randint(2, 3)]["def"] # possible answers
                 pa00= Assets.words[InGame.currentWord].inputs["wp"][hn]["def"]
                 inputData = [pa0,
