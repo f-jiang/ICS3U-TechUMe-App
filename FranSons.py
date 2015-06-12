@@ -217,7 +217,7 @@ class PlayScreen(Screen):
             if promptType == "texture":
                 promptE = Image(source=hint, size_hint_x=0.5)
             else:
-                promptE = Button(text="(sound)", size_hint_x=0.3, size_hint_y=0.3, font_size=64, color=[1,1,1, 1], )
+                promptE = Button(text="(sound)", size_hint_x=0.3, font_size=64, color=[1,1,1, 1], )
                 promptE.bind(on_press=InGame.playCurrentPrompt)
                 InGame.playCurrentPrompt()
         else:
