@@ -207,9 +207,9 @@ class PlayScreen(Screen):
             box3data.append(pa)
         for i in range(0, len(input_data)):
             if box3data[i]==correct_answer:
-                box3[i].bind(on_press=InGame.takeCorrect)
+                box3[i].bind(on_release=InGame.takeCorrect)
             else:
-                box3[i].bind(on_press=InGame.takeWrong)
+                box3[i].bind(on_release=InGame.takeWrong)
             ib.add_widget(box3[i])
 
         # if the hint provided is an image
@@ -217,8 +217,8 @@ class PlayScreen(Screen):
             if promptType == "texture":
                 promptE = Image(source=hint, size_hint_x=0.5)
             else:
-                promptE = Button(text="(sound)", size_hint_x=0.3, font_size=64, color=[1,1,1, 1], )
-                promptE.bind(on_press=InGame.playCurrentPrompt)
+                promptE = Button(text="(sound)", size_hint_x=0.3, font_size=64, color=[1,1,1, 1])
+                promptE.bind(on_release=InGame.playCurrentPrompt)
                 InGame.playCurrentPrompt()
         else:
             promptE = Button(text=hint,
@@ -226,7 +226,9 @@ class PlayScreen(Screen):
                              size_hint_y=0.5,
                              font_size=64,
                              color=[1,1,1, 1],
-                             pos_hint={'center_y': 0.5})
+                             pos_hint={'center_y': 0.5},
+                             disabled=True,
+                             opacity=1.0)
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
                                value=100,
@@ -269,16 +271,16 @@ class StatsScreen(Screen):
         popup_content.add_widget(Label(text='Are you sure you want to do this?'))
         popup_buttons = BoxLayout(size_hint_y=0.2)
         yes_btn = Button(text='Yes')
-        yes_btn.bind(on_press=StatsScreen.reset_stats)
+        yes_btn.bind(on_release=StatsScreen.reset_stats)
         no_btn = Button(text='No')
-        no_btn.bind(on_press=StatsScreen.popup.dismiss)
+        no_btn.bind(on_release=StatsScreen.popup.dismiss)
         popup_buttons.add_widget(yes_btn)
         popup_buttons.add_widget(no_btn)
         popup_content.add_widget(popup_buttons)
         StatsScreen.popup.content = popup_content
 
         stats_reset = self.ids['stats_reset']
-        stats_reset.bind(on_press=StatsScreen.popup.open)
+        stats_reset.bind(on_release=StatsScreen.popup.open)
 
     def on_pre_enter(self, *args):
         print(self)
@@ -410,6 +412,7 @@ class InGame(): # host for functions relating to gameplay
             timerholder.add_widget(healthLabel)
         else:
             InGame.end()
+
     def playCurrentPrompt(*args):
         Assets.sounds[Assets.words[InGame.currentWord].assets["sound"].replace("assets/sounds/", "")].play()
         
@@ -530,7 +533,6 @@ class Assets():
     textures = {}
 
     current_music = []
-    current_sound_effects = []
 
     # loads all assets and writes them to class variables
     def load(*args):
@@ -546,39 +548,32 @@ class Assets():
                          for file_name in Assets.sound_sources.get('files')}
 
         # Loading the textures
-        # for some reason this dict appears to be empty when accessed from the .kv file
-        # TODO: find out why this is empty in kv file
         Assets.textures = {file_name:os.path.join('assets/textures/', file_name)
                            for file_name in Assets.texture_sources.get('files')}
 
     def play_sound(name: str, do_loop=False):
-        if FranSons.settings.get('app', 'sfx') and name in Assets.sounds:
+        if name in Assets.sounds:
             Assets.sounds[name].play()
+
             if do_loop:
                 Assets.sounds[name].loop = True
 
     def play_music(name: str, do_loop=False):
-        if FranSons.settings.get('app', 'music') and name in Assets.sounds:
+        if name in Assets.sounds:
+            if name not in Assets.current_music:
+               Assets.current_music.append(name)
+
+            Assets.sounds[name].volume = float(FranSons.settings.get('app', 'music'))
             Assets.sounds[name].play()
+
             if do_loop:
                 Assets.sounds[name].loop = True
 
-    def toggle_sounds(do_mute: bool):
-        if do_mute:
-            volume = 0
-        else:
+    def toggle_music(on):
+        if on:
             volume = 1
-
-        print(Assets.current_sound_effects)
-
-        for name in Assets.current_sound_effects:
-            Assets.sounds[name].volume = volume
-
-    def toggle_music(do_mute: bool):
-        if do_mute:
-            volume = 0
         else:
-            volume = 1
+            volume = 0
 
         print(Assets.current_music)
 
@@ -615,7 +610,7 @@ class FranSons(App):
         Assets.load()
         
         # configure Settings panel
-        self.settings_cls = SettingsWithSidebar
+        self.settings_cls = SettingsWithTabbedPanel
         self.use_kivy_settings = False
 
         # initialize ScreenManager, set transition, add screens, and set current to splash screen
@@ -638,38 +633,27 @@ class FranSons(App):
         return FranSons.screen_manager
 
     def build_config(self, config):
-        config.setdefaults("settings", {
-            "music": True,
-            "sfx": True
+        config.setdefaults('app', {
+            'music': 1
         })
         config.setdefaults("gameplay", {
             "difficulty": 'Normal',
-            "words": 10,
-            "nature": True,
-            "food": True,
-            "machines": True
+            "words": 10
         })
 
     def build_settings(self, settings):
-        settings.add_json_panel("App",
+        settings.add_json_panel("Settings",
                                 self.config,
                                 data=json.dumps([
+                                    {'type': 'title',
+                                     'title': 'App'},
                                     {'type': 'bool',
                                      'title': 'Music',
                                      'desc': 'Toggle Music',
                                      'section': 'app',
-                                     'key': 'music',
-                                     'values': ['False', 'True']},
-                                    {'type': 'bool',
-                                     'title': 'Sound Effects',
-                                     'desc': 'Toggle Sound Effects',
-                                     'section': 'app',
-                                     'key': 'sfx',
-                                     'values': ['False', 'True']}])
-                                )
-        settings.add_json_panel("Gameplay",
-                                self.config,
-                                data=json.dumps([
+                                     'key': 'music'},
+                                    {'type': 'title',
+                                     'title': 'Gameplay'},
                                     {'type': 'options',
                                      'title': 'Difficulty',
                                      'desc': 'In harder games, you have fewer lives and less time to answer each '
@@ -681,36 +665,22 @@ class FranSons(App):
                                      'title': 'Words per Game',
                                      'section': 'gameplay',
                                      'key': 'words',
-                                     'options': ["5", "10", "25", "50", "All Words"]},
-                                    {'type': 'title',
-                                     'title': 'Word Categories'},
-                                    {'type': 'bool',
-                                     'title': 'Nature',
-                                     'section': 'gameplay',
-                                     'key': 'nature',
-                                     'values': ['False', 'True']},
-                                    {'type': 'bool',
-                                     'title': 'Food',
-                                     'section': 'gameplay',
-                                     'key': 'food',
-                                     'values': ['False', 'True']},
-                                    {'type': 'bool',
-                                     'title': 'Machines',
-                                     'section': 'gameplay',
-                                     'key': 'machines',
-                                     'values': ['False', 'True']}])
+                                     'options': ["5", "10", "15", "20", "All Words"]}])
                                 )
 
     def on_config_change(self, config, section, key, value):
         print(section, key, value)
 
-        if section == 'app':
-            if key == 'music':
-                print('toggling music')
-                Assets.toggle_music(value)
-            elif key == 'sfx':
-                print('toggling sound')
-                Assets.toggle_sounds(value)
+        if section == 'app' and key == 'music':
+            option = True
+
+            if value == '0':
+                option = False
+            elif value == '1':
+                option = True
+
+            print('toggling music')
+            Assets.toggle_music(option)
 
 
 if __name__ == "__main__":

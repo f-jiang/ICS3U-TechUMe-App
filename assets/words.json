@@ -195,10 +195,10 @@
   },
   "hints": {"texture":"assets/textures/submarine.png", "sound":"assets/sounds/submarine.wav"}},
 
-  {"definition": "t.v.",
+  {"definition": "télévision",
   "inputs": {
-      "mc": ["teve","tayvay","tae-vae"], 
-	  "wp": [{"def":"t.", "isCorrect": true},{"def":"v.", "isCorrect": true},{"def":"vae", "isCorrect": false},{"def":"vay", "isCorrect": false}]
+      "mc": ["taylayvision","televizion","tae-vae"],
+	  "wp": [{"def":"télé", "isCorrect": true},{"def":"vision", "isCorrect": true},{"def":"vae", "isCorrect": false},{"def":"vay", "isCorrect": false}]
   },
   "hints": {"texture":"assets/textures/tv.png", "sound":"assets/sounds/tv.wav"}},
 
