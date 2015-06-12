@@ -53,11 +53,11 @@ class MainMenuScreen(Screen):
 
 
 class CreditsScreen(Screen):
-    shitter = 0
+    lol = 0
     def ericEaster(self, *args): # Eric's Easter Egg. Click his name three times in credits to have the time of your life.
-        self.shitter += 1
-        if self.shitter==6:
-            self.shitter = 0
+        self.lol += 1
+        if self.lol==6:
+            self.lol = 0
             Assets.sounds['lel.wav'].play() # this will play even if sound effects have been muted in the settings!
 
 
@@ -309,7 +309,7 @@ class InGame(): # host for functions relating to gameplay
     progress = -1
     goal = 10       # the value progress needs to be if we want to win
     difficulty = 1  # TODO: to be user-defined
-    banged = [] # each word's face value that was banged is put into this array
+    used = [] # each word's face value that was used is put into this array
 
     num_correct = 0
     num_wrong = 0
@@ -339,7 +339,7 @@ class InGame(): # host for functions relating to gameplay
         GameSave.total_unanswered += InGame.num_unanswered
         GameSave.time_played_s += InGame.time
         GameSave.save()
-        InGame.banged = []
+        InGame.used = []
 
     def level(*args):
         global time
@@ -356,13 +356,13 @@ class InGame(): # host for functions relating to gameplay
         # making a list of words that can be asked
         possibilities = [] # creates list of possible prompts, picks random one from this later
         for p in Assets.words:
-            if not (p in InGame.banged):
+            if not (p in InGame.used):
                 possibilities.append(p)
         if len(possibilities) > 0 and InGame.progress < InGame.goal and InGame.health > 0:
             # selecting a word
             t = random.randrange(0, len(possibilities))
             InGame.currentWord = Assets.words[possibilities[int(t)]].definition # sets the level's current word
-            (InGame.banged).append(InGame.currentWord) # adds to list of already used words, so as not to use it in the future
+            (InGame.used).append(InGame.currentWord) # adds to list of already used words, so as not to use it in the future
 
             # here: add code for picking answer format, hint format
             opts = ["mc","wp"]
@@ -379,7 +379,7 @@ class InGame(): # host for functions relating to gameplay
                              InGame.currentWord]
                 correct_answer = InGame.currentWord
             elif opts[0]=="wp":
-                promptType = "giant penis" # null value, will not be used, just here to fill a parameter space that is only necessary for "mc". Do not remove.
+                promptType = "" # null value, will not be used, just here to fill a parameter space that is only necessary for "mc". Do not remove.
                 hn = random.randint(0, 1)
                 hint = (InGame.currentWord).replace(Assets.words[InGame.currentWord].inputs["wp"][hn]["def"], "qwertyuiop")
                 bsl = ""
