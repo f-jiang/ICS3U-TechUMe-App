@@ -37,7 +37,7 @@ class SplashScreen(Screen):
 
     def on_enter(self, *args):
         bar = self.ids["loading_bar"]
-        animation = Animation(value=bar.max, duration=20.0)
+        animation = Animation(value=bar.max, duration=2.0)
         animation.start(bar)
         animation.bind (on_complete=SplashScreen.complete)
 
