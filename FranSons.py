@@ -391,7 +391,7 @@ class InGame(): # host for functions relating to gameplay
             InGame.time += int(timeLength)
             
             # feilan: suggestion: move updateprompt into this class
-            PlayScreen.updatePrompt(PlayScreen, hint, inputData, correct_answer, opts[0], promptType timeLength) # update level
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, correct_answer, opts[0], promptType, timeLength) # update level
             # update health display:
             timerholder.remove_widget(healthLabel)
             healthLabel = None
