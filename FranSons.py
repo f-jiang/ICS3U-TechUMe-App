@@ -201,9 +201,10 @@ class PlayScreen(Screen):
         for pa in input_data:
             box3.append(Button(text=str(pa),
                                size_hint_x=0.5,
-                               size_hint_y=0.5))
+                               size_hint_y=0.5,
+                               font_size=20))
             box3data.append(pa)
-        for i in range(0,4):
+        for i in range(0, len(input_data)):
             if box3data[i]==correct_answer:
                 box3[i].bind(on_press=InGame.takeCorrect)
             else:
@@ -211,7 +212,10 @@ class PlayScreen(Screen):
             ib.add_widget(box3[i])
 
         # if the hint provided is an image
-        promptE = Image(source=hint, size_hint_x=0.5)
+        if type == "mc":
+            promptE = Image(source=hint, size_hint_x=0.5)
+        else:
+            promptE = Label(text=hint, size_hint_x=0.5, font_size=64, color=[0,0,0, 1])
         box1.add_widget(promptE)
         timerbar = ProgressBar(max=100,
                                value=100,
@@ -353,20 +357,30 @@ class InGame(): # host for functions relating to gameplay
             opts = ["mc","wp"]
             random.shuffle(opts)
             # if mc is the chosen answer format
-            hint = Assets.words[InGame.currentWord].assets["texture"]
-            pa0 = Assets.words[InGame.currentWord].inputs["mc"] # possible answers
-            random.shuffle(pa0)
-            inputData = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
-                         pa0[1],
-                         pa0[2],
-                         InGame.currentWord]
+            if opts[0]=="mc":
+                hint = Assets.words[InGame.currentWord].assets["texture"]
+                pa0 = Assets.words[InGame.currentWord].inputs["mc"] # possible answers
+                random.shuffle(pa0)
+                inputData = [pa0[0], # here, add 3 of the bs answers and then the actual answer, then shuffle that shit up
+                             pa0[1],
+                             pa0[2],
+                             InGame.currentWord]
+                correct_answer = InGame.currentWord
+            elif opts[0]=="wp":
+                hn = random.randint(0, 1)
+                hint = (InGame.currentWord).replace(Assets.words[InGame.currentWord].inputs["wp"][hn]["def"], "")
+                pa0 = Assets.words[InGame.currentWord].inputs["wp"][random.randint(2, 3)]["def"] # possible answers
+                pa00= Assets.words[InGame.currentWord].inputs["wp"][hn]["def"]
+                inputData = [pa0,
+                             pa00]
+                correct_answer = pa00
             random.shuffle(inputData)
             timeLength = ((0.5**((4/InGame.goal)*InGame.progress)/(4 - InGame.difficulty))*9)+(7 - InGame.difficulty)
 
             InGame.time += int(timeLength)
             
             # feilan: suggestion: move updateprompt into this class
-            PlayScreen.updatePrompt(PlayScreen, hint, inputData, InGame.currentWord, opts[0], timeLength) # update level
+            PlayScreen.updatePrompt(PlayScreen, hint, inputData, correct_answer, opts[0], timeLength) # update level
             # update health display:
             timerholder.remove_widget(healthLabel)
             healthLabel = None
@@ -387,7 +401,8 @@ class InGame(): # host for functions relating to gameplay
         
         # update stat
         InGame.num_correct += 1
-
+        if (int(GameSave.total_correct) + int(InGame.num_correct)) == 420:
+            Assets.sounds['enya_only_time.mp3'].play()
         InGame.progress += 1
         print("Correct")
         print('current values for health, progress, and goal: ', InGame.health, InGame.progress, InGame.goal)
