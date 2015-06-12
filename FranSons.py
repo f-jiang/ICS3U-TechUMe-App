@@ -411,7 +411,7 @@ class InGame(): # host for functions relating to gameplay
         else:
             InGame.end()
     def playCurrentPrompt(*args):
-        Assets.sounds[Assets.words[InGame.currentWord].assets["sound"]].play()
+        Assets.sounds[Assets.words[InGame.currentWord].assets["sound"].replace("assets/sounds/", "")].play()
         
     def takeCorrect(*args):
         global timerO
